@@ -31,7 +31,7 @@ export default async function BookPage({
       />
 
       <section className="bg-cream py-16">
-        <Container className="max-w-3xl">
+        <Container maxWidth="max-w-3xl">
           <Reveal variant="up" className="rounded-lg border border-gold-200/70 bg-white p-6 shadow-sm sm:p-10">
             <BookingForm
               key={initialStyle ?? "default"}

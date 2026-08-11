@@ -13,16 +13,16 @@ export function CTA() {
             <div className="animate-glow pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-gold-500/15 blur-3xl" />
             <div className="animate-glow pointer-events-none absolute -bottom-24 -right-16 h-72 w-72 rounded-full bg-wine-500/15 blur-3xl [animation-delay:3s]" />
             <div className="relative">
-              <p className="mx-auto flex w-fit items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-gold-300">
-                <span aria-hidden className="h-px w-8 bg-gold-400" />
+              <p className="mx-auto flex w-fit flex-wrap items-center justify-center gap-3 text-center text-xs font-semibold uppercase tracking-[0.3em] text-gold-300">
+                <span aria-hidden className="hidden h-px w-8 bg-gold-400 sm:block" />
                 Your next chapter
-                <span aria-hidden className="h-px w-8 bg-gold-400" />
+                <span aria-hidden className="hidden h-px w-8 bg-gold-400 sm:block" />
               </p>
-              <h2 className="font-display mx-auto mt-5 max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">
+              <h2 className="font-display mx-auto mt-5 max-w-2xl text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
                 Ready to create something unforgettable?
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-cream/70">
-                Share your ideas with us, and we'll craft a bespoke celebration that perfectly matches your vision.
+                Share your ideas with us, and we&apos;ll craft a bespoke celebration that perfectly matches your vision.
               </p>
               <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <Link

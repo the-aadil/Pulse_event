@@ -51,7 +51,7 @@ export function TextArea(props: React.TextareaHTMLAttributes<HTMLTextAreaElement
 }
 
 export function SelectInput(props: React.SelectHTMLAttributes<HTMLSelectElement>) {
-  return <select {...props} className={cn("input appearance-none", props.className)} />;
+  return <select {...props} className={cn("input appearance-none select-chevron", props.className)} />;
 }
 
 export function CheckboxInput(props: React.InputHTMLAttributes<HTMLInputElement>) {

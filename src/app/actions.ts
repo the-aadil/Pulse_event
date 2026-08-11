@@ -20,7 +20,7 @@ import {
 } from "@/lib/auth";
 
 export type ActionResult = {
-  status: "success" | "error";
+  status: "idle" | "success" | "error";
   message?: string;
   fieldErrors?: Record<string, string>;
   reference?: string;

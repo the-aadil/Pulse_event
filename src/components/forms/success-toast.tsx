@@ -36,7 +36,7 @@ export function SuccessToast({
   return (
     <div
       role="status"
-      className="animate-fade-up fixed bottom-4 right-4 z-[100] w-[calc(100vw-2rem)] max-w-sm rounded-lg border border-emerald-200 bg-white p-4 shadow-2xl shadow-ink/20"
+      className="animate-fade-up fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-[max(1rem,env(safe-area-inset-right))] z-[100] w-[calc(100vw-2rem)] max-w-sm rounded-lg border border-emerald-200 bg-white p-4 shadow-2xl shadow-ink/20"
     >
       <div className="flex items-start gap-3">
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-white">

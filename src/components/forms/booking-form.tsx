@@ -7,7 +7,7 @@ import { SuccessToast } from "@/components/forms/success-toast";
 import { CheckIcon, SparklesIcon } from "@/components/icons";
 import type { EventType } from "@/generated/prisma/client";
 
-const initialState: ActionResult = { status: "success", message: "" };
+const initialState: ActionResult = { status: "idle", message: "" };
 
 export function BookingForm({
   events,
@@ -53,14 +53,14 @@ export function BookingForm({
           </div>
         )}
 
-      <input
-        type="text"
-        name="company_website"
-        className="hidden"
-        tabIndex={-1}
-        autoComplete="off"
-        aria-hidden
-      />
+        <input
+          type="text"
+          name="company_website"
+          className="hidden"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden
+        />
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <Field label="Full name" htmlFor="bk-name" error={errors.name} required>
@@ -154,24 +154,24 @@ export function BookingForm({
         </Field>
       </div>
 
-        <Field
-          label="Anything else we should know?"
-          htmlFor="bk-message"
-          error={errors.message}
-          hint="Theme ideas, budget, special requests… (optional)"
-        >
-          <TextArea
-            id="bk-message"
-            name="message"
-            placeholder="Tell us about your dream event…"
-            maxLength={2000}
-            defaultValue={
-              initialStyle
-                ? `I'd like to recreate this look: ${initialStyle}. `
-                : undefined
-            }
-          />
-        </Field>
+      <Field
+        label="Anything else we should know?"
+        htmlFor="bk-message"
+        error={errors.message}
+        hint="Theme ideas, budget, special requests… (optional)"
+      >
+        <TextArea
+          id="bk-message"
+          name="message"
+          placeholder="Tell us about your dream event…"
+          maxLength={2000}
+          defaultValue={
+            initialStyle
+              ? `I'd like to recreate this look: ${initialStyle}. `
+              : undefined
+          }
+        />
+      </Field>
 
         {success && (
           <div

@@ -153,7 +153,32 @@ const gamesPhotos: GalleryItem[] = [
   game(24, 800, 800),
 ];
 
-export const galleryItems: GalleryItem[] = [...birthdayPhotos, ...weddingPhotos, ...gamesPhotos];
+function babyshower(n: number, width: number, height: number): GalleryItem {
+  return {
+    src: `/images/gallery/babyshowers/babyshower-${String(n).padStart(2, "0")}.jpeg?v=2`,
+    alt: `Baby shower celebration moment ${n} captured by Pulse Event`,
+    category: "Baby Showers",
+    width,
+    height,
+  };
+}
+
+const babyshowerPhotos: GalleryItem[] = [
+  babyshower(1, 1600, 1200),
+  babyshower(2, 1200, 1600),
+  babyshower(3, 1280, 576),
+  babyshower(4, 1024, 768),
+  babyshower(5, 736, 552),
+  babyshower(6, 1280, 576),
+  babyshower(7, 736, 552),
+  babyshower(8, 1280, 576),
+  babyshower(9, 1024, 768),
+  babyshower(10, 768, 1024),
+  babyshower(11, 554, 554),
+  babyshower(12, 1024, 512),
+];
+
+export const galleryItems: GalleryItem[] = [...birthdayPhotos, ...weddingPhotos, ...gamesPhotos, ...babyshowerPhotos];
 
 export const PAGE_SIZE = 9;
 

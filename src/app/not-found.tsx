@@ -3,7 +3,7 @@ import { Logo } from "@/components/site/logo";
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-ink px-4 py-20 text-cream">
+    <div className="flex min-h-screen min-h-dvh flex-col items-center justify-center bg-ink px-4 py-20 text-cream">
       <Logo dark />
       <p className="font-display mt-10 text-7xl font-semibold tracking-tight text-gold-400">
         404

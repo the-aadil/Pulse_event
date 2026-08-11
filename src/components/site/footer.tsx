@@ -48,27 +48,27 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
-                className="flex h-8 w-8 items-center justify-center rounded-md border border-cream/15 text-cream/70 transition-all duration-300 hover:-translate-y-0.5 hover:border-gold-400 hover:text-gold-400"
+                className="flex h-9 w-9 items-center justify-center rounded-md border border-cream/15 text-cream/70 transition-all duration-300 hover:-translate-y-0.5 hover:border-gold-400 hover:text-gold-400"
               >
-                <WhatsAppIcon className="h-3.5 w-3.5" />
+                <WhatsAppIcon className="h-4 w-4" />
               </a>
               <a
                 href={SITE_CONFIG.socials.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="flex h-8 w-8 items-center justify-center rounded-md border border-cream/15 text-cream/70 transition-all duration-300 hover:-translate-y-0.5 hover:border-gold-400 hover:text-gold-400"
+                className="flex h-9 w-9 items-center justify-center rounded-md border border-cream/15 text-cream/70 transition-all duration-300 hover:-translate-y-0.5 hover:border-gold-400 hover:text-gold-400"
               >
-                <InstagramIcon className="h-3.5 w-3.5" />
+                <InstagramIcon className="h-4 w-4" />
               </a>
               <a
                 href={SITE_CONFIG.socials.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="flex h-8 w-8 items-center justify-center rounded-md border border-cream/15 text-cream/70 transition-all duration-300 hover:-translate-y-0.5 hover:border-gold-400 hover:text-gold-400"
+                className="flex h-9 w-9 items-center justify-center rounded-md border border-cream/15 text-cream/70 transition-all duration-300 hover:-translate-y-0.5 hover:border-gold-400 hover:text-gold-400"
               >
-                <FacebookIcon className="h-3.5 w-3.5" />
+                <FacebookIcon className="h-4 w-4" />
               </a>
             </div>
           </div>

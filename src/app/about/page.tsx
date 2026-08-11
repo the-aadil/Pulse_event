@@ -5,8 +5,7 @@ import { SiteShell, Container, SectionHeading, PageHeader } from "@/components/s
 import { Reveal } from "@/components/motion/reveal";
 import { Stagger } from "@/components/motion/stagger";
 import { CTA } from "@/components/home/cta";
-import { CheckIcon, ArrowRightIcon, SparklesIcon, UsersRoundIcon, ShieldCheckIcon } from "@/components/icons";
-import { SITE_CONFIG } from "@/lib/config";
+import { ArrowRightIcon, SparklesIcon, UsersRoundIcon, ShieldCheckIcon } from "@/components/icons";
 
 export const metadata: Metadata = {
   title: "About Us | Pulse Event",
@@ -64,7 +63,7 @@ export default function AboutPage() {
             <h3 className="font-display mt-8 text-2xl font-bold text-ink">{owner.name}</h3>
             <p className="mt-1 text-gold-600 font-medium tracking-wide uppercase text-sm">{owner.role}</p>
             <p className="mt-6 text-base leading-relaxed text-ink-soft sm:text-lg">
-              "{owner.bio}"
+              &ldquo;{owner.bio}&rdquo;
             </p>
             <div className="mt-8">
               <Link href="/contact" className="btn btn-outline border-gold-300 text-gold-700 hover:bg-gold-50">
@@ -80,6 +79,7 @@ export default function AboutPage() {
                 src={owner.image}
                 alt={owner.name}
                 fill
+                sizes="(min-width: 640px) 384px, 288px"
                 className="object-cover object-top"
               />
             </div>
@@ -89,7 +89,7 @@ export default function AboutPage() {
 
       {/* Story Section */}
       <section className="bg-cream py-16 sm:py-24">
-        <Container className="mx-auto max-w-4xl text-center">
+        <Container maxWidth="max-w-4xl" className="text-center">
           <Reveal variant="fade">
             <SectionHeading
               align="center"

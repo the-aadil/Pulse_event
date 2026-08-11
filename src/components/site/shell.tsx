@@ -16,12 +16,20 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
 export function Container({
   children,
   className = "",
+  maxWidth = "max-w-7xl",
 }: {
   children: React.ReactNode;
   className?: string;
+  /** Overrides the default max-width. Use instead of appending a conflicting max-w class. */
+  maxWidth?: "max-w-3xl" | "max-w-4xl" | "max-w-5xl" | "max-w-6xl" | "max-w-7xl";
 }) {
   return (
-    <div className={`mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 ${className}`}>
+    <div
+      className={cn(
+        `mx-auto w-full ${maxWidth} px-4 sm:px-6 lg:px-8`,
+        className
+      )}
+    >
       {children}
     </div>
   );
@@ -39,7 +47,7 @@ export function Eyebrow({
   return (
     <p
       className={cn(
-        "flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em]",
+        "flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em]",
         light ? "text-gold-300" : "text-gold-600",
         className
       )}
@@ -76,7 +84,7 @@ export function SectionHeading({
       )}
       <h2
         className={cn(
-          "font-display mt-4 text-3xl font-semibold tracking-tight sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]",
+          "font-display mt-4 text-balance text-3xl font-semibold tracking-tight sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]",
           dark ? "text-cream" : "text-ink"
         )}
       >
@@ -114,13 +122,13 @@ export function PageHeader({
           </Reveal>
         )}
         <Reveal variant="up" delay={100}>
-          <h1 className="font-display mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">
+          <h1 className="font-display mt-4 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
             {title}
           </h1>
         </Reveal>
         {description && (
           <Reveal variant="up" delay={200}>
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg">
+            <p className="mx-auto mt-4 max-w-2xl text-pretty text-base leading-relaxed text-ink-soft sm:text-lg">
               {description}
             </p>
           </Reveal>

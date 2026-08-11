@@ -54,6 +54,8 @@
 html {
   scroll-behavior: smooth;
   overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -61,6 +63,17 @@ body {
   color: var(--color-ink);
   font-feature-settings: "cv11", "ss01", "liga";
   overflow-x: clip;
+}
+
+/* Remove the grey flash when tapping links/buttons on mobile browsers */
+button,
+a,
+input,
+select,
+textarea,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 ::selection {
@@ -267,22 +280,6 @@ body {
   20% { opacity: 0.5; }
   80% { transform: translateX(200%) skewX(-15deg); opacity: 0; }
   100% { transform: translateX(200%) skewX(-15deg); opacity: 0; }
-}
-
-.btn-shine {
-  position: relative;
-  overflow: hidden;
-}
-.btn-shine::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
-  transform: translateX(-100%) skewX(-15deg);
-  animation: shine 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 /* Sheen sweeping across primary buttons */
@@ -500,6 +497,15 @@ body {
   background: var(--color-sand);
 }
 
+/* Custom chevron for selects (appearance:none removes the native arrow) */
+.select-chevron {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2357534a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
+}
+
 /* ============================================================
    Card lift — modern hover elevation for cards/tiles
    Composes with the reveal system: honors --reveal-delay and
@@ -521,6 +527,15 @@ body {
   transform: translateY(-8px);
   box-shadow: 0 32px 64px -24px rgb(185 143 62 / 0.15), 0 16px 32px -12px rgb(29 27 24 / 0.25);
   border-color: var(--color-gold-400);
+}
+
+/* Once revealed, the stagger/reveal delay must not linger: hover lifts and
+   other transitions should respond instantly instead of waiting for the
+   entrance delay on every interaction. */
+.reveal.reveal-visible,
+.reveal-item.reveal-visible,
+.card-lift.reveal-visible {
+  transition-delay: 0ms;
 }
 
 /* ============================================================

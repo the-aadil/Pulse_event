@@ -6,7 +6,7 @@ import { Field, TextInput, TextArea, SubmitButton } from "@/components/forms/fie
 import { SuccessToast } from "@/components/forms/success-toast";
 import { CheckIcon } from "@/components/icons";
 
-const initialState: ActionResult = { status: "success", message: "" };
+const initialState: ActionResult = { status: "idle", message: "" };
 
 export function ContactForm() {
   const [state, formAction, pending] = useActionState(submitEnquiry, initialState);
@@ -33,14 +33,14 @@ export function ContactForm() {
           </div>
         )}
 
-      <input
-        type="text"
-        name="company_website"
-        className="hidden"
-        tabIndex={-1}
-        autoComplete="off"
-        aria-hidden
-      />
+        <input
+          type="text"
+          name="company_website"
+          className="hidden"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden
+        />
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <Field label="Full name" htmlFor="ct-name" error={errors.name} required>

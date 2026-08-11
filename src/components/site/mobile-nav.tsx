@@ -47,7 +47,7 @@ export function MobileNav() {
             onClick={close}
             aria-label="Close menu"
           />
-          <nav className="relative mx-3 mt-2 overflow-hidden rounded-lg border border-gold-200/70 bg-white p-4 shadow-xl shadow-ink/10">
+          <nav className="relative mx-3 mt-2 max-h-[calc(100dvh-4.5rem)] overflow-y-auto rounded-lg border border-gold-200/70 bg-white p-4 shadow-xl shadow-ink/10">
             <ul className="flex flex-col">
               {links.map((link) => (
                 <li key={link.href}>

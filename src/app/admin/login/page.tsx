@@ -19,7 +19,7 @@ export default async function AdminLoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-ink px-4 py-12">
+    <div className="flex min-h-screen min-h-dvh items-center justify-center bg-ink px-4 py-12">
       <div className="w-full max-w-md">
         <div className="rounded-lg border border-gold-200/30 bg-white p-8 shadow-2xl">
           <div className="flex justify-center">

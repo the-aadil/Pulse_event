@@ -6,7 +6,7 @@ import { createEvent, updateEvent, type ActionResult } from "@/app/actions";
 import { Field, TextInput, TextArea, CheckboxInput, SubmitButton } from "@/components/forms/fields";
 import type { EventType } from "@/generated/prisma/client";
 
-const initialState: ActionResult = { status: "success", message: "" };
+const initialState: ActionResult = { status: "idle", message: "" };
 
 export function EventForm({ event }: { event?: EventType }) {
   const router = useRouter();

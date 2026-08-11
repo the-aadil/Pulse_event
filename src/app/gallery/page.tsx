@@ -5,7 +5,7 @@ import { CTA } from "@/components/home/cta";
 import { galleryItems, galleryCategories, PAGE_SIZE } from "@/lib/gallery";
 
 const baseDescription =
-  "A look back at some of the celebrations we've had the pleasure of bringing to life — 52 birthday parties across Pune. Tap any photo to view it full size.";
+  "A look back at some of the celebrations we've had the pleasure of bringing to life — birthdays, weddings, baby showers and game days across Pune. Tap any photo to view it full size.";
 
 type GallerySearchParams = { category?: string; page?: string };
 

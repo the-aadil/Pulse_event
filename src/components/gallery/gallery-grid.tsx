@@ -40,9 +40,11 @@ function galleryUrl(category: string | null, page: number) {
 function GalleryCard({
   item,
   onOpen,
+  priority = false,
 }: {
   item: GalleryItem;
   onOpen: () => void;
+  priority?: boolean;
 }) {
   return (
     <div className="group relative overflow-hidden rounded-lg border border-gold-200/70 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-gold-300 hover:shadow-xl hover:shadow-ink/15">
@@ -57,6 +59,7 @@ function GalleryCard({
           alt={item.alt}
           width={item.width}
           height={item.height}
+          priority={priority}
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
@@ -273,6 +276,7 @@ export function GalleryGrid({
                 key={item.src}
                 item={item}
                 onOpen={() => setLightboxIndex(index)}
+                priority={page === 1 && index === 0}
               />
             ))}
           </Stagger>
@@ -294,7 +298,7 @@ export function GalleryGrid({
           role="dialog"
           aria-modal="true"
           aria-label={lightboxItem.alt}
-          className="fixed inset-0 z-[60] flex flex-col bg-ink/95 p-4 backdrop-blur-sm sm:p-8"
+          className="fixed inset-0 z-[60] flex flex-col overflow-y-auto bg-ink/95 p-4 backdrop-blur-sm sm:p-8"
         >
           <div className="flex items-center justify-between">
             <p className="text-sm text-cream/70">
@@ -322,7 +326,7 @@ export function GalleryGrid({
             >
               <ArrowLeftIcon className="h-5 w-5" />
             </button>
-            <div className="relative h-[70vh] w-full max-w-4xl">
+            <div className="relative h-[70vh] h-[70dvh] w-full max-w-4xl">
               <Image
                 src={lightboxItem.src}
                 alt={lightboxItem.alt}

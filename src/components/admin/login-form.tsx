@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { adminLogin, type ActionResult } from "@/app/actions";
 import { Field, TextInput, SubmitButton } from "@/components/forms/fields";
 
-const initialState: ActionResult = { status: "success", message: "" };
+const initialState: ActionResult = { status: "idle", message: "" };
 
 export function LoginForm() {
   const router = useRouter();
