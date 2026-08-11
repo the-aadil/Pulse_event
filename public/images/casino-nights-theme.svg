@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#27231D"/>
+      <stop offset="100%" stop-color="#1A1713"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="22%" cy="28%" r="62%">
+      <stop offset="0%" stop-color="#2E7D6E" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#2E7D6E" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="goldGlow" cx="80%" cy="85%" r="45%">
+      <stop offset="0%" stop-color="#C9A227" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#C9A227" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <rect width="800" height="600" fill="url(#glow)"/>
+  <rect width="800" height="600" fill="url(#goldGlow)"/>
+  <g fill="none" stroke="#C9A227" stroke-opacity="0.25" stroke-width="1.5">
+    <circle cx="400" cy="300" r="150"/>
+    <circle cx="400" cy="300" r="210"/>
+  </g>
+  <g fill="#C9A227" fill-opacity="0.5">
+    <circle cx="400" cy="90" r="3"/>
+    <circle cx="140" cy="240" r="2.5"/>
+    <circle cx="680" cy="200" r="3"/>
+    <circle cx="610" cy="440" r="2.5"/>
+    <circle cx="200" cy="470" r="3"/>
+  </g>
+  <text x="400" y="315" font-family="Georgia, 'Times New Roman', serif" font-size="150" font-weight="700" fill="#C9A227" text-anchor="middle">C</text>
+  <line x1="300" y1="360" x2="500" y2="360" stroke="#C9A227" stroke-opacity="0.7" stroke-width="1"/>
+  <text x="400" y="415" font-family="Georgia, 'Times New Roman', serif" font-size="46" font-weight="600" fill="#F7F1E6" text-anchor="middle" letter-spacing="1">Casino Nights Theme</text>
+  <text x="400" y="455" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" fill="#F7F1E6" fill-opacity="0.65" text-anchor="middle">Vegas glamour in the city</text>
+</svg>

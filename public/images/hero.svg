@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#23201A"/>
+      <stop offset="55%" stop-color="#1C1915"/>
+      <stop offset="100%" stop-color="#15120F"/>
+    </linearGradient>
+    <radialGradient id="gold" cx="75%" cy="30%" r="55%">
+      <stop offset="0%" stop-color="#C9A227" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#C9A227" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="wine" cx="20%" cy="85%" r="50%">
+      <stop offset="0%" stop-color="#8E3B46" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#8E3B46" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#gold)"/>
+  <rect width="1600" height="900" fill="url(#wine)"/>
+  <g fill="none" stroke="#C9A227" stroke-opacity="0.18" stroke-width="1.5">
+    <circle cx="1150" cy="450" r="320"/>
+    <circle cx="1150" cy="450" r="430"/>
+  </g>
+  <g fill="#C9A227" fill-opacity="0.6">
+    <circle cx="1150" cy="160" r="4"/>
+    <circle cx="900" cy="240" r="3"/>
+    <circle cx="1400" cy="300" r="3.5"/>
+    <circle cx="1300" cy="120" r="2.5"/>
+    <circle cx="980" cy="150" r="2.5"/>
+    <circle cx="1520" cy="520" r="3"/>
+    <circle cx="820" cy="620" r="3"/>
+  </g>
+  <g font-family="Georgia, 'Times New Roman', serif">
+    <text x="400" y="430" font-size="150" font-weight="700" fill="#F7F1E6" letter-spacing="4">PULSE</text>
+    <text x="400" y="520" font-size="72" font-weight="600" fill="#C9A227" letter-spacing="14">EVENT</text>
+  </g>
+  <line x1="300" y1="570" x2="500" y2="570" stroke="#C9A227" stroke-opacity="0.7" stroke-width="1.5"/>
+  <text x="400" y="630" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="400" fill="#F7F1E6" fill-opacity="0.7" text-anchor="middle" letter-spacing="1">Memories that make hearts skip a beat</text>
+</svg>

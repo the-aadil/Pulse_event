@@ -1,0 +1,131 @@
+import { Header } from "@/components/site/header";
+import { Footer } from "@/components/site/footer";
+import { Reveal } from "@/components/motion/reveal";
+import { cn } from "@/lib/utils";
+
+export function SiteShell({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      <Header />
+      <main className="flex-1">{children}</main>
+      <Footer />
+    </>
+  );
+}
+
+export function Container({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <div className={`mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 ${className}`}>
+      {children}
+    </div>
+  );
+}
+
+export function Eyebrow({
+  children,
+  light = false,
+  className = "",
+}: {
+  children: React.ReactNode;
+  light?: boolean;
+  className?: string;
+}) {
+  return (
+    <p
+      className={cn(
+        "flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em]",
+        light ? "text-gold-300" : "text-gold-600",
+        className
+      )}
+    >
+      <span
+        aria-hidden
+        className={cn("h-px w-8", light ? "bg-gold-300" : "bg-gold-500")}
+      />
+      {children}
+    </p>
+  );
+}
+
+export function SectionHeading({
+  eyebrow,
+  title,
+  description,
+  align = "center",
+  dark = false,
+}: {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  align?: "center" | "left";
+  dark?: boolean;
+}) {
+  const centered = align === "center";
+  return (
+    <div className={cn(centered ? "mx-auto max-w-2xl text-center" : "max-w-2xl")}>
+      {eyebrow && (
+        <Eyebrow light={dark} className={cn(centered && "justify-center")}>
+          {eyebrow}
+        </Eyebrow>
+      )}
+      <h2
+        className={cn(
+          "font-display mt-4 text-3xl font-semibold tracking-tight sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]",
+          dark ? "text-cream" : "text-ink"
+        )}
+      >
+        {title}
+      </h2>
+      {description && (
+        <p
+          className={cn(
+            "mt-4 text-base leading-relaxed sm:text-lg",
+            dark ? "text-cream/65" : "text-ink-soft"
+          )}
+        >
+          {description}
+        </p>
+      )}
+    </div>
+  );
+}
+
+export function PageHeader({
+  eyebrow,
+  title,
+  description,
+}: {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+}) {
+  return (
+    <section className="border-b border-gold-200/60 bg-sand py-14 sm:py-18">
+      <Container className="text-center">
+        {eyebrow && (
+          <Reveal variant="up" className="flex justify-center">
+            <Eyebrow className="justify-center">{eyebrow}</Eyebrow>
+          </Reveal>
+        )}
+        <Reveal variant="up" delay={100}>
+          <h1 className="font-display mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">
+            {title}
+          </h1>
+        </Reveal>
+        {description && (
+          <Reveal variant="up" delay={200}>
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-ink-soft sm:text-lg">
+              {description}
+            </p>
+          </Reveal>
+        )}
+      </Container>
+    </section>
+  );
+}
