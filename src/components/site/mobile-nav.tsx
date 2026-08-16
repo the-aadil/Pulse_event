@@ -105,7 +105,7 @@ export function MobileNav() {
               <Link
                 href="/book"
                 onClick={close}
-                className="mt-4 flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-gold-500 via-amber-400 to-gold-500 px-4 py-3 text-sm font-bold uppercase tracking-wider text-slate-950 shadow-[0_0_15px_rgba(212,175,55,0.4)] transition-all hover:scale-105 active:scale-95"
+                className="btn btn-primary mt-4 w-full uppercase tracking-wider"
               >
                 Book an Event
               </Link>

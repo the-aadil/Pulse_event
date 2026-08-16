@@ -11,13 +11,14 @@ export function Hero() {
       <div className="animate-glow pointer-events-none absolute -bottom-40 -left-32 h-[26rem] w-[26rem] rounded-full bg-amber-500/8 blur-3xl [animation-delay:3s]" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-400 to-transparent" />
 
-      {/* Floating gold particles */}
-      <div className="animate-float-particle pointer-events-none absolute left-[15%] top-[20%] h-1 w-1 rounded-full bg-gold-400/50 [animation-delay:0s]" />
-      <div className="animate-float-particle pointer-events-none absolute left-[35%] top-[60%] h-1.5 w-1.5 rounded-full bg-amber-300/40 [animation-delay:2s]" />
-      <div className="animate-float-particle pointer-events-none absolute left-[65%] top-[30%] h-1 w-1 rounded-full bg-gold-300/50 [animation-delay:4s]" />
-      <div className="animate-float-particle pointer-events-none absolute left-[80%] top-[70%] h-1.5 w-1.5 rounded-full bg-gold-400/30 [animation-delay:6s]" />
-      <div className="animate-float-particle pointer-events-none absolute left-[50%] top-[45%] h-0.5 w-0.5 rounded-full bg-amber-200/40 [animation-delay:8s]" />
-      <div className="animate-float-particle pointer-events-none absolute left-[25%] top-[80%] h-1 w-1 rounded-full bg-gold-300/35 [animation-delay:10s]" />
+      {/* Floating gold particles with depth of field */}
+      <div className="animate-float-particle pointer-events-none absolute left-[15%] top-[30%] h-1.5 w-1.5 rounded-full bg-gold-400/80 blur-[1px] [animation-delay:0s]" />
+      <div className="animate-float-particle pointer-events-none absolute left-[35%] top-[70%] h-2.5 w-2.5 rounded-full bg-amber-300/60 blur-[2px] [animation-delay:3s] [animation-duration:18s]" />
+      <div className="animate-float-particle pointer-events-none absolute left-[65%] top-[40%] h-1 w-1 rounded-full bg-gold-300/90 [animation-delay:7s]" />
+      <div className="animate-float-particle pointer-events-none absolute left-[80%] top-[80%] h-2 w-2 rounded-full bg-gold-400/50 blur-[1px] [animation-delay:11s] [animation-duration:22s]" />
+      <div className="animate-float-particle pointer-events-none absolute left-[45%] top-[55%] h-1.5 w-1.5 rounded-full bg-amber-200/80 [animation-delay:14s]" />
+      <div className="animate-float-particle pointer-events-none absolute left-[25%] top-[85%] h-3 w-3 rounded-full bg-gold-300/40 blur-[3px] [animation-delay:18s] [animation-duration:24s]" />
+      <div className="animate-float-particle pointer-events-none absolute left-[55%] top-[25%] h-1.5 w-1.5 rounded-full bg-gold-200/70 blur-[1px] [animation-delay:5s] [animation-duration:14s]" />
 
       {/* Drifting ambient shapes */}
       <div className="animate-drift pointer-events-none absolute right-[10%] top-[25%] h-24 w-24 rounded-full border border-gold-500/5 [animation-delay:1s]" />

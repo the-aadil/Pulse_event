@@ -27,14 +27,14 @@ export function CTA() {
               <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <Link
                   href="/book"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-gold-500 via-amber-400 to-gold-500 px-6 py-3 text-xs font-bold uppercase tracking-wider text-slate-950 shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all hover:scale-105 active:scale-95"
+                  className="btn btn-primary"
                 >
                   Book Your Event
                   <ArrowRightIcon className="h-4 w-4" />
                 </Link>
                 <a
                   href={`tel:${SITE_CONFIG.phone1}`}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-gold-500/40 bg-gold-950/20 px-6 py-3 text-xs font-bold uppercase tracking-wider text-gold-300 transition-all hover:border-gold-300 hover:bg-gold-500 hover:text-slate-950"
+                  className="btn btn-primary"
                 >
                   <PhoneIcon className="h-4 w-4" />
                   {SITE_CONFIG.phone1}

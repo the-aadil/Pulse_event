@@ -69,7 +69,7 @@ function GalleryCard({
       <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0b0c10]/70 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
       <Link
         href={bookHref(item)}
-        className="absolute bottom-3 left-1/2 inline-flex -translate-x-1/2 translate-y-2 items-center gap-1.5 whitespace-nowrap rounded-md bg-gold-500 px-4 py-2 text-xs font-bold text-slate-950 opacity-0 shadow-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 hover:bg-gold-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2"
+        className="btn btn-primary btn-sm absolute bottom-3 left-1/2 -translate-x-1/2 translate-y-2 whitespace-nowrap opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
       >
         <CalendarIcon className="h-3.5 w-3.5" />
         Book now

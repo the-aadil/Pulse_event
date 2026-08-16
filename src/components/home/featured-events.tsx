@@ -30,7 +30,7 @@ export function FeaturedEvents({ events }: { events: EventType[] }) {
         <Reveal variant="fade" delay={150} className="mt-14 text-center">
           <Link
             href="/events"
-            className="inline-flex items-center gap-2 rounded-xl border border-gold-500/40 bg-gold-950/30 px-6 py-3 text-xs font-bold uppercase tracking-wider text-gold-300 shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all hover:scale-105 hover:border-gold-400 hover:bg-gold-500 hover:text-slate-950"
+            className="btn btn-primary"
           >
             View all events
             <ArrowRightIcon className="h-4 w-4" />

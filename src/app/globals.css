@@ -411,16 +411,15 @@ textarea,
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--color-gold-400), var(--color-gold-600));
-  color: #1a1a1a;
-  border: 1px solid var(--color-gold-400);
-  box-shadow: 0 8px 16px -8px rgb(185 143 62 / 0.6), inset 0 1px 0 rgba(255,255,255,0.4);
+  background: transparent;
+  color: rgb(250 246 239 / 0.9);
+  border: 1px solid rgb(185 143 62 / 0.3);
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, var(--color-gold-300), var(--color-gold-500));
-  transform: translateY(-2px);
-  box-shadow: 0 16px 32px -10px rgb(185 143 62 / 0.8), inset 0 1px 0 rgba(255,255,255,0.6);
+  background: transparent;
+  border-color: var(--color-gold-400);
+  color: var(--color-gold-300);
 }
 
 .btn-outline {
@@ -588,26 +587,26 @@ textarea,
    Ambient floating gold particles — inspired by luxury sites
    ============================================================ */
 @keyframes float-particle {
-  0%, 100% {
-    transform: translateY(0) translateX(0) scale(1);
-    opacity: 0.3;
+  0% {
+    transform: translateY(80px) translateX(0) scale(0.8);
+    opacity: 0;
   }
-  25% {
-    transform: translateY(-80px) translateX(20px) scale(1.1);
+  20% {
+    opacity: 0.8;
+    transform: translateY(0px) translateX(20px) scale(1.2);
+  }
+  80% {
     opacity: 0.6;
+    transform: translateY(-160px) translateX(-20px) scale(0.9);
   }
-  50% {
-    transform: translateY(-160px) translateX(-15px) scale(0.9);
-    opacity: 0.4;
-  }
-  75% {
-    transform: translateY(-240px) translateX(25px) scale(1.05);
-    opacity: 0.2;
+  100% {
+    transform: translateY(-240px) translateX(15px) scale(0.8);
+    opacity: 0;
   }
 }
 
 .animate-float-particle {
-  animation: float-particle 12s ease-in-out infinite;
+  animation: float-particle 15s linear infinite;
 }
 
 /* Slow horizontal drift for ambient background elements */
