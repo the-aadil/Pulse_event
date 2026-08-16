@@ -49,7 +49,7 @@ export default async function EventsPage() {
                 We&apos;re curating our next set of themes. Meanwhile, tell us what
                 you have in mind and we&apos;ll make it happen.
               </p>
-              <Link href="/book" className="btn btn-dark mt-6">
+              <Link href="/book" className="btn btn-primary mt-6">
                 Book a custom event
               </Link>
             </div>

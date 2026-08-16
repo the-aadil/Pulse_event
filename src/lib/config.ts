@@ -5,9 +5,8 @@ const required = {
 export const SITE_CONFIG = {
   name: "Pulse Event",
   phone1: "8623032586",
-  phone2: "9370403282",
   email: "Pulseevent564@gmail.com",
-  address: "S.No. 543, NIBM Road, Pune - 48",
+  address: "NIBM Road, Pune",
   hours: "Mon - Sun, 9:00 AM - 9:00 PM",
   socials: {
     instagram: "https://instagram.com/pulseevent",

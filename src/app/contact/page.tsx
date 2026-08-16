@@ -22,7 +22,7 @@ const contactCards = [
   {
     icon: PhoneIcon,
     label: "Call us",
-    value: `${SITE_CONFIG.phone1} / ${SITE_CONFIG.phone2}`,
+    value: `${SITE_CONFIG.phone1}`,
     href: `tel:${SITE_CONFIG.phone1}`,
   },
   {

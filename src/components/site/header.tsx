@@ -52,7 +52,7 @@ export function Header() {
         <div className="flex items-center gap-3">
           <Link
             href="/book"
-            className="btn btn-dark btn-sm hidden sm:inline-flex"
+            className="btn btn-primary btn-sm !hidden lg:!inline-flex"
           >
             Book an Event
           </Link>

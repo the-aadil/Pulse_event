@@ -4,6 +4,7 @@ import {
   ShieldCheckIcon,
   UsersRoundIcon,
   SparklesIcon,
+  TicketIcon,
 } from "@/components/icons";
 import { SectionHeading } from "@/components/site/shell";
 import { Reveal } from "@/components/motion/reveal";
@@ -28,7 +29,7 @@ const services = [
       "Beautiful floral arrangements, bespoke aesthetics, and multi-cuisine menus curated to match your taste and style.",
   },
   {
-    icon: ShieldCheckIcon,
+    icon: TicketIcon,
     title: "Flawless Execution",
     description:
       "We handle the heavy lifting—vendor coordination, permits, transport, and guest management—so you don't have to worry about a thing.",
@@ -40,7 +41,7 @@ const services = [
       "Whether it's a magical winter wonderland or a vibrant Bollywood night, we design breathtaking experiences built around your unique story.",
   },
   {
-    icon: WalletIcon,
+    icon: ShieldCheckIcon,
     title: "Honest, Transparent Pricing",
     description:
       "No surprises, no hidden fees. We provide clear, straightforward quotes and flexible packages that respect your investment.",

@@ -10,12 +10,11 @@ const nextConfig: NextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     localPatterns: [
       {
-        pathname: "/images/**",
-        search: "",
+        pathname: "/images/gallery/**",
       },
       {
-        pathname: "/images/gallery/babyshowers/**",
-        search: "?v=2",
+        pathname: "/images/**",
+        search: "",
       },
     ],
   },

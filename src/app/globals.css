@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@config "../../tailwind.config.ts";
 
 @theme {
   --color-ink: #1d1b18;
@@ -148,16 +149,18 @@ textarea,
   animation: float 5s ease-in-out 2.5s infinite;
 }
 
-/* Slow breathing glow behind hero/CTA glows */
+/* Slow breathing glow behind hero/CTA glows.
+   translateZ(0) forces a GPU compositing layer on mobile browsers,
+   so the scale/opacity pulse never repaints on the main thread. */
 @keyframes glow-pulse {
   0%,
   100% {
     opacity: 0.5;
-    transform: scale(1);
+    transform: translateZ(0) scale(1);
   }
   50% {
     opacity: 1;
-    transform: scale(1.08);
+    transform: translateZ(0) scale(1.08);
   }
 }
 

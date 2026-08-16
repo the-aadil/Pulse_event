@@ -47,17 +47,17 @@ export function Hero() {
         <Reveal variant="up" delay={400} className="mt-14 flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-8">
           <a
             href={`tel:${SITE_CONFIG.phone1}`}
-            className="group flex items-center gap-3 text-sm text-cream/80 transition-colors hover:text-gold-300"
+            className="group inline-flex items-center gap-3 text-sm text-cream/80 transition-colors hover:text-gold-300"
           >
             <span className="flex h-10 w-10 items-center justify-center rounded-full border border-cream/20">
               <PhoneIcon className="h-4 w-4" />
             </span>
             <span>
-              <span className="block text-[10px] uppercase tracking-[0.25em] text-cream/45">
+              <span className="block text-xs uppercase tracking-[0.2em] text-cream/50">
                 Call us anytime
               </span>
-              <span className="font-medium">
-                {SITE_CONFIG.phone1} / {SITE_CONFIG.phone2}
+              <span className="text-base font-semibold">
+                {SITE_CONFIG.phone1}
               </span>
             </span>
           </a>

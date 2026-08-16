@@ -80,7 +80,7 @@ export function SubmitButton({
     <button
       type="submit"
       disabled={pending}
-      className={cn("btn btn-dark w-full", className)}
+      className={cn("btn btn-primary w-full", className)}
     >
       {pending ? (
         <>
