@@ -15,15 +15,15 @@ export default function ErrorPage({
   }, [error]);
 
   return (
-    <div className="flex min-h-[60vh] items-center justify-center bg-cream px-4 py-20">
-      <div className="w-full max-w-md rounded-lg border border-gold-200/70 bg-white p-8 text-center shadow-sm">
+    <div className="flex min-h-[60vh] items-center justify-center bg-[#0b0c10] px-4 py-20">
+      <div className="w-full max-w-md rounded-lg border border-gold-500/20 bg-[#12141c] p-8 text-center shadow-sm">
         <p className="font-display text-6xl font-semibold text-gold-600" aria-hidden>
           !
         </p>
-        <h2 className="font-display mt-4 text-2xl font-semibold text-ink">
+        <h2 className="font-display mt-4 text-2xl font-semibold text-slate-100">
           Something went wrong
         </h2>
-        <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+        <p className="mt-2 text-sm leading-relaxed text-slate-400">
           An unexpected error occurred while loading this page. Please try again —
           the celebration continues.
         </p>

@@ -59,28 +59,28 @@ export default async function EventDetailPage({
 
   return (
     <SiteShell>
-      <section className="bg-cream py-12 sm:py-16">
+      <section className="bg-[#0b0c10] text-slate-100 py-12 sm:py-16">
         <Container>
-          <Reveal variant="fade" as="nav" className="mb-8 text-sm text-ink-soft" >
+          <Reveal variant="fade" as="nav" className="mb-8 text-sm text-slate-400" >
             <ol className="flex flex-wrap items-center gap-1.5">
               <li>
-                <Link href="/" className="transition-colors hover:text-gold-700">
+                <Link href="/" className="transition-colors hover:text-gold-300">
                   Home
                 </Link>
               </li>
               <li aria-hidden>/</li>
               <li>
-                <Link href="/events" className="transition-colors hover:text-gold-700">
+                <Link href="/events" className="transition-colors hover:text-gold-300">
                   Events
                 </Link>
               </li>
               <li aria-hidden>/</li>
-              <li className="font-medium text-ink">{event.name}</li>
+              <li className="font-medium text-gold-300">{event.name}</li>
             </ol>
           </Reveal>
 
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14">
-            <Reveal variant="left" className="relative overflow-hidden rounded-lg border border-gold-200/70 shadow-lg">
+            <Reveal variant="left" className="relative overflow-hidden rounded-lg border border-gold-500/20 shadow-lg">
               {event.image ? (
                 <Image
                   src={event.image}
@@ -91,8 +91,8 @@ export default async function EventDetailPage({
                   priority
                 />
               ) : (
-                <div className="flex aspect-[4/3] items-center justify-center bg-sand">
-                  <span className="font-display text-7xl font-bold text-gold-600">
+                <div className="flex aspect-[4/3] items-center justify-center bg-slate-900">
+                  <span className="font-display text-7xl font-bold text-gold-400">
                     {event.name.charAt(0)}
                   </span>
                 </div>
@@ -100,42 +100,42 @@ export default async function EventDetailPage({
             </Reveal>
 
             <Reveal variant="right" delay={100}>
-              <h1 className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+              <h1 className="font-display text-4xl font-semibold tracking-tight text-slate-100 sm:text-5xl">
                 {event.name}
               </h1>
               {event.tagline && (
-                <p className="mt-3 text-lg font-medium text-gold-700">
+                <p className="mt-3 text-lg font-medium text-gold-400">
                   {event.tagline}
                 </p>
               )}
-              <p className="mt-4 text-base leading-relaxed text-ink/75">
+              <p className="mt-4 text-base leading-relaxed text-slate-300">
                 {event.description}
               </p>
 
               <Stagger gap={150} className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
                 {price && (
-                  <div className="flex items-center gap-3 rounded-lg border border-gold-200/70 bg-white p-4">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-md border border-gold-300/60 bg-gold-50 text-gold-700">
+                  <div className="flex items-center gap-3 rounded-lg border border-gold-500/20 bg-[#12141c] p-4">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-md border border-gold-500/40 bg-gold-950/40 text-gold-400">
                       <WalletIcon className="h-5 w-5" />
                     </span>
                     <div>
-                      <p className="text-xs uppercase tracking-wide text-ink-soft">
+                      <p className="text-xs uppercase tracking-wide text-gold-400/80">
                         Starting at
                       </p>
-                      <p className="text-lg font-bold text-ink">{price}</p>
+                      <p className="text-lg font-bold text-slate-100">{price}</p>
                     </div>
                   </div>
                 )}
                 {event.capacity && (
-                  <div className="flex items-center gap-3 rounded-lg border border-gold-200/70 bg-white p-4">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-md border border-gold-300/60 bg-gold-50 text-gold-700">
+                  <div className="flex items-center gap-3 rounded-lg border border-gold-500/20 bg-[#12141c] p-4">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-md border border-gold-500/40 bg-gold-950/40 text-gold-400">
                       <UsersRoundIcon className="h-5 w-5" />
                     </span>
                     <div>
-                      <p className="text-xs uppercase tracking-wide text-ink-soft">
+                      <p className="text-xs uppercase tracking-wide text-gold-400/80">
                         Capacity
                       </p>
-                      <p className="text-lg font-bold text-ink">
+                      <p className="text-lg font-bold text-slate-100">
                         Up to {event.capacity.toLocaleString("en-IN")} guests
                       </p>
                     </div>
@@ -150,7 +150,7 @@ export default async function EventDetailPage({
                   "Vendors, permissions and logistics handled",
                   "Transparent pricing with zero hidden costs",
                 ].map((point) => (
-                  <li key={point} className="flex items-start gap-2.5 text-sm text-ink/80">
+                  <li key={point} className="flex items-start gap-2.5 text-sm text-slate-300">
                     <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />
                     {point}
                   </li>
@@ -179,9 +179,9 @@ export default async function EventDetailPage({
       </section>
 
       {otherEvents.length > 0 && (
-        <section className="bg-white py-16">
+        <section className="bg-[#08090c] py-16">
           <Container>
-            <h2 className="font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+            <h2 className="font-display text-2xl font-semibold tracking-tight text-gold-300 sm:text-3xl">
               You may also like
             </h2>
             <Stagger

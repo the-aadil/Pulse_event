@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -41,13 +41,15 @@ function GalleryCard({
   item,
   onOpen,
   priority = false,
+  className,
 }: {
   item: GalleryItem;
   onOpen: () => void;
   priority?: boolean;
+  className?: string;
 }) {
   return (
-    <div className="group relative overflow-hidden rounded-lg border border-gold-200/70 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-gold-300 hover:shadow-xl hover:shadow-ink/15">
+    <div className={cn("group relative overflow-hidden rounded-lg border-[2px] border-[#d4af37] bg-[#12141c] shadow-xl transition-all duration-300 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] isolation-isolate", className)}>
       <button
         type="button"
         onClick={onOpen}
@@ -61,17 +63,92 @@ function GalleryCard({
           height={item.height}
           priority={priority}
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-          className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="h-auto w-full object-cover"
         />
       </button>
-      <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+      <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0b0c10]/70 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
       <Link
         href={bookHref(item)}
-        className="absolute bottom-3 left-1/2 inline-flex -translate-x-1/2 translate-y-2 items-center gap-1.5 whitespace-nowrap rounded-md bg-gold-500 px-4 py-2 text-xs font-bold text-ink opacity-0 shadow-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 hover:bg-gold-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2"
+        className="absolute bottom-3 left-1/2 inline-flex -translate-x-1/2 translate-y-2 items-center gap-1.5 whitespace-nowrap rounded-md bg-gold-500 px-4 py-2 text-xs font-bold text-slate-950 opacity-0 shadow-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 hover:bg-gold-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2"
       >
         <CalendarIcon className="h-3.5 w-3.5" />
         Book now
       </Link>
+    </div>
+  );
+}
+
+function PageJumpDropdown({
+  currentPage,
+  totalPages,
+  jumpToPage,
+}: {
+  currentPage: number;
+  totalPages: number;
+  jumpToPage: (page: string) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    if (open) document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [open]);
+
+  return (
+    <div className="relative" ref={ref}>
+      <button
+        onClick={() => setOpen(!open)}
+        aria-label="Jump to page"
+        className="inline-flex h-9 items-center justify-center gap-1.5 rounded-md border border-gold-500/30 bg-[#12141c] px-3 text-sm font-medium text-slate-400 transition-colors hover:border-gold-400 hover:text-slate-100 focus:border-gold-400 focus:outline-none focus:ring-1 focus:ring-gold-400"
+      >
+        Page {currentPage}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={cn("transition-transform duration-200", open && "rotate-180")}
+        >
+          <path d="m6 9 6 6 6-6" />
+        </svg>
+      </button>
+
+      {open && (
+        <div className="absolute bottom-full mb-1 right-0 z-50 w-full min-w-[5rem] overflow-hidden rounded-md border border-gold-500/30 bg-[#12141c] shadow-xl">
+          {/* max-h-[128px] holds exactly 4 items at ~32px each */}
+          <ul className="max-h-[128px] overflow-y-auto py-1">
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <li key={page}>
+                <button
+                  onClick={() => {
+                    jumpToPage(String(page));
+                    setOpen(false);
+                  }}
+                  className={cn(
+                    "w-full px-3 py-1.5 text-left text-sm transition-colors hover:bg-gold-500/20 hover:text-gold-400",
+                    page === currentPage
+                      ? "bg-gold-500/10 font-bold text-gold-400"
+                      : "text-slate-300"
+                  )}
+                >
+                  {page}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
@@ -102,17 +179,17 @@ function PaginationControls({
   return (
     <nav
       aria-label="Gallery pagination"
-      className="flex flex-wrap items-center justify-center gap-1"
+      className="w-full flex items-center justify-center"
     >
-      <div className="flex items-center gap-1">
+      <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
         <Link
           href={galleryUrl(category, Math.max(1, currentPage - 1))}
           aria-label="Previous page"
           className={cn(
             "inline-flex h-9 min-w-9 items-center justify-center rounded-md border px-3 text-sm font-medium transition-colors",
             currentPage === 1
-              ? "cursor-not-allowed border-gold-200 bg-gold-100 text-ink-soft"
-              : "border-gold-300 bg-white text-ink hover:border-gold-400 hover:bg-gold-50"
+              ? "cursor-not-allowed border-gold-500/20 bg-gold-950/40 text-slate-400"
+              : "border-gold-500/30 bg-[#12141c] text-slate-100 hover:border-gold-400 hover:bg-gold-500/15"
           )}
         >
           <ArrowLeftIcon className="h-4 w-4" />
@@ -128,8 +205,8 @@ function PaginationControls({
               className={cn(
                 "inline-flex h-9 min-w-9 items-center justify-center rounded-md border px-3 text-sm font-medium transition-colors",
                 active
-                  ? "border-gold-600 bg-gold-600 text-white hover:bg-gold-700"
-                  : "border-gold-200 bg-white text-ink-soft hover:border-gold-400 hover:text-ink"
+                  ? "border-gold-400 bg-gradient-to-r from-gold-500 to-amber-400 text-slate-950 hover:from-gold-400 hover:to-amber-300"
+                  : "border-gold-500/20 bg-[#12141c] text-slate-400 hover:border-gold-400 hover:text-slate-100"
               )}
             >
               {page}
@@ -143,25 +220,18 @@ function PaginationControls({
           className={cn(
             "inline-flex h-9 min-w-9 items-center justify-center rounded-md border px-3 text-sm font-medium transition-colors",
             currentPage === totalPages
-              ? "cursor-not-allowed border-gold-200 bg-gold-100 text-ink-soft"
-              : "border-gold-300 bg-white text-ink hover:border-gold-400 hover:bg-gold-50"
+              ? "cursor-not-allowed border-gold-500/20 bg-gold-950/40 text-slate-400"
+              : "border-gold-500/30 bg-[#12141c] text-slate-100 hover:border-gold-400 hover:bg-gold-500/15"
           )}
         >
           <ArrowRightIcon className="h-4 w-4" />
         </Link>
 
-        <select
-          value={currentPage}
-          onChange={(e) => jumpToPage(e.target.value)}
-          aria-label="Jump to page"
-          className="inline-flex h-9 items-center justify-center rounded-md border border-gold-300 bg-white px-3 text-sm font-medium text-ink-soft transition-colors hover:border-gold-400 hover:text-ink focus:border-gold-600 focus:outline-none focus:ring-1 focus:ring-gold-400"
-        >
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-            <option key={page} value={page}>
-              {page}
-            </option>
-          ))}
-        </select>
+        <PageJumpDropdown
+          currentPage={currentPage}
+          totalPages={totalPages}
+          jumpToPage={jumpToPage}
+        />
       </div>
     </nav>
   );
@@ -254,8 +324,8 @@ export function GalleryGrid({
               className={cn(
                 "rounded-full border px-4 py-2 text-sm font-medium transition-colors",
                 active
-                  ? "border-gold-600 bg-gold-600 text-white shadow-sm"
-                  : "border-gold-200 bg-white text-ink-soft hover:border-gold-400 hover:text-ink"
+                  ? "border-gold-400 bg-gradient-to-r from-gold-500 to-amber-400 text-slate-950 shadow-sm"
+                  : "border-gold-500/20 bg-[#12141c] text-slate-400 hover:border-gold-400 hover:text-slate-100"
               )}
             >
               {label}
@@ -268,8 +338,8 @@ export function GalleryGrid({
         <div className="flex flex-col items-center gap-8">
           <Stagger
             gap={110}
-            itemClassName="mb-4 break-inside-avoid"
-            className="columns-1 gap-4 sm:columns-2 lg:columns-3"
+            itemClassName="mb-[18px] break-inside-avoid inline-block w-full"
+            className="columns-2 gap-6 px-2 sm:px-0 sm:columns-2 lg:columns-3"
           >
             {pageItems.map((item, index) => (
               <GalleryCard
@@ -288,7 +358,7 @@ export function GalleryGrid({
           />
         </div>
       ) : (
-        <p className="py-12 text-center text-ink-soft">
+        <p className="py-12 text-center text-slate-400">
           No photos in this category yet.
         </p>
       )}
@@ -298,7 +368,7 @@ export function GalleryGrid({
           role="dialog"
           aria-modal="true"
           aria-label={lightboxItem.alt}
-          className="fixed inset-0 z-[60] flex flex-col overflow-y-auto bg-ink/95 p-4 backdrop-blur-sm sm:p-8"
+          className="fixed inset-0 z-[60] flex flex-col overflow-y-auto bg-[#0b0c10]/95 p-4 backdrop-blur-sm sm:p-8"
         >
           <div className="flex items-center justify-between">
             <p className="text-sm text-cream/70">
@@ -321,7 +391,7 @@ export function GalleryGrid({
             <button
               type="button"
               onClick={prevImage}
-              className="absolute left-0 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border border-cream/20 bg-ink/40 text-cream transition-colors hover:border-gold-400 hover:text-gold-400"
+              className="absolute left-0 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border border-cream/20 bg-[#0b0c10]/40 text-cream transition-colors hover:border-gold-400 hover:text-gold-400"
               aria-label="Previous image"
             >
               <ArrowLeftIcon className="h-5 w-5" />
@@ -339,7 +409,7 @@ export function GalleryGrid({
             <button
               type="button"
               onClick={nextImage}
-              className="absolute right-0 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border border-cream/20 bg-ink/40 text-cream transition-colors hover:border-gold-400 hover:text-gold-400"
+              className="absolute right-0 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border border-cream/20 bg-[#0b0c10]/40 text-cream transition-colors hover:border-gold-400 hover:text-gold-400"
               aria-label="Next image"
             >
               <ArrowRightIcon className="h-5 w-5" />

@@ -9,9 +9,9 @@ export const SITE_CONFIG = {
   address: "NIBM Road, Pune",
   hours: "Mon - Sun, 9:00 AM - 9:00 PM",
   socials: {
-    instagram: "https://instagram.com/pulseevent",
+    instagram: "https://www.instagram.com/pulse_event1",
     facebook: "https://facebook.com/pulseevent",
-    whatsapp: `https://wa.me/918623032586`,
+    whatsapp: "https://wa.me/qr/2CL2ATXUGW6KF1",
   },
   bookingFromEmail: process.env.BOOKING_FROM_EMAIL ?? "Pulseevent564@gmail.com",
 } as const;

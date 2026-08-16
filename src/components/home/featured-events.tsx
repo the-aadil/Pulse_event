@@ -8,10 +8,11 @@ import { ArrowRightIcon } from "@/components/icons";
 
 export function FeaturedEvents({ events }: { events: EventType[] }) {
   return (
-    <section className="bg-cream py-16 sm:py-24">
+    <section className="bg-[#0b0c10] py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal variant="up">
           <SectionHeading
+            dark
             eyebrow="Our Expertise"
             title="Experiences designed to inspire"
             description="Share your vision with us, and watch as we weave creativity, passion, and precision into an unforgettable celebration."
@@ -27,7 +28,10 @@ export function FeaturedEvents({ events }: { events: EventType[] }) {
           ))}
         </Stagger>
         <Reveal variant="fade" delay={150} className="mt-14 text-center">
-          <Link href="/events" className="btn btn-outline">
+          <Link
+            href="/events"
+            className="inline-flex items-center gap-2 rounded-xl border border-gold-500/40 bg-gold-950/30 px-6 py-3 text-xs font-bold uppercase tracking-wider text-gold-300 shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all hover:scale-105 hover:border-gold-400 hover:bg-gold-500 hover:text-slate-950"
+          >
             View all events
             <ArrowRightIcon className="h-4 w-4" />
           </Link>

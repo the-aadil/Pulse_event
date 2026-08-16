@@ -57,11 +57,13 @@ html {
   overflow-x: clip;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  background-color: #0b0c10;
+  color: #f8fafc;
 }
 
 body {
-  background: var(--color-cream);
-  color: var(--color-ink);
+  background: #0b0c10;
+  color: #f8fafc;
   font-feature-settings: "cv11", "ss01", "liga";
   overflow-x: clip;
 }
@@ -423,13 +425,13 @@ textarea,
 
 .btn-outline {
   border: 1px solid var(--color-gold-500);
-  color: var(--color-gold-700);
+  color: var(--color-gold-300);
   background: transparent;
 }
 
 .btn-outline:hover {
   background: var(--color-gold-500);
-  color: var(--color-ink);
+  color: #0b0c10;
   transform: translateY(-2px);
   box-shadow: 0 12px 24px -12px rgb(185 143 62 / 0.4);
 }
@@ -469,11 +471,11 @@ textarea,
 .input {
   width: 100%;
   border-radius: 0.375rem;
-  border: 1px solid rgb(232 216 174 / 0.8); /* gold-200/80 */
-  background: #ffffff;
+  border: 1px solid rgba(185, 143, 62, 0.3);
+  background: #12141c;
   padding: 0.75rem 1rem;
   font-size: 0.875rem;
-  color: var(--color-ink);
+  color: #f8fafc;
   box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
   transition:
     border-color 0.2s ease,
@@ -482,7 +484,7 @@ textarea,
 }
 
 .input::placeholder {
-  color: rgb(29 27 24 / 0.4);
+  color: rgba(248, 250, 252, 0.35);
 }
 
 .input:hover {
@@ -497,7 +499,7 @@ textarea,
 
 .input:disabled {
   cursor: not-allowed;
-  background: var(--color-sand);
+  background: #1a1c24;
 }
 
 /* Custom chevron for selects (appearance:none removes the native arrow) */
@@ -580,4 +582,44 @@ textarea,
     var(--color-gold-400),
     transparent
   );
+}
+
+/* ============================================================
+   Ambient floating gold particles — inspired by luxury sites
+   ============================================================ */
+@keyframes float-particle {
+  0%, 100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-80px) translateX(20px) scale(1.1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-160px) translateX(-15px) scale(0.9);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translateY(-240px) translateX(25px) scale(1.05);
+    opacity: 0.2;
+  }
+}
+
+.animate-float-particle {
+  animation: float-particle 12s ease-in-out infinite;
+}
+
+/* Slow horizontal drift for ambient background elements */
+@keyframes drift {
+  0%, 100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  50% {
+    transform: translateX(30px) rotate(2deg);
+  }
+}
+
+.animate-drift {
+  animation: drift 8s ease-in-out infinite;
 }

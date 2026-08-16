@@ -51,22 +51,23 @@ export default function AboutPage() {
       />
 
       {/* Founder Section */}
-      <section className="bg-white py-16 sm:py-24">
+      <section className="bg-[#0b0c10] py-16 sm:py-24 text-slate-100">
         <Container className="grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
           {/* Text Side (Left) */}
           <Reveal variant="fade" className="order-2 lg:order-1">
             <SectionHeading
+              dark
               align="left"
               eyebrow="Meet the Founder"
               title="The vision behind Pulse Event"
             />
-            <h3 className="font-display mt-8 text-2xl font-bold text-ink">{owner.name}</h3>
-            <p className="mt-1 text-gold-600 font-medium tracking-wide uppercase text-sm">{owner.role}</p>
-            <p className="mt-6 text-base leading-relaxed text-ink-soft sm:text-lg">
+            <h3 className="font-display mt-8 text-2xl font-bold text-gold-300">{owner.name}</h3>
+            <p className="mt-1 text-gold-400 font-medium tracking-wide uppercase text-sm">{owner.role}</p>
+            <p className="mt-6 text-base leading-relaxed text-slate-300 sm:text-lg">
               &ldquo;{owner.bio}&rdquo;
             </p>
             <div className="mt-8">
-              <Link href="/contact" className="btn btn-outline border-gold-300 text-gold-700 hover:bg-gold-50">
+              <Link href="/contact" className="inline-flex items-center justify-center rounded-xl border border-gold-400/50 bg-gold-950/30 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-gold-300 transition-all hover:bg-gold-500 hover:text-slate-950">
                 Speak directly with me
               </Link>
             </div>
@@ -74,7 +75,7 @@ export default function AboutPage() {
 
           {/* Image Side (Right) */}
           <Reveal variant="fade" delay={100} className="order-1 flex justify-center lg:order-2 lg:justify-end">
-            <div className="relative h-72 w-72 overflow-hidden rounded-full border-4 border-gold-200/70 shadow-xl sm:h-96 sm:w-96">
+            <div className="relative h-72 w-72 overflow-hidden rounded-full border-4 border-gold-500/40 shadow-[0_0_30px_rgba(212,175,55,0.25)] sm:h-96 sm:w-96">
               <Image
                 src={owner.image}
                 alt={owner.name}
@@ -88,45 +89,53 @@ export default function AboutPage() {
       </section>
 
       {/* Story Section */}
-      <section className="bg-cream py-16 sm:py-24">
+      <section className="bg-[#08090c] py-16 sm:py-24 text-slate-100">
         <Container maxWidth="max-w-4xl" className="text-center">
           <Reveal variant="fade">
             <SectionHeading
+              dark
               align="center"
               eyebrow="Our story"
               title="Born from a love of great parties"
               description={`What started in Pune as a small team planning friends' birthdays has grown into one of Pune's most loved event companies. We've delivered countless events — from intimate baby showers to 2,000-guest weddings — and every single one gets the same energy, care and precision.`}
             />
           </Reveal>
-
-          <Reveal variant="fade" delay={100}>
-            <Stagger gap={120} className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-3">
-              {values.map((value) => (
-                <div
-                  key={value.title}
-                  className="card-lift flex flex-col items-center text-center gap-4 rounded-xl border border-gold-200/70 bg-white p-6 hover:border-gold-300"
-                >
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-gold-300/60 bg-gold-50 text-gold-700">
-                    <value.icon className="h-6 w-6" />
-                  </span>
-                  <div>
-                    <h3 className="font-display text-base font-semibold text-ink">{value.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-soft">{value.description}</p>
-                  </div>
-                </div>
-              ))}
-            </Stagger>
-          </Reveal>
-
-          <Reveal variant="fade" delay={200} className="mt-12 flex justify-center">
-            <Link href="/contact" className="btn btn-primary btn-shine">
-              Get in touch
-              <ArrowRightIcon className="h-4 w-4" />
-            </Link>
-          </Reveal>
         </Container>
       </section>
 
+      {/* Values Section */}
+      <section className="bg-[#0b0c10] py-16 sm:py-24 text-slate-100">
+        <Container>
+          <Reveal variant="up">
+            <SectionHeading
+              dark
+              eyebrow="What we stand for"
+              title="Principles that guide every celebration"
+            />
+          </Reveal>
+          <Stagger
+            gap={120}
+            className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-3"
+          >
+            {values.map((item) => (
+              <div
+                key={item.title}
+                className="rounded-2xl border border-gold-500/20 bg-[#12141c] p-8 shadow-xl hover:border-gold-400 hover:bg-[#181a24] transition-all duration-300"
+              >
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-gold-500/40 bg-gold-950/40 text-gold-400">
+                  <item.icon className="h-6 w-6" />
+                </span>
+                <h3 className="font-display mt-6 text-xl font-semibold text-slate-100">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-slate-400">
+                  {item.description}
+                </p>
+              </div>
+            ))}
+          </Stagger>
+        </Container>
+      </section>
 
       <CTA />
     </SiteShell>

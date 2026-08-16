@@ -55,22 +55,22 @@ export default async function BookPage({
       />
 
       {/* Trust indicators strip */}
-      <section className="border-b border-gold-200/60 bg-white">
+      <section className="border-b border-gold-500/20 bg-[#08090c]">
         <Container>
-          <div className="flex flex-col divide-y divide-gold-100 sm:flex-row sm:divide-x sm:divide-y-0">
+          <div className="flex flex-col divide-y divide-gold-500/10 sm:flex-row sm:divide-x sm:divide-y-0">
             {trustPoints.map((point) => (
               <div
                 key={point.label}
                 className="flex flex-1 items-center gap-3 px-4 py-5 sm:justify-center sm:px-6"
               >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-gold-200/80 bg-gold-50">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-gold-500/40 bg-gold-950/40">
                   <point.icon className="h-4 w-4 text-gold-600" />
                 </span>
                 <div>
-                  <p className="text-sm font-semibold text-ink">
+                  <p className="text-sm font-semibold text-slate-100">
                     {point.label}
                   </p>
-                  <p className="text-xs text-ink-soft">{point.desc}</p>
+                  <p className="text-xs text-slate-400">{point.desc}</p>
                 </div>
               </div>
             ))}
@@ -79,21 +79,21 @@ export default async function BookPage({
       </section>
 
       {/* Form section */}
-      <section className="bg-sand py-14 pb-20 sm:py-20 sm:pb-28">
+      <section className="bg-[#0b0c10] py-14 pb-20 sm:py-20 sm:pb-28">
         <Container maxWidth="max-w-3xl">
           <Reveal
             variant="up"
-            className="overflow-hidden rounded-2xl border border-gold-200/70 bg-white shadow-xl shadow-ink/5"
+            className="overflow-hidden rounded-2xl border border-gold-500/20 bg-[#12141c] shadow-xl"
           >
             {/* Card header bar */}
-            <div className="border-b border-gold-100 bg-gradient-to-r from-gold-50 to-cream px-6 py-5 sm:px-10">
+            <div className="border-b border-gold-500/10 bg-gradient-to-r from-gold-950/40 to-[#12141c] px-6 py-5 sm:px-10">
               <p className="text-xs font-bold uppercase tracking-[0.25em] text-gold-600">
                 Booking Request
               </p>
-              <h2 className="font-display mt-1 text-xl font-semibold text-ink">
+              <h2 className="font-display mt-1 text-xl font-semibold text-slate-100">
                 Fill in the details below
               </h2>
-              <p className="mt-1 text-sm text-ink-soft">
+              <p className="mt-1 text-sm text-slate-400">
                 All fields marked{" "}
                 <span className="text-wine-600 font-semibold">*</span> are
                 required.
@@ -113,7 +113,7 @@ export default async function BookPage({
 
           {/* Privacy note */}
           <Reveal variant="up" delay={150}>
-            <p className="mt-5 text-center text-xs text-ink/40 leading-relaxed">
+            <p className="mt-5 text-center text-xs text-slate-500 leading-relaxed">
               🔒 Your information is private and never shared with third
               parties. By submitting you agree to be contacted by the Pulse
               Event team.

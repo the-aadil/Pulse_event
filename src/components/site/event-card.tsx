@@ -9,9 +9,9 @@ export function EventCard({ event }: { event: EventType }) {
   return (
     <Link
       href={`/events/${event.slug}`}
-      className="card-lift group flex h-full flex-col overflow-hidden rounded-xl border border-gold-200/50 bg-white shadow-sm hover:border-gold-400"
+      className="card-lift group flex h-full flex-col overflow-hidden rounded-2xl border border-gold-500/20 bg-[#12141c] shadow-xl transition-all duration-300 hover:border-gold-400 hover:bg-[#181a24] hover:shadow-[0_0_20px_rgba(212,175,55,0.2)]"
     >
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-sand">
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-900">
         {event.image ? (
           <Image
             src={event.image}
@@ -21,35 +21,35 @@ export function EventCard({ event }: { event: EventType }) {
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
-          <div className="flex h-full items-center justify-center bg-sand">
-            <span className="font-display text-5xl font-bold text-gold-600">
+          <div className="flex h-full items-center justify-center bg-slate-900">
+            <span className="font-display text-5xl font-bold text-gold-400">
               {event.name.charAt(0)}
             </span>
           </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#08090c] via-transparent to-transparent opacity-80 transition-opacity duration-700 group-hover:opacity-60" />
         {event.capacity && (
-          <span className="absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-ink/70 px-3 py-1.5 text-xs font-semibold tracking-wide text-cream backdrop-blur-md shadow-lg border border-white/10">
+          <span className="absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-[#08090c]/80 px-3 py-1.5 text-xs font-semibold tracking-wide text-slate-200 backdrop-blur-md shadow-lg border border-gold-500/30">
             <UsersRoundIcon className="h-3.5 w-3.5 text-gold-400" />
             Up to {event.capacity.toLocaleString("en-IN")} guests
           </span>
         )}
         {price && (
-          <span className="absolute bottom-4 left-4 rounded-full bg-gold-500/90 backdrop-blur-md border border-gold-400/50 px-3 py-1.5 text-xs font-bold tracking-wide text-ink shadow-xl">
+          <span className="absolute bottom-4 left-4 rounded-full bg-gradient-to-r from-gold-500 to-amber-400 backdrop-blur-md border border-amber-300 px-3 py-1.5 text-xs font-bold tracking-wide text-slate-950 shadow-xl">
             From {price}
           </span>
         )}
       </div>
       <div className="flex flex-1 flex-col p-6">
-        <h3 className="font-display text-2xl font-semibold tracking-tight text-ink transition-colors group-hover:text-gold-700">
+        <h3 className="font-display text-2xl font-semibold tracking-tight text-slate-100 transition-colors group-hover:text-gold-300">
           {event.name}
         </h3>
         {event.tagline && (
-          <p className="mt-2 line-clamp-2 flex-1 text-sm leading-relaxed text-ink-soft">
+          <p className="mt-2 line-clamp-2 flex-1 text-sm leading-relaxed text-slate-400">
             {event.tagline}
           </p>
         )}
-        <span className="mt-5 inline-flex items-center gap-1.5 border-t border-gold-200/70 pt-4 text-sm font-semibold text-gold-700 transition-colors group-hover:text-gold-600">
+        <span className="mt-5 inline-flex items-center gap-1.5 border-t border-gold-500/20 pt-4 text-sm font-semibold text-gold-400 transition-colors group-hover:text-amber-300">
           Explore
           <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
         </span>

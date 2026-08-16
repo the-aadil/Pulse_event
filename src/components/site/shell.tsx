@@ -66,7 +66,7 @@ export function SectionHeading({
   title,
   description,
   align = "center",
-  dark = false,
+  dark = true,
 }: {
   eyebrow?: string;
   title: string;
@@ -85,7 +85,7 @@ export function SectionHeading({
       <h2
         className={cn(
           "font-display mt-4 text-balance text-3xl font-semibold tracking-tight sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]",
-          dark ? "text-cream" : "text-ink"
+          dark ? "text-cream" : "text-slate-100"
         )}
       >
         {title}
@@ -94,7 +94,7 @@ export function SectionHeading({
         <p
           className={cn(
             "mt-4 text-base leading-relaxed sm:text-lg",
-            dark ? "text-cream/65" : "text-ink-soft"
+            dark ? "text-cream/65" : "text-slate-300"
           )}
         >
           {description}
@@ -114,21 +114,21 @@ export function PageHeader({
   description?: string;
 }) {
   return (
-    <section className="border-b border-gold-200/60 bg-sand py-14 sm:py-18">
+    <section className="border-b border-gold-500/20 bg-[#08090c] py-14 sm:py-18">
       <Container className="text-center">
         {eyebrow && (
           <Reveal variant="up" className="flex justify-center">
-            <Eyebrow className="justify-center">{eyebrow}</Eyebrow>
+            <Eyebrow light className="justify-center">{eyebrow}</Eyebrow>
           </Reveal>
         )}
         <Reveal variant="up" delay={100}>
-          <h1 className="font-display mt-4 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
+          <h1 className="font-display mt-4 text-balance text-4xl font-semibold tracking-tight text-slate-100 sm:text-5xl">
             {title}
           </h1>
         </Reveal>
         {description && (
           <Reveal variant="up" delay={200}>
-            <p className="mx-auto mt-4 max-w-2xl text-pretty text-base leading-relaxed text-ink-soft sm:text-lg">
+            <p className="mx-auto mt-4 max-w-2xl text-pretty text-base leading-relaxed text-slate-300 sm:text-lg">
               {description}
             </p>
           </Reveal>

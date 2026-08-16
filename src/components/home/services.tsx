@@ -50,10 +50,11 @@ const services = [
 
 export function Services() {
   return (
-    <section className="bg-white py-16 sm:py-24">
+    <section className="bg-[#0b0c10] py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal variant="up">
           <SectionHeading
+            dark
             eyebrow="Why Choose Us"
             title="A seamless experience, tailored just for you"
             description="Planning an event shouldn't be stressful. We bring together everything you need, thoughtfully curating each detail so you can simply enjoy the moment."
@@ -63,15 +64,15 @@ export function Services() {
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, i) => (
             <Reveal key={service.title} variant="up" delay={(i % 3) * 100} className="h-full">
-              <div className="card-lift group relative h-full overflow-hidden rounded-2xl border border-gold-200/50 bg-white p-8 hover:border-gold-400">
-                <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gold-400/10 blur-3xl transition-transform duration-700 group-hover:scale-150" />
-                <span className="relative inline-flex h-14 w-14 items-center justify-center rounded-xl border border-gold-300/60 bg-gold-50 text-gold-700 transition-all duration-500 group-hover:-translate-y-1 group-hover:scale-110 group-hover:border-gold-400 group-hover:bg-gold-500 group-hover:text-ink group-hover:shadow-lg">
+              <div className="card-lift group relative h-full overflow-hidden rounded-2xl border border-gold-500/20 bg-[#12141c] p-8 hover:border-gold-400 hover:bg-[#181a24] transition-all duration-300 shadow-xl">
+                <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gold-500/10 blur-3xl transition-transform duration-700 group-hover:scale-150" />
+                <span className="relative inline-flex h-14 w-14 items-center justify-center rounded-xl border border-gold-500/40 bg-gold-950/40 text-gold-400 transition-all duration-500 group-hover:-translate-y-1 group-hover:scale-110 group-hover:border-gold-300 group-hover:bg-gradient-to-r group-hover:from-gold-500 group-hover:to-amber-400 group-hover:text-slate-950 group-hover:shadow-[0_0_15px_rgba(212,175,55,0.5)]">
                   <service.icon className="h-7 w-7" />
                 </span>
-                <h3 className="font-display relative mt-6 text-2xl font-semibold text-ink transition-colors group-hover:text-gold-700">
+                <h3 className="font-display relative mt-6 text-2xl font-semibold text-slate-100 transition-colors group-hover:text-gold-300">
                   {service.title}
                 </h3>
-                <p className="relative mt-3 text-base leading-relaxed text-ink-soft">
+                <p className="relative mt-3 text-base leading-relaxed text-slate-400">
                   {service.description}
                 </p>
               </div>

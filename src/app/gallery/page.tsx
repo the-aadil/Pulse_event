@@ -65,7 +65,7 @@ export default async function GalleryPage({
         description="A look back at some of the celebrations we've had the pleasure of bringing to life — filter by occasion and tap any photo to view it full size."
       />
 
-      <section className="bg-cream py-16 sm:py-20">
+      <section className="bg-[#0b0c10] py-16 sm:py-20">
         <Container>
           <GalleryGrid
             key={`${category ?? "all"}-${page}`}

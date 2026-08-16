@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { MenuIcon, CloseIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
@@ -22,7 +23,7 @@ export function MobileNav() {
     setOpen(false);
   }
 
-  // Close on click outside (works anywhere on screen, including header area)
+  // Close on click outside, handle resize, escape key
   useEffect(() => {
     if (!open) return;
 
@@ -35,10 +36,27 @@ export function MobileNav() {
       }
     }
 
-    // Use capture so we catch clicks before anything else
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        close();
+      }
+    }
+
+    function handleResize() {
+      // Auto-close the mobile menu if the screen gets resized to desktop size
+      if (window.innerWidth >= 1024) {
+        close();
+      }
+    }
+
     document.addEventListener("pointerdown", handlePointerDown, true);
+    document.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("resize", handleResize);
+
     return () => {
       document.removeEventListener("pointerdown", handlePointerDown, true);
+      document.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("resize", handleResize);
     };
   }, [open]);
 
@@ -49,49 +67,52 @@ export function MobileNav() {
         ref={toggleRef}
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex h-10 w-10 items-center justify-center rounded-md text-ink transition-colors hover:bg-gold-100"
+        className="inline-flex h-10 w-10 items-center justify-center rounded-md text-slate-200 transition-colors hover:bg-gold-500/20"
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
       >
         {open ? <CloseIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
       </button>
 
-      {open && (
-        <div className="fixed inset-0 top-16 z-40 lg:hidden">
-          {/* Visual backdrop — purely decorative, closing is handled by click-outside above */}
-          <div
-            className="absolute inset-0 bg-ink/40 backdrop-blur-sm"
-            aria-hidden="true"
-          />
-          <nav
-            ref={navRef}
-            className="relative mx-3 mt-2 max-h-[calc(100dvh-4.5rem)] overflow-y-auto rounded-lg border border-gold-200/70 bg-white p-4 shadow-xl shadow-ink/10"
-          >
-            <ul className="flex flex-col">
-              {links.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    onClick={close}
-                    className={cn(
-                      "block rounded-md px-4 py-3 text-base font-medium text-ink transition-colors hover:bg-gold-50 hover:text-gold-700"
-                    )}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <Link
-              href="/book"
-              onClick={close}
-              className="btn btn-primary mt-3 w-full"
+      {open &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <div className="fixed inset-x-0 bottom-0 top-16 z-40 lg:hidden">
+            {/* Visual backdrop — purely decorative, closing is handled by click-outside above */}
+            <div
+              className="absolute inset-0 bg-[#08090c]/80 backdrop-blur-md"
+              aria-hidden="true"
+            />
+            <nav
+              ref={navRef}
+              className="relative mx-3 mt-2 max-h-[calc(100dvh-5rem)] overflow-y-auto rounded-lg border border-gold-500/30 bg-[#12141c] p-4 shadow-2xl"
             >
-              Book an Event
-            </Link>
-          </nav>
-        </div>
-      )}
+              <ul className="flex flex-col gap-1">
+                {links.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      onClick={close}
+                      className={cn(
+                        "block rounded-md px-4 py-3 text-base font-medium text-slate-200 transition-colors hover:bg-gold-500/15 hover:text-gold-300"
+                      )}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/book"
+                onClick={close}
+                className="mt-4 flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-gold-500 via-amber-400 to-gold-500 px-4 py-3 text-sm font-bold uppercase tracking-wider text-slate-950 shadow-[0_0_15px_rgba(212,175,55,0.4)] transition-all hover:scale-105 active:scale-95"
+              >
+                Book an Event
+              </Link>
+            </nav>
+          </div>,
+          document.body
+        )}
     </div>
   );
 }

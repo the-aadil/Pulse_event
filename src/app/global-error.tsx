@@ -10,16 +10,16 @@ export default function GlobalError({
 }) {
   return (
     <html lang="en">
-      <body className="bg-cream">
+      <body className="bg-[#0b0c10]">
         <div className="flex min-h-screen min-h-dvh items-center justify-center px-4">
-          <div className="w-full max-w-md rounded-lg border border-gold-200/70 bg-white p-8 text-center shadow-sm">
+          <div className="w-full max-w-md rounded-lg border border-gold-500/20 bg-[#12141c] p-8 text-center shadow-sm">
             <p className="font-display text-6xl font-semibold text-gold-600" aria-hidden>
               !
             </p>
-            <h2 className="font-display mt-4 text-2xl font-semibold text-ink">
+            <h2 className="font-display mt-4 text-2xl font-semibold text-slate-100">
               Something went very wrong
             </h2>
-            <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+            <p className="mt-2 text-sm leading-relaxed text-slate-400">
               We hit a snag while setting up this page. Try again, or head back
               home.
             </p>

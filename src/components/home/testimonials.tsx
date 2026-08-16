@@ -25,10 +25,11 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="bg-white py-16 sm:py-24">
+    <section className="bg-[#0b0c10] py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal variant="up">
           <SectionHeading
+            dark
             eyebrow="Client Stories"
             title="Love notes from our clients"
             description="The most beautiful part of our work is the joy we leave behind. Here's what our clients have to say."
@@ -41,11 +42,11 @@ export function Testimonials() {
               as="figure"
               variant="up"
               delay={i * 100}
-              className="card-lift relative flex flex-col overflow-hidden rounded-lg border border-gold-200/70 bg-cream p-7 hover:border-gold-300"
+              className="card-lift relative flex flex-col overflow-hidden rounded-2xl border border-gold-500/20 bg-[#12141c] p-7 hover:border-gold-400 hover:bg-[#181a24] transition-all duration-300 shadow-xl"
             >
               <span
                 aria-hidden
-                className="pointer-events-none absolute -top-4 right-3 font-display text-8xl font-bold text-gold-200/60"
+                className="pointer-events-none absolute -top-4 right-3 font-display text-8xl font-bold text-gold-500/10"
               >
                 &ldquo;
               </span>
@@ -53,20 +54,20 @@ export function Testimonials() {
                 {Array.from({ length: 5 }).map((_, j) => (
                   <StarIcon
                     key={j}
-                    className="h-4 w-4 text-gold-500 transition-transform duration-300 hover:scale-125"
+                    className="h-4 w-4 text-amber-400 transition-transform duration-300 hover:scale-125"
                   />
                 ))}
               </div>
-              <blockquote className="relative mt-5 flex-1 text-sm leading-relaxed text-ink/75">
+              <blockquote className="relative mt-5 flex-1 text-sm leading-relaxed text-slate-300">
                 “{t.quote}”
               </blockquote>
               <figcaption className="mt-7 flex items-center gap-3">
-                <span className="flex h-11 w-11 items-center justify-center rounded-full border border-gold-300/70 bg-gold-50 font-display text-base font-semibold text-gold-700">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full border border-gold-500/40 bg-gold-950/40 font-display text-base font-semibold text-gold-300">
                   {t.name.charAt(0)}
                 </span>
                 <div>
-                  <p className="text-sm font-semibold text-ink">{t.name}</p>
-                  <p className="text-xs text-ink-soft">{t.event}</p>
+                  <p className="text-sm font-semibold text-slate-100">{t.name}</p>
+                  <p className="text-xs text-gold-400/80">{t.event}</p>
                 </div>
               </figcaption>
             </Reveal>

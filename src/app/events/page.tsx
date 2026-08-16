@@ -25,7 +25,7 @@ export default async function EventsPage() {
         description="Whatever the occasion, we have a package (or a blank canvas) for it. Explore what we offer and let's make it yours."
       />
 
-      <section className="bg-cream py-16 sm:py-20">
+      <section className="bg-[#0b0c10] py-16 sm:py-20">
         <Container>
           {events.length > 0 ? (
             <Stagger
@@ -42,10 +42,10 @@ export default async function EventsPage() {
               <p className="text-5xl" aria-hidden>
                 🎪
               </p>
-              <h2 className="mt-4 text-2xl font-bold text-ink">
+              <h2 className="mt-4 text-2xl font-bold text-slate-100">
                 New events are coming soon
               </h2>
-              <p className="mx-auto mt-2 max-w-md text-sm text-ink/60">
+              <p className="mx-auto mt-2 max-w-md text-sm text-slate-400">
                 We&apos;re curating our next set of themes. Meanwhile, tell us what
                 you have in mind and we&apos;ll make it happen.
               </p>

@@ -3,6 +3,7 @@ import { SiteShell, Container, PageHeader } from "@/components/site/shell";
 import { ContactForm } from "@/components/forms/contact-form";
 import { Reveal } from "@/components/motion/reveal";
 import { Stagger } from "@/components/motion/stagger";
+import Image from "next/image";
 import {
   PhoneIcon,
   MailIcon,
@@ -59,31 +60,32 @@ export default function ContactPage() {
         description="Questions, ideas or a date to save? We'd love to hear from you."
       />
 
-      <section className="bg-cream py-16 sm:py-20">
+      <section className="bg-[#0b0c10] py-16 sm:py-20 text-slate-100">
         <Container className="grid grid-cols-1 gap-10 lg:grid-cols-5">
+          <div className="space-y-4 lg:col-span-2">
           <Stagger
             as="div"
             gap={140}
-            className="space-y-4 lg:col-span-2"
+            className="space-y-4"
           >
             {contactCards.map((card) => {
               const content = (
                 <>
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-gold-300/60 bg-gold-50 text-gold-700">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-gold-500/40 bg-gold-950/40 text-gold-400">
                     <card.icon className="h-5 w-5" />
                   </span>
                   <div className="min-w-0">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-ink-soft">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-gold-400/80">
                       {card.label}
                     </p>
-                    <p className="mt-0.5 break-words text-sm font-semibold text-ink">
+                    <p className="mt-0.5 break-words text-sm font-semibold text-slate-100">
                       {card.value}
                     </p>
                   </div>
                 </>
               );
               const classes =
-                "card-lift flex items-center gap-4 rounded-lg border border-gold-200/70 bg-white p-4 hover:border-gold-300";
+                "card-lift flex items-center gap-4 rounded-xl border border-gold-500/20 bg-[#12141c] p-4 hover:border-gold-400 hover:bg-[#181a24] transition-all";
               return card.href ? (
                 <a
                   key={card.label}
@@ -102,9 +104,11 @@ export default function ContactPage() {
             })}
           </Stagger>
 
-          <Reveal variant="up" delay={150} className="rounded-lg border border-gold-200/70 bg-white p-6 shadow-sm sm:p-8 lg:col-span-3">
-            <h2 className="font-display text-2xl font-semibold text-ink">Send us a message</h2>
-            <p className="mt-1 text-sm text-ink/60">
+        </div>
+
+          <Reveal variant="up" delay={150} className="rounded-2xl border border-gold-500/20 bg-[#12141c] p-6 shadow-xl sm:p-8 lg:col-span-3">
+            <h2 className="font-display text-2xl font-semibold text-gold-300">Send us a message</h2>
+            <p className="mt-1 text-sm text-slate-400">
               We reply to every message within 24 hours on working days.
             </p>
             <div className="mt-6">

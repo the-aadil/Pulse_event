@@ -12,13 +12,13 @@ import {
 
 export function Footer() {
   return (
-    <footer className="relative bg-ink text-cream overflow-hidden">
+    <footer className="relative bg-[#0b0c10] text-slate-100 overflow-hidden border-t border-gold-500/20">
       {/* Delicate Gold Top Border */}
       <div className="gold-rule" aria-hidden />
 
       {/* Main Footer Container */}
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl rounded-2xl border border-cream/10 bg-cream/[0.02] p-6 sm:p-10 backdrop-blur-sm shadow-2xl">
+        <div className="mx-auto max-w-4xl rounded-2xl border border-gold-500/20 bg-[#12141c]/50 p-6 sm:p-10 backdrop-blur-md shadow-2xl">
           
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-12 sm:items-center">
             
