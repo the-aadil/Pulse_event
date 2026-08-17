@@ -69,7 +69,7 @@ export function Footer() {
               <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.25em] text-gold-400">
                 Get in Touch
               </p>
-              <ul className="space-y-3">
+              <ul className="space-y-3 text-left">
                 <li>
                   <a
                     href={`tel:${SITE_CONFIG.phone1}`}

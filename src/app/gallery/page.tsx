@@ -9,11 +9,15 @@ const baseDescription =
 
 type GallerySearchParams = { category?: string; page?: string };
 
+const DEFAULT_CATEGORY = galleryCategories.find((cat) =>
+  galleryItems.some((item) => item.category === cat),
+) ?? null;
+
 function parseGalleryParams(sp: GallerySearchParams | undefined) {
   const category =
     sp?.category && galleryCategories.includes(sp.category)
       ? sp.category
-      : null;
+      : DEFAULT_CATEGORY;
   const filtered = category
     ? galleryItems.filter((item) => item.category === category)
     : galleryItems;

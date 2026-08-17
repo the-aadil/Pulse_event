@@ -49,13 +49,29 @@ export function MobileNav() {
       }
     }
 
+    function handleWheel(e: WheelEvent) {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        e.preventDefault();
+      }
+    }
+
+    function handleTouchMove(e: TouchEvent) {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        e.preventDefault();
+      }
+    }
+
     document.addEventListener("pointerdown", handlePointerDown, true);
     document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("wheel", handleWheel, { passive: false });
+    document.addEventListener("touchmove", handleTouchMove, { passive: false });
     window.addEventListener("resize", handleResize);
 
     return () => {
       document.removeEventListener("pointerdown", handlePointerDown, true);
       document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("wheel", handleWheel);
+      document.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("resize", handleResize);
     };
   }, [open]);

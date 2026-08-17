@@ -88,7 +88,7 @@ export async function requireAdmin() {
   });
 
   if (!user) {
-    destroySession();
+    await destroySession();
     redirect("/admin/login");
   }
 

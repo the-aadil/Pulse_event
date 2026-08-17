@@ -104,53 +104,6 @@ textarea,
   animation: fade-up 0.6s ease-out both;
 }
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.animate-fade-in {
-  animation: fade-in 0.8s ease-out both;
-}
-
-@keyframes zoom-in {
-  from {
-    opacity: 0;
-    transform: scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.animate-zoom-in {
-  animation: zoom-in 0.7s ease-out both;
-}
-
-/* Gentle floating motion for hero accent cards and blobs */
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-.animate-float {
-  animation: float 5s ease-in-out infinite;
-}
-
-.animate-float-delayed {
-  animation: float 5s ease-in-out 2.5s infinite;
-}
-
 /* Slow breathing glow behind hero/CTA glows.
    translateZ(0) forces a GPU compositing layer on mobile browsers,
    so the scale/opacity pulse never repaints on the main thread. */
@@ -188,90 +141,18 @@ textarea,
    Celebration decoration animations for the hero
    ============================================================ */
 
-/* Rising sparkle particles */
-@keyframes sparkle-rise {
-  0% {
-    opacity: 0;
-    transform: translateY(0) scale(0);
-  }
-  15% {
-    opacity: 1;
-    transform: translateY(-30px) scale(1);
-  }
-  85% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-300px) scale(0.3);
-  }
-}
-
-/* Slow drifting confetti */
-@keyframes confetti-drift {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px) rotate(0deg) scale(0.6);
-  }
-  10% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(320px) rotate(720deg) scale(0.2);
-  }
-}
-
-/* Twinkle in-out for stars */
-@keyframes twinkle {
-  0%, 100% {
-    opacity: 0.15;
-    transform: scale(0.8);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-}
-
-/* Gentle swaying */
-@keyframes sway {
-  0%, 100% {
-    transform: rotate(-3deg);
-  }
-  50% {
-    transform: rotate(3deg);
-  }
-}
-
-.animate-sparkle-rise {
-  animation: sparkle-rise 4s ease-out infinite;
-}
-
-.animate-confetti-drift {
-  animation: confetti-drift 6s ease-in-out infinite;
-}
-
-.animate-twinkle {
-  animation: twinkle 3s ease-in-out infinite;
-}
-
-.animate-sway {
-  animation: sway 6s ease-in-out infinite;
-}
-
 /* Glowing text — white core with gold halo for hero headlines */
 @keyframes text-glow {
   0%, 100% {
     text-shadow:
-      0 0 10px rgba(255, 255, 255, 0.3),
-      0 0 20px rgba(185, 143, 62, 0.2);
+      0 0 6px rgba(255, 255, 255, 0.076),
+      0 0 10px rgba(185, 143, 62, 0.050);
   }
   50% {
     text-shadow:
-      0 0 20px rgba(255, 255, 255, 0.6),
-      0 0 40px rgba(185, 143, 62, 0.4),
-      0 0 60px rgba(185, 143, 62, 0.15);
+      0 0 10px rgba(255, 255, 255, 0.151),
+      0 0 20px rgba(185, 143, 62, 0.101),
+      0 0 30px rgba(185, 143, 62, 0.038);
   }
 }
 
@@ -621,4 +502,18 @@ textarea,
 
 .animate-drift {
   animation: drift 8s ease-in-out infinite;
+}
+
+/* ============================================================
+   Performance optimization: Pause expensive animations while scrolling
+   Only animation-play-state is paused — pointer-events remain active
+   so interactive elements (links, buttons, form inputs) stay usable.
+   ============================================================ */
+body.is-scrolling .animate-float-particle,
+body.is-scrolling .animate-drift,
+body.is-scrolling .animate-glow,
+body.is-scrolling .animate-ken-burns,
+body.is-scrolling .animate-text-glow,
+body.is-scrolling .btn-shine::after {
+  animation-play-state: paused !important;
 }

@@ -3,7 +3,6 @@ import { SiteShell, Container, PageHeader } from "@/components/site/shell";
 import { ContactForm } from "@/components/forms/contact-form";
 import { Reveal } from "@/components/motion/reveal";
 import { Stagger } from "@/components/motion/stagger";
-import Image from "next/image";
 import {
   PhoneIcon,
   MailIcon,

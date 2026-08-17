@@ -26,19 +26,13 @@ export function Logo({ className }: { className?: string; dark?: boolean }) {
                 stroke-linecap: round;
                 stroke-linejoin: round;
                 fill: none;
-                transition: stroke 0.3s ease, filter 0.3s ease;
-                filter: drop-shadow(0 0 6px rgba(255,180,0,0.4));
-              }
-              .pulse-event-logo:hover .pulse-stroke {
-                stroke: #FFC107;
-                filter: drop-shadow(0 0 10px rgba(255,193,7,0.6));
+                filter: drop-shadow(0 0 12px rgba(255,180,0,0.8)) drop-shadow(0 0 24px rgba(255,180,0,0.4));
               }
               .logo-pulse {
                 font-family: 'Playfair Display', 'Didot', 'Times New Roman', serif;
                 font-size: 150px;
                 font-weight: 700;
                 fill: #f8fafc;
-                transition: fill 0.3s ease;
               }
               .logo-event {
                 font-family: 'Playfair Display', 'Didot', 'Times New Roman', serif;
@@ -46,13 +40,6 @@ export function Logo({ className }: { className?: string; dark?: boolean }) {
                 font-weight: 700;
                 letter-spacing: 0.05em;
                 fill: #f8fafc;
-                transition: fill 0.3s ease;
-              }
-              .pulse-event-logo:hover .logo-pulse {
-                fill: #ffffff;
-              }
-              .pulse-event-logo:hover .logo-event {
-                fill: #ffffff;
               }
             `}
           </style>

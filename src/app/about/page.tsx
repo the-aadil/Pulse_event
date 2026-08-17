@@ -5,10 +5,10 @@ import { SiteShell, Container, SectionHeading, PageHeader } from "@/components/s
 import { Reveal } from "@/components/motion/reveal";
 import { Stagger } from "@/components/motion/stagger";
 import { CTA } from "@/components/home/cta";
-import { ArrowRightIcon, SparklesIcon, UsersRoundIcon, ShieldCheckIcon } from "@/components/icons";
+import { SparklesIcon, UsersRoundIcon, ShieldCheckIcon } from "@/components/icons";
 
 export const metadata: Metadata = {
-  title: "About Us | Pulse Event",
+  title: "About Us",
   description:
     "Pulse Event is a Pune-based event management company crafting birthdays, weddings, corporate events and themed celebrations for over 9 years.",
 };
@@ -35,7 +35,7 @@ const values = [
 ];
 
 const owner = {
-  name: "Your Name",
+  name: "Jakir Shaikh",
   role: "Founder & Creative Director",
   bio: "With over a decade of experience in event management, I started Pulse Event to bring world-class celebrations to Pune. My philosophy is simple: treat every event as if it were my own family's celebration. I personally oversee our major projects to ensure that every detail, from floral arrangements to lighting, is absolutely perfect.",
   image: "/images/founder_enhanced.jpg",
@@ -61,7 +61,7 @@ export default function AboutPage() {
               eyebrow="Meet the Founder"
               title="The vision behind Pulse Event"
             />
-            <h3 className="font-display mt-8 text-2xl font-bold text-gold-300">{owner.name}</h3>
+            <h3 className="font-display mt-7 text-2xl font-bold text-gold-300 drop-shadow-[0_0_8px_rgba(212,175,55,0.35)]">{owner.name}</h3>
             <p className="mt-1 text-gold-400 font-medium tracking-wide uppercase text-sm">{owner.role}</p>
             <p className="mt-6 text-base leading-relaxed text-slate-300 sm:text-lg">
               &ldquo;{owner.bio}&rdquo;
@@ -74,8 +74,8 @@ export default function AboutPage() {
           </Reveal>
 
           {/* Image Side (Right) */}
-          <Reveal variant="fade" delay={100} className="order-1 flex justify-center lg:order-2 lg:justify-end">
-            <div className="relative h-72 w-72 overflow-hidden rounded-full border-4 border-gold-500/40 shadow-[0_0_30px_rgba(212,175,55,0.25)] sm:h-96 sm:w-96">
+          <Reveal variant="fade" delay={100} className="order-1 flex justify-center lg:order-2 lg:justify-end -mt-3 sm:mt-0">
+            <div className="relative h-72 w-72 overflow-hidden rounded-full border-[3px] border-gold-400 shadow-[0_0_24px_rgba(212,175,55,0.3)] sm:h-96 sm:w-96">
               <Image
                 src={owner.image}
                 alt={owner.name}

@@ -103,17 +103,6 @@ export function StarIcon(props: IconProps) {
   );
 }
 
-export function UsersIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-      <circle cx="9" cy="7" r="4" />
-      <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-    </svg>
-  );
-}
-
 export function SparklesIcon(props: IconProps) {
   return (
     <svg {...base(props)}>
@@ -266,15 +255,6 @@ export function PartyPopperIcon(props: IconProps) {
   );
 }
 
-export function SearchIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <circle cx="11" cy="11" r="8" />
-      <path d="m21 21-4.3-4.3" />
-    </svg>
-  );
-}
-
 export function AlertTriangleIcon(props: IconProps) {
   return (
     <svg {...base(props)}>
@@ -284,15 +264,4 @@ export function AlertTriangleIcon(props: IconProps) {
   );
 }
 
-export function LoaderIcon(props: IconProps) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden {...props}>
-      <path
-        d="M21 12a9 9 0 1 1-6.219-8.56"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
+

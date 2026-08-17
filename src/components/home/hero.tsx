@@ -9,7 +9,6 @@ export function Hero() {
       {/* Ambient gold glow orbs */}
       <div className="animate-glow pointer-events-none absolute -right-32 -top-32 h-[28rem] w-[28rem] rounded-full bg-gold-500/10 blur-3xl" />
       <div className="animate-glow pointer-events-none absolute -bottom-40 -left-32 h-[26rem] w-[26rem] rounded-full bg-amber-500/8 blur-3xl [animation-delay:3s]" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-400 to-transparent" />
 
       {/* Floating gold particles with depth of field */}
       <div className="animate-float-particle pointer-events-none absolute left-[15%] top-[30%] h-1.5 w-1.5 rounded-full bg-gold-400/80 blur-[1px] [animation-delay:0s]" />

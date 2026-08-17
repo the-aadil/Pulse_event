@@ -23,8 +23,8 @@ export function FeaturedEvents({ events }: { events: EventType[] }) {
           itemClassName="h-full"
           className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
         >
-          {events.map((event) => (
-            <EventCard key={event.id} event={event} />
+          {events.map((event, i) => (
+            <EventCard key={event.id} event={event} priority={i === 0} />
           ))}
         </Stagger>
         <Reveal variant="fade" delay={150} className="mt-14 text-center">

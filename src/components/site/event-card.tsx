@@ -4,7 +4,7 @@ import { ArrowRightIcon, UsersRoundIcon } from "@/components/icons";
 import { formatINR } from "@/lib/utils";
 import type { EventType } from "@/generated/prisma/client";
 
-export function EventCard({ event }: { event: EventType }) {
+export function EventCard({ event, priority = false }: { event: EventType; priority?: boolean }) {
   const price = formatINR(event.priceFrom);
   return (
     <Link
@@ -18,6 +18,7 @@ export function EventCard({ event }: { event: EventType }) {
             alt={event.name}
             fill
             sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 100vw"
+            priority={priority}
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (

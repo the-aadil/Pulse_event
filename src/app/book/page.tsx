@@ -9,7 +9,7 @@ import {
   PhoneIcon,
 } from "@/components/icons";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Book an Event",

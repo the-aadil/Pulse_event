@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { SITE_CONFIG } from "@/lib/config";
+import { ScrollOptimizer } from "@/components/site/scroll-optimizer";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -85,16 +86,14 @@ export default function RootLayout({
       className={`${inter.variable} ${playfair.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `document.documentElement.classList.add("js")`,
-          }}
-        />
+      <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+      </head>
+      <body className="min-h-full flex flex-col">
+        <ScrollOptimizer />
         {children}
       </body>
     </html>

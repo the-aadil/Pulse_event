@@ -18,7 +18,8 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gold-500/30 bg-[#08090c]/95 shadow-md backdrop-blur-2xl">
+    <header className="sticky top-0 z-50 w-full relative border-b border-gold-500/30 bg-[#08090c]/95 shadow-md backdrop-blur-2xl">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gold-400 to-transparent" />
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Logo dark />
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState, useRef } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -250,6 +250,12 @@ export function GalleryGrid({
   const [page, setPage] = useState(initialPage);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const router = useRouter();
+
+  useLayoutEffect(() => {
+    setCategory(initialCategory);
+    setPage(initialPage);
+    setLightboxIndex(null);
+  }, [initialCategory, initialPage]);
 
   const filtered = useMemo(
     () =>

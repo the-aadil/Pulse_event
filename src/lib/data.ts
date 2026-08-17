@@ -45,19 +45,11 @@ export async function getBookingsByStatus(status: BookingStatus | "ALL") {
   });
 }
 
-export async function getBookingById(id: string) {
-  return db.booking.findUnique({ where: { id } });
-}
-
 export async function getEnquiries(status: EnquiryStatus | "ALL" = "ALL") {
   return db.enquiry.findMany({
     where: status === "ALL" ? {} : { status },
     orderBy: { createdAt: "desc" },
   });
-}
-
-export async function getEnquiryById(id: string) {
-  return db.enquiry.findUnique({ where: { id } });
 }
 
 export async function getDashboardStats() {

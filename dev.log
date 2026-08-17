@@ -6,1599 +6,722 @@
 - Local:         http://localhost:3000
 - Network:       http://192.168.0.193:3000
 - Environments: .env
-✓ Ready in 1278ms
+✓ Ready in 1473ms
 
-⨯ Error: Invalid src prop (/images/gallery/birthdays/birthday-01.jpeg) on `next/image` does not match `images.localPatterns` configured in your `next.config.js`
-See more info: https://nextjs.org/docs/messages/next-image-unconfigured-localpatterns
-    at ignore-listed frames {
-  digest: '1423295917@E426'
-}
- GET /gallery 500 in 2.2s (next.js: 1070ms, application-code: 1127ms)
-⨯ Error: Invalid src prop (/images/gallery/birthdays/birthday-01.jpeg) on `next/image` does not match `images.localPatterns` configured in your `next.config.js`
-See more info: https://nextjs.org/docs/messages/next-image-unconfigured-localpatterns
-    at ignore-listed frames {
-  digest: '1423295917@E426'
-}
- GET /gallery 500 in 190ms (next.js: 6ms, application-code: 184ms)
-⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
-▲ Next.js 16.2.12 (Turbopack)
-- Local:         http://localhost:3000
-- Network:       http://192.168.0.193:3000
-- Environments: .env
-✓ Ready in 1099ms
-
-[browser] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). 
-[browser] Error: Invalid src prop (/images/gallery/birthdays/birthday-01.jpeg) on `next/image` does not match `images.localPatterns` configured in your `next.config.js`
-See more info: https://nextjs.org/docs/messages/next-image-unconfigured-localpatterns
-    at Array.map (<anonymous>) (src/app/error.tsx:14:13)
-⨯ Error: Invalid src prop (/images/gallery/birthdays/birthday-01.jpeg) on `next/image` does not match `images.localPatterns` configured in your `next.config.js`
-See more info: https://nextjs.org/docs/messages/next-image-unconfigured-localpatterns
-    at ignore-listed frames {
-  digest: '1423295917@E426'
-}
- GET /gallery 500 in 2.2s (next.js: 984ms, application-code: 1203ms)
-⨯ Error: Invalid src prop (/images/gallery/birthdays/birthday-01.jpeg) on `next/image` does not match `images.localPatterns` configured in your `next.config.js`
-See more info: https://nextjs.org/docs/messages/next-image-unconfigured-localpatterns
-    at ignore-listed frames {
-  digest: '1423295917@E426'
-}
- GET /gallery 500 in 197ms (next.js: 6ms, application-code: 191ms)
-⨯ Error: Invalid src prop (/images/gallery/birthdays/birthday-01.jpeg) on `next/image` does not match `images.localPatterns` configured in your `next.config.js`
-See more info: https://nextjs.org/docs/messages/next-image-unconfigured-localpatterns
-    at ignore-listed frames {
-  digest: '1423295917@E426'
-}
- GET /gallery 500 in 213ms (next.js: 4ms, application-code: 209ms)
-⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
-▲ Next.js 16.2.12 (Turbopack)
-- Local:         http://localhost:3000
-- Network:       http://192.168.0.193:3000
-- Environments: .env
-✓ Ready in 840ms
-
-[browser] Encountered a script tag while rendering React component. Scripts inside React components are never executed when rendering on the client. Consider using template tag instead (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). 
-[browser] Error: Invalid src prop (/images/gallery/birthdays/birthday-01.jpeg) on `next/image` does not match `images.localPatterns` configured in your `next.config.js`
-See more info: https://nextjs.org/docs/messages/next-image-unconfigured-localpatterns
-    at Array.map (<anonymous>) (src/app/error.tsx:14:13)
- GET /gallery 200 in 2.8s (next.js: 1180ms, application-code: 1607ms)
- GET /gallery 200 in 168ms (next.js: 7ms, application-code: 161ms)
- GET /gallery?category=Baby%20Showers 200 in 212ms (next.js: 8ms, application-code: 204ms)
- GET / 200 in 1410ms (next.js: 70ms, application-code: 1339ms)
-[browser] Image with src "/images/gallery/birthdays/birthday-04.jpeg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
-Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
- GET /about 200 in 135ms (next.js: 51ms, application-code: 84ms)
-[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
-[browser] Image with src "/images/founder_enhanced.jpg" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
- GET / 200 in 113ms (next.js: 4ms, application-code: 109ms)
- GET /gallery 200 in 77ms (next.js: 4ms, application-code: 73ms)
- GET /about 200 in 156ms (next.js: 4ms, application-code: 152ms)
- GET / 200 in 282ms (next.js: 7ms, application-code: 275ms)
- GET /events 200 in 475ms (next.js: 81ms, application-code: 394ms)
- GET /about 200 in 314ms (next.js: 6ms, application-code: 307ms)
- GET /gallery 200 in 394ms (next.js: 6ms, application-code: 387ms)
- GET /gallery?category=Baby%20Showers 200 in 208ms (next.js: 10ms, application-code: 198ms)
- GET /contact 200 in 690ms (next.js: 198ms, application-code: 493ms)
- GET /book 200 in 309ms (next.js: 72ms, application-code: 236ms)
- GET /book?type=baby-shower 200 in 194ms (next.js: 11ms, application-code: 183ms)
- GET /admin/login 200 in 2.2s (next.js: 1976ms, application-code: 217ms)
- GET /events/baby-shower 404 in 3.9s (next.js: 3.5s, application-code: 332ms)
- GET /nonexistent-page 404 in 1902ms (next.js: 1684ms, application-code: 218ms)
- GET /contact 200 in 198ms (next.js: 10ms, application-code: 188ms)
- GET /about 200 in 106ms (next.js: 6ms, application-code: 100ms)
- GET /contact 200 in 96ms (next.js: 6ms, application-code: 90ms)
- GET / 200 in 134ms (next.js: 5ms, application-code: 129ms)
- GET / 200 in 449ms (next.js: 21ms, application-code: 428ms)
- GET /gallery 200 in 142ms (next.js: 9ms, application-code: 133ms)
-[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
- GET /gallery?page=8 200 in 179ms (next.js: 8ms, application-code: 171ms)
-✓ Compiled in 351ms
- GET /gallery?page=8 200 in 1067ms (next.js: 297ms, application-code: 770ms)
- GET /gallery?page=8 200 in 620ms (next.js: 7ms, application-code: 613ms)
- GET /gallery?page=8 200 in 595ms (next.js: 12ms, application-code: 583ms)
- GET /gallery?page=8 200 in 594ms (next.js: 65ms, application-code: 529ms)
- GET /gallery?page=8 200 in 642ms (next.js: 132ms, application-code: 510ms)
- GET /gallery?page=8 200 in 457ms (next.js: 11ms, application-code: 446ms)
- GET /gallery?page=8 200 in 682ms (next.js: 9ms, application-code: 673ms)
- GET /gallery?page=8 200 in 603ms (next.js: 11ms, application-code: 592ms)
- GET /gallery?page=8 200 in 508ms (next.js: 63ms, application-code: 445ms)
- GET /gallery?page=8 200 in 512ms (next.js: 7ms, application-code: 505ms)
- GET /gallery?page=8 200 in 627ms (next.js: 126ms, application-code: 501ms)
- GET /gallery?page=8 200 in 364ms (next.js: 9ms, application-code: 355ms)
- GET /gallery?page=8 200 in 219ms (next.js: 63ms, application-code: 156ms)
- GET /gallery?page=8 200 in 224ms (next.js: 22ms, application-code: 202ms)
-✓ Compiled in 172ms
- GET /gallery?page=8 200 in 378ms (next.js: 101ms, application-code: 277ms)
-✓ Compiled in 305ms
- GET /gallery?page=8 200 in 661ms (next.js: 155ms, application-code: 507ms)
- GET /gallery?page=8 200 in 351ms (next.js: 112ms, application-code: 239ms)
- GET /gallery?page=8 200 in 131ms (next.js: 10ms, application-code: 121ms)
-✓ Compiled in 296ms
-✓ Compiled in 407ms
-✓ Compiled in 228ms
- GET /gallery?page=8 200 in 2.2s (next.js: 467ms, application-code: 1685ms)
- GET /gallery?page=8 200 in 1378ms (next.js: 231ms, application-code: 1147ms)
- GET /gallery?page=8 200 in 949ms (next.js: 10ms, application-code: 938ms)
- GET /gallery?page=8 200 in 947ms (next.js: 147ms, application-code: 801ms)
- GET /gallery?page=8 200 in 950ms (next.js: 80ms, application-code: 870ms)
- GET /gallery?page=8 200 in 947ms (next.js: 240ms, application-code: 707ms)
-✓ Compiled in 360ms
- GET /gallery?page=8 200 in 617ms (next.js: 253ms, application-code: 363ms)
- GET /gallery?page=8 200 in 205ms (next.js: 8ms, application-code: 197ms)
- GET /gallery?page=8 200 in 837ms (next.js: 279ms, application-code: 559ms)
- GET /gallery?page=8 200 in 828ms (next.js: 62ms, application-code: 766ms)
- GET /gallery?page=8 200 in 826ms (next.js: 464ms, application-code: 362ms)
- GET /gallery?page=8 200 in 844ms (next.js: 146ms, application-code: 698ms)
- GET /gallery?page=8 200 in 819ms (next.js: 502ms, application-code: 317ms)
- GET /gallery?page=8 200 in 842ms (next.js: 368ms, application-code: 473ms)
- GET /gallery?page=8 200 in 186ms (next.js: 10ms, application-code: 176ms)
- GET /gallery?page=8 200 in 186ms (next.js: 54ms, application-code: 132ms)
-✓ Compiled in 637ms
-✓ Compiled in 184ms
- GET /gallery?page=8 200 in 325ms (next.js: 179ms, application-code: 146ms)
-✓ Compiled in 120ms
- GET /gallery?page=8 200 in 297ms (next.js: 147ms, application-code: 150ms)
- GET /gallery?page=8 200 in 1020ms (next.js: 187ms, application-code: 833ms)
- GET /gallery?page=8 200 in 796ms (next.js: 8ms, application-code: 788ms)
- GET /gallery?page=8 200 in 706ms (next.js: 57ms, application-code: 649ms)
- GET /gallery?page=8 200 in 709ms (next.js: 12ms, application-code: 697ms)
- GET /gallery?page=8 200 in 706ms (next.js: 105ms, application-code: 601ms)
- GET /gallery?page=8 200 in 703ms (next.js: 159ms, application-code: 545ms)
- GET /gallery?page=8 200 in 118ms (next.js: 11ms, application-code: 107ms)
- GET /gallery?page=8 200 in 316ms (next.js: 152ms, application-code: 164ms)
- GET /gallery?page=8 200 in 294ms (next.js: 99ms, application-code: 195ms)
- GET /gallery?page=8 200 in 294ms (next.js: 158ms, application-code: 136ms)
- GET /gallery?page=8 200 in 669ms (next.js: 10ms, application-code: 659ms)
- GET /gallery?page=8 200 in 470ms (next.js: 13ms, application-code: 456ms)
- GET /gallery?category=Birthdays 200 in 360ms (next.js: 12ms, application-code: 348ms)
- GET /gallery?category=Games 200 in 318ms (next.js: 7ms, application-code: 311ms)
- GET /gallery?category=Games&page=2 200 in 158ms (next.js: 4ms, application-code: 154ms)
- GET /events/baby-shower 200 in 3.1s (next.js: 542ms, application-code: 2.6s)
- GET /events 200 in 1987ms (next.js: 209ms, application-code: 1778ms)
- GET /book 200 in 1352ms (next.js: 439ms, application-code: 913ms)
- GET /about 200 in 1427ms (next.js: 228ms, application-code: 1199ms)
- GET /gallery?category=Games&page=3 200 in 164ms (next.js: 11ms, application-code: 153ms)
- GET /book 200 in 239ms (next.js: 7ms, application-code: 232ms)
- GET /book 200 in 178ms (next.js: 6ms, application-code: 172ms)
- GET / 200 in 2.1s (next.js: 230ms, application-code: 1865ms)
- GET /book?type=baby-shower 200 in 260ms (next.js: 7ms, application-code: 253ms)
- GET /events/wedding-ceremony 200 in 447ms (next.js: 19ms, generate-params: 13ms, application-code: 428ms)
- GET /events/carnival-theme 200 in 335ms (next.js: 5ms, generate-params: 50µs, application-code: 330ms)
- GET /events/bollywood-theme 200 in 507ms (next.js: 18ms, generate-params: 58µs, application-code: 490ms)
- GET /events/corporate-events 200 in 393ms (next.js: 18ms, generate-params: 13ms, application-code: 375ms)
- GET /book?type=baby-shower 200 in 162ms (next.js: 7ms, application-code: 155ms)
- GET /admin 307 in 1675ms (next.js: 1366ms, application-code: 309ms)
-✓ Compiled in 122ms
- GET /book 200 in 497ms (next.js: 192ms, application-code: 305ms)
- GET /book 200 in 207ms (next.js: 79ms, application-code: 128ms)
- GET /book 200 in 433ms (next.js: 9ms, application-code: 424ms)
- GET /gallery 200 in 513ms (next.js: 154ms, application-code: 359ms)
- GET / 200 in 308ms (next.js: 37ms, application-code: 272ms)
- GET / 200 in 435ms (next.js: 13ms, application-code: 422ms)
-✓ Compiled in 218ms
- GET / 200 in 845ms (next.js: 242ms, application-code: 604ms)
- GET / 200 in 278ms (next.js: 7ms, application-code: 271ms)
-✓ Compiled in 117ms
- GET / 200 in 1246ms (next.js: 145ms, application-code: 1101ms)
- GET / 200 in 1151ms (next.js: 9ms, application-code: 1142ms)
- GET / 200 in 1022ms (next.js: 12ms, application-code: 1010ms)
- GET / 200 in 1018ms (next.js: 369ms, application-code: 649ms)
- GET / 200 in 1022ms (next.js: 187ms, application-code: 835ms)
- GET / 200 in 1018ms (next.js: 542ms, application-code: 477ms)
- GET / 200 in 478ms (next.js: 8ms, application-code: 470ms)
- GET / 200 in 271ms (next.js: 11ms, application-code: 260ms)
-✓ Compiled in 178ms
- GET / 200 in 3.5s (next.js: 192ms, application-code: 3.3s)
- GET / 200 in 2.0s (next.js: 249ms, application-code: 1791ms)
- GET / 200 in 1139ms (next.js: 181ms, application-code: 958ms)
- GET / 200 in 1145ms (next.js: 739ms, application-code: 406ms)
- GET / 200 in 1146ms (next.js: 490ms, application-code: 656ms)
- GET / 200 in 1148ms (next.js: 345ms, application-code: 803ms)
- GET / 200 in 1606ms (next.js: 11ms, application-code: 1595ms)
- GET / 200 in 1606ms (next.js: 230ms, application-code: 1376ms)
- GET / 200 in 1603ms (next.js: 463ms, application-code: 1140ms)
- GET / 200 in 1605ms (next.js: 682ms, application-code: 922ms)
- GET / 200 in 1154ms (next.js: 458ms, application-code: 696ms)
- GET / 200 in 1161ms (next.js: 702ms, application-code: 459ms)
- GET / 200 in 1739ms (next.js: 21ms, application-code: 1719ms)
- GET / 200 in 1728ms (next.js: 211ms, application-code: 1518ms)
- GET / 200 in 1740ms (next.js: 448ms, application-code: 1292ms)
- GET / 200 in 1304ms (next.js: 388ms, application-code: 916ms)
- GET / 200 in 1309ms (next.js: 881ms, application-code: 427ms)
- GET / 200 in 1306ms (next.js: 684ms, application-code: 622ms)
- GET / 200 in 1606ms (next.js: 267ms, application-code: 1340ms)
- GET / 200 in 1609ms (next.js: 497ms, application-code: 1111ms)
- GET / 200 in 1620ms (next.js: 31ms, application-code: 1589ms)
- GET / 200 in 1621ms (next.js: 754ms, application-code: 867ms)
- GET / 200 in 1619ms (next.js: 1058ms, application-code: 560ms)
- GET / 200 in 1621ms (next.js: 1266ms, application-code: 355ms)
- GET / 200 in 1625ms (next.js: 9ms, application-code: 1616ms)
- GET / 200 in 1627ms (next.js: 281ms, application-code: 1347ms)
- GET / 200 in 1632ms (next.js: 807ms, application-code: 825ms)
- GET / 200 in 1633ms (next.js: 557ms, application-code: 1076ms)
- GET / 200 in 1631ms (next.js: 1095ms, application-code: 536ms)
- GET / 200 in 1361ms (next.js: 9ms, application-code: 1353ms)
- GET / 200 in 1256ms (next.js: 8ms, application-code: 1247ms)
- GET / 200 in 1258ms (next.js: 414ms, application-code: 845ms)
- GET / 200 in 1258ms (next.js: 210ms, application-code: 1048ms)
- GET / 200 in 1258ms (next.js: 614ms, application-code: 644ms)
- GET / 200 in 1259ms (next.js: 816ms, application-code: 443ms)
- GET / 200 in 1085ms (next.js: 6ms, application-code: 1079ms)
- GET / 200 in 1104ms (next.js: 6ms, application-code: 1098ms)
- GET / 200 in 1104ms (next.js: 182ms, application-code: 922ms)
- GET / 200 in 1103ms (next.js: 356ms, application-code: 747ms)
- GET / 200 in 754ms (next.js: 341ms, application-code: 413ms)
- GET / 200 in 756ms (next.js: 192ms, application-code: 564ms)
- GET / 200 in 251ms (next.js: 5ms, application-code: 246ms)
-✓ Compiled in 408ms
-✓ Compiled in 244ms
- GET / 200 in 1421ms (next.js: 178ms, application-code: 1243ms)
- GET / 200 in 1049ms (next.js: 7ms, application-code: 1042ms)
- GET / 200 in 867ms (next.js: 245ms, application-code: 622ms)
- GET / 200 in 870ms (next.js: 11ms, application-code: 860ms)
- GET / 200 in 870ms (next.js: 555ms, application-code: 315ms)
-✓ Compiled in 248ms
-✓ Compiled in 275ms
- GET / 200 in 1030ms (next.js: 401ms, application-code: 629ms)
-✓ Compiled in 528ms
-✓ Compiled in 897ms
- GET / 200 in 3.0s (next.js: 894ms, application-code: 2.1s)
- GET / 200 in 1500ms (next.js: 318ms, application-code: 1182ms)
- GET / 200 in 1111ms (next.js: 9ms, application-code: 1101ms)
- GET / 200 in 1109ms (next.js: 511ms, application-code: 598ms)
- GET / 200 in 1111ms (next.js: 304ms, application-code: 807ms)
- GET / 200 in 1609ms (next.js: 17ms, application-code: 1591ms)
- GET / 200 in 1365ms (next.js: 244ms, application-code: 1121ms)
- GET / 200 in 1365ms (next.js: 11ms, application-code: 1354ms)
- GET / 200 in 888ms (next.js: 8ms, application-code: 879ms)
- GET / 200 in 889ms (next.js: 526ms, application-code: 363ms)
- GET / 200 in 893ms (next.js: 280ms, application-code: 613ms)
- GET / 200 in 1566ms (next.js: 14ms, application-code: 1552ms)
- GET / 200 in 1578ms (next.js: 325ms, application-code: 1253ms)
- GET / 200 in 1567ms (next.js: 630ms, application-code: 936ms)
- GET / 200 in 642ms (next.js: 8ms, application-code: 634ms)
- GET / 200 in 644ms (next.js: 268ms, application-code: 376ms)
-✓ Compiled in 818ms
-✓ Compiled in 225ms
- GET / 200 in 1385ms (next.js: 316ms, application-code: 1069ms)
- GET / 200 in 745ms (next.js: 10ms, application-code: 735ms)
- GET / 200 in 493ms (next.js: 9ms, application-code: 484ms)
-✓ Compiled in 1038ms
-✓ Compiled in 346ms
-✓ Compiled in 554ms
- GET / 200 in 5.2s (next.js: 789ms, application-code: 4.4s)
- GET / 200 in 3.8s (next.js: 429ms, application-code: 3.4s)
- GET / 200 in 2.6s (next.js: 80ms, application-code: 2.5s)
- GET / 200 in 2.6s (next.js: 757ms, application-code: 1876ms)
- GET / 200 in 2.6s (next.js: 1106ms, application-code: 1525ms)
- GET / 200 in 2.6s (next.js: 1434ms, application-code: 1213ms)
- GET / 200 in 2.8s (next.js: 17ms, application-code: 2.8s)
- GET / 200 in 2.3s (next.js: 74ms, application-code: 2.2s)
- GET / 200 in 2.2s (next.js: 767ms, application-code: 1420ms)
- GET / 200 in 2.2s (next.js: 418ms, application-code: 1774ms)
- GET / 200 in 2.2s (next.js: 1156ms, application-code: 1042ms)
- GET / 200 in 2.2s (next.js: 51ms, application-code: 2.2s)
- GET / 200 in 2.4s (next.js: 32ms, application-code: 2.3s)
- GET / 200 in 1919ms (next.js: 53ms, application-code: 1866ms)
- GET / 200 in 1478ms (next.js: 32ms, application-code: 1446ms)
- GET / 200 in 1487ms (next.js: 351ms, application-code: 1136ms)
- GET / 200 in 1735ms (next.js: 606ms, application-code: 1130ms)
- GET / 200 in 1146ms (next.js: 250ms, application-code: 896ms)
- GET / 200 in 1528ms (next.js: 40ms, application-code: 1488ms)
- GET / 200 in 1245ms (next.js: 16ms, application-code: 1230ms)
- GET / 200 in 1243ms (next.js: 262ms, application-code: 981ms)
- GET / 200 in 1242ms (next.js: 444ms, application-code: 798ms)
- GET / 200 in 854ms (next.js: 44ms, application-code: 810ms)
- GET / 200 in 818ms (next.js: 232ms, application-code: 586ms)
- GET / 200 in 1125ms (next.js: 19ms, application-code: 1106ms)
- GET / 200 in 888ms (next.js: 562ms, application-code: 327ms)
- GET / 200 in 896ms (next.js: 8ms, application-code: 888ms)
- GET / 200 in 897ms (next.js: 359ms, application-code: 538ms)
- GET / 200 in 795ms (next.js: 373ms, application-code: 423ms)
- GET / 200 in 1020ms (next.js: 7ms, application-code: 1013ms)
- GET / 200 in 4.9s (next.js: 7ms, application-code: 4.9s)
-○ Compiling /gallery ...
- GET /contact 200 in 51s (next.js: 8.5s, application-code: 42s)
- GET /book 200 in 54s (next.js: 7.1s, application-code: 47s)
- GET /about 200 in 55s (next.js: 10.0s, application-code: 45s)
- GET /events/baby-shower 200 in 67s (next.js: 5.0s, generate-params: 62ms, application-code: 61s)
- GET /gallery?category=Baby%20Showers 200 in 59s (next.js: 836ms, application-code: 58s)
- GET / 200 in 94s (next.js: 169ms, application-code: 94s)
- GET /events 200 in 89s (next.js: 2.8s, application-code: 86s)
- GET / 200 in 95s (next.js: 143ms, application-code: 95s)
-[browser] ⨯ unhandledRejection: ChunkLoadError: Failed to load chunk /_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_1xch-cm._.js from module [turbopack]/browser/dev/hmr-client/hmr-client.ts [app-client] (ecmascript, async loader)
- GET / 200 in 75s (next.js: 227ms, application-code: 75s)
-[browser] ⨯ unhandledRejection: ChunkLoadError: Failed to load chunk /_next/static/chunks/_1q1-pjx._.js from module [project]/node_modules/next/dist/compiled/react-server-dom-turbopack/cjs/react-server-dom-turbopack-client.browser.development.js [app-client] (ecmascript)
- GET / 200 in 66s (next.js: 167ms, application-code: 66s)
-✓ Finished writing to filesystem cache in 4.5min
- GET / 200 in 18.7s (next.js: 1512ms, application-code: 17.2s)
- GET / 200 in 370ms (next.js: 6ms, application-code: 364ms)
- GET / 200 in 475ms (next.js: 4ms, application-code: 470ms)
- GET / 200 in 351ms (next.js: 5ms, application-code: 346ms)
- GET / 200 in 377ms (next.js: 5ms, application-code: 372ms)
- GET / 200 in 11ms (next.js: 4ms, application-code: 7ms)
- GET / 200 in 109ms (next.js: 4ms, application-code: 105ms)
- GET /gallery 200 in 169ms (next.js: 11ms, application-code: 158ms)
- GET / 200 in 486ms (next.js: 15ms, application-code: 471ms)
- GET / 200 in 42ms (next.js: 15ms, application-code: 27ms)
- GET / 200 in 262ms (next.js: 19ms, application-code: 244ms)
- GET /contact 200 in 283ms (next.js: 15ms, application-code: 268ms)
- GET /about 200 in 72ms (next.js: 3ms, application-code: 69ms)
- GET /events 200 in 379ms (next.js: 13ms, application-code: 366ms)
- GET /events/birthday-party 200 in 287ms (next.js: 37ms, generate-params: 26ms, application-code: 250ms)
- GET / 200 in 278ms (next.js: 10ms, application-code: 267ms)
- GET /gallery 200 in 92ms (next.js: 5ms, application-code: 87ms)
- GET / 200 in 236ms (next.js: 11ms, application-code: 225ms)
- GET / 200 in 33ms (next.js: 12ms, application-code: 22ms)
- GET / 200 in 32ms (next.js: 12ms, application-code: 20ms)
- GET / 200 in 410ms (next.js: 11ms, application-code: 400ms)
- GET / 200 in 13ms (next.js: 4ms, application-code: 9ms)
- GET / 200 in 173ms (next.js: 4ms, application-code: 169ms)
- GET / 200 in 31ms (next.js: 9ms, application-code: 21ms)
- GET / 200 in 313ms (next.js: 11ms, application-code: 302ms)
- GET / 200 in 17ms (next.js: 6ms, application-code: 11ms)
- GET / 200 in 23ms (next.js: 5ms, application-code: 19ms)
- GET / 200 in 199ms (next.js: 5ms, application-code: 194ms)
- GET / 200 in 19ms (next.js: 7ms, application-code: 13ms)
- GET / 200 in 28ms (next.js: 8ms, application-code: 20ms)
- GET / 200 in 39ms (next.js: 12ms, application-code: 28ms)
- GET / 200 in 114ms (next.js: 80ms, application-code: 34ms)
- GET / 200 in 668ms (next.js: 5ms, application-code: 663ms)
- GET / 200 in 368ms (next.js: 10ms, application-code: 358ms)
- GET / 200 in 92ms (next.js: 74ms, application-code: 18ms)
- GET / 200 in 165ms (next.js: 4ms, application-code: 161ms)
- GET / 200 in 12ms (next.js: 4ms, application-code: 8ms)
- GET / 200 in 110ms (next.js: 4ms, application-code: 106ms)
- GET / 200 in 15ms (next.js: 4ms, application-code: 12ms)
- GET / 200 in 15ms (next.js: 6ms, application-code: 10ms)
- GET / 200 in 196ms (next.js: 5ms, application-code: 192ms)
- GET / 200 in 29ms (next.js: 10ms, application-code: 19ms)
- GET / 200 in 395ms (next.js: 11ms, application-code: 384ms)
- GET / 200 in 482ms (next.js: 7ms, application-code: 475ms)
- GET /gallery 200 in 208ms (next.js: 12ms, application-code: 196ms)
- GET /gallery 200 in 137ms (next.js: 11ms, application-code: 125ms)
- GET /gallery?page=2 200 in 249ms (next.js: 14ms, application-code: 235ms)
- GET /book 200 in 250ms (next.js: 14ms, application-code: 236ms)
- GET /contact 200 in 177ms (next.js: 9ms, application-code: 168ms)
- GET / 200 in 314ms (next.js: 10ms, application-code: 304ms)
- GET /gallery 200 in 199ms (next.js: 12ms, application-code: 186ms)
- GET /gallery?category=Weddings 200 in 435ms (next.js: 22ms, application-code: 413ms)
- GET /gallery?category=Weddings&page=4 200 in 238ms (next.js: 18ms, application-code: 221ms)
- GET /gallery?category=Fun+Fairs 200 in 89ms (next.js: 3ms, application-code: 86ms)
- GET /gallery?category=Baby+Showers 200 in 291ms (next.js: 14ms, application-code: 277ms)
- GET /gallery 200 in 175ms (next.js: 13ms, application-code: 162ms)
- GET /gallery?category=Games 200 in 250ms (next.js: 6ms, application-code: 244ms)
- GET /events 200 in 412ms (next.js: 17ms, application-code: 395ms)
- GET /about 200 in 260ms (next.js: 11ms, application-code: 249ms)
- GET /gallery 200 in 195ms (next.js: 12ms, application-code: 183ms)
- GET /contact 200 in 221ms (next.js: 13ms, application-code: 208ms)
- GET /book 200 in 168ms (next.js: 10ms, application-code: 159ms)
- GET /events 200 in 215ms (next.js: 13ms, application-code: 202ms)
- GET /events 200 in 352ms (next.js: 13ms, application-code: 339ms)
- GET /events/catering-services 200 in 253ms (next.js: 41ms, generate-params: 31ms, application-code: 213ms)
- GET /events/catering-services 200 in 281ms (next.js: 38ms, generate-params: 26ms, application-code: 243ms)
- GET /contact 200 in 171ms (next.js: 9ms, application-code: 162ms)
- GET /about 200 in 101ms (next.js: 4ms, application-code: 97ms)
- GET /gallery 200 in 212ms (next.js: 10ms, application-code: 203ms)
- GET /gallery?page=2 200 in 218ms (next.js: 19ms, application-code: 199ms)
- GET /gallery?category=Games 200 in 340ms (next.js: 15ms, application-code: 326ms)
- GET /gallery?category=Games&page=3 200 in 353ms (next.js: 17ms, application-code: 336ms)
- GET / 200 in 200ms (next.js: 21ms, application-code: 179ms)
-✓ Compiled in 326ms
- GET / 200 in 31ms (next.js: 9ms, application-code: 22ms)
- GET / 200 in 208ms (next.js: 17ms, application-code: 191ms)
- GET / 200 in 15ms (next.js: 6ms, application-code: 10ms)
- GET / 200 in 227ms (next.js: 7ms, application-code: 220ms)
- GET / 200 in 22ms (next.js: 10ms, application-code: 12ms)
- GET / 200 in 227ms (next.js: 6ms, application-code: 221ms)
- GET / 200 in 15ms (next.js: 7ms, application-code: 8ms)
- GET / 200 in 309ms (next.js: 8ms, application-code: 301ms)
- GET / 200 in 21ms (next.js: 4ms, application-code: 18ms)
- GET / 200 in 133ms (next.js: 5ms, application-code: 128ms)
- GET / 200 in 22ms (next.js: 10ms, application-code: 12ms)
- GET / 200 in 154ms (next.js: 4ms, application-code: 150ms)
- GET / 200 in 723ms (next.js: 8ms, application-code: 715ms)
- GET / 200 in 865ms (next.js: 7ms, application-code: 858ms)
- GET / 200 in 529ms (next.js: 13ms, application-code: 517ms)
- GET /book 200 in 133ms (next.js: 16ms, application-code: 116ms)
- GET /gallery 200 in 114ms (next.js: 9ms, application-code: 105ms)
- GET /contact 200 in 100ms (next.js: 7ms, application-code: 93ms)
- GET /gallery 200 in 144ms (next.js: 5ms, application-code: 139ms)
- GET /gallery 200 in 291ms (next.js: 8ms, application-code: 283ms)
- GET / 200 in 203ms (next.js: 15ms, application-code: 188ms)
- GET /gallery 200 in 126ms (next.js: 6ms, application-code: 119ms)
- GET /gallery?category=Theme+Nights 200 in 169ms (next.js: 14ms, application-code: 154ms)
- GET /gallery?category=Games 200 in 139ms (next.js: 14ms, application-code: 126ms)
- GET /gallery?category=Games&page=2 200 in 168ms (next.js: 15ms, application-code: 153ms)
- GET / 200 in 264ms (next.js: 11ms, application-code: 254ms)
- GET /gallery 200 in 80ms (next.js: 5ms, application-code: 76ms)
- GET / 200 in 178ms (next.js: 5ms, application-code: 173ms)
- GET / 200 in 538ms (next.js: 6ms, application-code: 532ms)
-Error: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [2m[at finishWithoutResolve (C:\Users\Administrator\Desktop\Pulse_event\node_modules\enhanced-resolve\lib\Resolver.js:952:18)][0m
-    [2m[at C:\Users\Administrator\Desktop\Pulse_event\node_modules\enhanced-resolve\lib\Resolver.js:1048:13][0m
-    [2m[at C:\Users\Administrator\Desktop\Pulse_event\node_modules\enhanced-resolve\lib\Resolver.js:1132:5][0m
-    [2m[at eval (eval at create (C:\Users\Administrator\Desktop\Pulse_event\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
-    [2m[at C:\Users\Administrator\Desktop\Pulse_event\node_modules\enhanced-resolve\lib\Resolver.js:1132:5][0m
-    [2m[at eval (eval at create (C:\Users\Administrator\Desktop\Pulse_event\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:27:1)][0m
-    [2m[at C:\Users\Administrator\Desktop\Pulse_event\node_modules\enhanced-resolve\lib\DescriptionFilePlugin.js:94:43][0m
-    [2m[at C:\Users\Administrator\Desktop\Pulse_event\node_modules\enhanced-resolve\lib\Resolver.js:1132:5][0m
-    [2m[at eval (eval at create (C:\Users\Administrator\Desktop\Pulse_event\node_modules\tapable\lib\HookCodeFactory.js:31:10), <anonymous>:15:1)][0m
-    [2m[at C:\Users\Administrator\Desktop\Pulse_event\node_modules\enhanced-resolve\lib\Resolver.js:1132:5][0m {
-  details: "resolve '../tailwind.config.ts' in 'C:\\Users\\Administrator\\Desktop\\Pulse_event\\src\\app'\n" +
-    '  using description file: C:\\Users\\Administrator\\Desktop\\Pulse_event\\package.json (relative path: ./src/app)\n' +
-    '    using description file: C:\\Users\\Administrator\\Desktop\\Pulse_event\\package.json (relative path: ./src/tailwind.config.ts)\n' +
-    '      no extension\n' +
-    "        C:\\Users\\Administrator\\Desktop\\Pulse_event\\src\\tailwind.config.ts doesn't exist\n" +
-    '      .js\n' +
-    "        C:\\Users\\Administrator\\Desktop\\Pulse_event\\src\\tailwind.config.ts.js doesn't exist\n" +
-    '      .json\n' +
-    "        C:\\Users\\Administrator\\Desktop\\Pulse_event\\src\\tailwind.config.ts.json doesn't exist\n" +
-    '      .node\n' +
-    "        C:\\Users\\Administrator\\Desktop\\Pulse_event\\src\\tailwind.config.ts.node doesn't exist\n" +
-    '      .ts\n' +
-    "        C:\\Users\\Administrator\\Desktop\\Pulse_event\\src\\tailwind.config.ts.ts doesn't exist\n" +
-    '      as directory\n' +
-    "        C:\\Users\\Administrator\\Desktop\\Pulse_event\\src\\tailwind.config.ts doesn't exist"
-}
-✓ Compiled in 1182ms
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
-▲ Next.js 16.2.12 (Turbopack)
-- Local:         http://localhost:3000
-- Network:       http://10.12.101.173:3000
-- Environments: .env
-✓ Ready in 2.2s
-
-⨯ ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
- GET / 500 in 1755ms (next.js: 1109ms, application-code: 647ms)
-[browser] Uncaught Error: ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-⨯ ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
- GET / 500 in 58ms (next.js: 32ms, application-code: 26ms)
-[browser] Uncaught Error: ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-⨯ ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
- GET / 500 in 46ms (next.js: 24ms, application-code: 21ms)
-[browser] Uncaught Error: ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-⨯ ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
- GET / 500 in 35ms (next.js: 10ms, application-code: 25ms)
-[browser] Uncaught Error: ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-⨯ ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
- GET / 500 in 58ms (next.js: 39ms, application-code: 18ms)
-[browser] Uncaught Error: ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-⨯ ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
- GET / 500 in 32ms (next.js: 13ms, application-code: 20ms)
-[browser] Uncaught Error: ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-⨯ ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
- GET / 500 in 50ms (next.js: 24ms, application-code: 26ms)
-[browser] Uncaught Error: ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-⨯ ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
- GET / 500 in 53ms (next.js: 17ms, application-code: 36ms)
-[browser] Uncaught Error: ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-⨯ ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
- GET / 500 in 34ms (next.js: 12ms, application-code: 21ms)
-[browser] Uncaught Error: ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-⨯ ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
- GET / 500 in 99ms (next.js: 49ms, application-code: 50ms)
-[browser] Uncaught Error: ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-⨯ ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
- GET / 500 in 55ms (next.js: 25ms, application-code: 31ms)
-[browser] Uncaught Error: ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-⨯ ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
- GET / 500 in 63ms (next.js: 34ms, application-code: 29ms)
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-[browser] Uncaught Error: ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-⨯ ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
- GET / 500 in 22ms (next.js: 10ms, application-code: 12ms)
-[browser] Uncaught Error: ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-⨯ ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
- GET / 500 in 23ms (next.js: 7ms, application-code: 16ms)
-[browser] Uncaught Error: ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-⨯ ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
- GET / 500 in 30ms (next.js: 11ms, application-code: 19ms)
-[browser] Uncaught Error: ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-⨯ ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
- GET / 500 in 21ms (next.js: 7ms, application-code: 14ms)
-[browser] Uncaught Error: ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component]
-
-
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
-
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
-(node:38444) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/Administrator/Desktop/Pulse_event/tailwind.config.ts?id=1786481884462 is not specified and it doesn't parse as CommonJS.
+○ Compiling / ...
+(node:3704) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/Administrator/Desktop/Pulse_event/tailwind.config.ts?id=1786958455524 is not specified and it doesn't parse as CommonJS.
 Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
 To eliminate this warning, add "type": "module" to C:\Users\Administrator\Desktop\Pulse_event\package.json.
 (Use `node --trace-warnings ...` to show where the warning was created)
-✓ Compiled in 2.1s
-[browser] ./src/app/globals.css
-Error evaluating Node.js code
-CssSyntaxError: tailwindcss: C:\Users\Administrator\Desktop\Pulse_event\src\app\globals.css:1:1: Can't resolve '../tailwind.config.ts' in 'C:\Users\Administrator\Desktop\Pulse_event\src\app'
-    [at Input.error (turbopack:///[project]/node_modules/postcss/lib/input.js:135:16)]
-    [at Root.error (turbopack:///[project]/node_modules/postcss/lib/node.js:166:32)]
-    [at Object.Once (C:\Users\Administrator\Desktop\Pulse_event\node_modules\@tailwindcss\postcss\dist\index.js:10:7013)]
-    [at async LazyResult.runAsync (turbopack:///[project]/node_modules/postcss/lib/lazy-result.js:299:11)]
-    [at async transform (turbopack:///[turbopack-node]/transforms/postcss.ts:70:34)]
-    [at async run (turbopack:///[turbopack-node]/child_process/evaluate.ts:89:23)]
+ GET / 200 in 10.6s (next.js: 6.9s, application-code: 3.7s)
+ GET / 200 in 47ms (next.js: 16ms, application-code: 30ms)
+ GET / 200 in 280ms (next.js: 10ms, application-code: 271ms)
+ GET /events 200 in 2.4s (next.js: 1468ms, application-code: 921ms)
+ GET /events 200 in 340ms (next.js: 11ms, application-code: 329ms)
+ GET / 200 in 293ms (next.js: 9ms, application-code: 284ms)
+ GET / 200 in 762ms (next.js: 9ms, application-code: 754ms)
+ GET / 200 in 1085ms (next.js: 13ms, application-code: 1072ms)
+ GET / 200 in 745ms (next.js: 7ms, application-code: 738ms)
+✓ Compiled in 768ms
+ GET / 200 in 1412ms (next.js: 496ms, application-code: 916ms)
+ GET / 200 in 1413ms (next.js: 8ms, application-code: 1405ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
-Import trace:
-  Client Component Browser:
-    ./src/app/globals.css [Client Component Browser]
-    ./src/app/layout.tsx [Server Component] 
- GET / 200 in 5.1s (next.js: 557ms, application-code: 4.6s)
- GET / 200 in 602ms (next.js: 16ms, application-code: 586ms)
- GET / 200 in 464ms (next.js: 24ms, application-code: 440ms)
- GET /gallery 200 in 214ms (next.js: 91ms, application-code: 123ms)
- GET /contact 200 in 307ms (next.js: 187ms, application-code: 120ms)
- GET / 200 in 161ms (next.js: 13ms, application-code: 148ms)
- GET / 200 in 41ms (next.js: 15ms, application-code: 26ms)
- GET / 200 in 175ms (next.js: 7ms, application-code: 167ms)
- GET / 200 in 38ms (next.js: 10ms, application-code: 27ms)
- GET / 200 in 13ms (next.js: 5ms, application-code: 8ms)
- GET / 200 in 212ms (next.js: 13ms, application-code: 199ms)
- GET / 200 in 34ms (next.js: 13ms, application-code: 22ms)
- GET / 200 in 222ms (next.js: 14ms, application-code: 208ms)
- GET / 200 in 42ms (next.js: 10ms, application-code: 32ms)
- GET / 200 in 224ms (next.js: 13ms, application-code: 210ms)
- GET / 200 in 343ms (next.js: 7ms, application-code: 336ms)
- GET / 200 in 556ms (next.js: 14ms, application-code: 541ms)
- GET / 200 in 731ms (next.js: 13ms, application-code: 718ms)
- GET /about 200 in 296ms (next.js: 147ms, application-code: 149ms)
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" data-scroll-behavior="smooth" className="inter_7b06..." ...>
+                          <head>
+                          <body
++                           className="min-h-full flex flex-col"
+-                           className="min-h-full flex flex-col is-scrolling"
+                          >
+                  ...
+ 
+ GET / 200 in 929ms (next.js: 11ms, application-code: 917ms)
+ GET / 200 in 1002ms (next.js: 12ms, application-code: 990ms)
+✓ Compiled in 801ms
+ GET / 200 in 2.0s (next.js: 678ms, application-code: 1355ms)
+[browser] NotFoundError: Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node. (src/app/error.tsx:14:13)
+[browser] NotFoundError: Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node. (src/app/error.tsx:14:13)
+✓ Compiled in 189ms
+ GET / 200 in 1151ms (next.js: 437ms, application-code: 714ms)
+✓ Compiled in 459ms
+ GET / 200 in 1336ms (next.js: 538ms, application-code: 798ms)
+✓ Compiled in 444ms
+ GET / 200 in 1547ms (next.js: 493ms, application-code: 1054ms)
+✓ Compiled in 555ms
+ GET / 200 in 1450ms (next.js: 511ms, application-code: 939ms)
+ GET / 200 in 2.0s (next.js: 19ms, application-code: 1989ms)
+ GET / 200 in 1781ms (next.js: 6ms, application-code: 1775ms)
+ GET / 200 in 1942ms (next.js: 7ms, application-code: 1935ms)
+✓ Compiled in 187ms
+ GET / 200 in 933ms (next.js: 331ms, application-code: 602ms)
+[browser] The final argument passed to useEffect changed size between renders. The order and size of this array must remain constant.
+
+Previous: [500, 0, 0]
+Incoming: [500, 0, +, 0] 
+    at CountUp (src/components/motion/count-up.tsx:132:12)
+    at Set.forEach (<anonymous>)
+  130 |   const barRef = useRef<HTMLSpanElement>(null);
+  131 |
+> 132 |   useEffect(() => {
+      |            ^
+  133 |     const root = rootRef.current;
+  134 |     const numEl = numRef.current;
+  135 |     const barEl = barRef.current; (src/components/motion/count-up.tsx:132:12)
+[browser] The final argument passed to useEffect changed size between renders. The order and size of this array must remain constant.
+
+Previous: [9, 0, 180]
+Incoming: [9, 0, +, 180] 
+    at CountUp (src/components/motion/count-up.tsx:132:12)
+    at Set.forEach (<anonymous>)
+  130 |   const barRef = useRef<HTMLSpanElement>(null);
+  131 |
+> 132 |   useEffect(() => {
+      |            ^
+  133 |     const root = rootRef.current;
+  134 |     const numEl = numRef.current;
+  135 |     const barEl = barRef.current; (src/components/motion/count-up.tsx:132:12)
+[browser] The final argument passed to useEffect changed size between renders. The order and size of this array must remain constant.
+
+Previous: [50, 0, 360]
+Incoming: [50, 0, k+, 360] 
+    at CountUp (src/components/motion/count-up.tsx:132:12)
+    at Set.forEach (<anonymous>)
+  130 |   const barRef = useRef<HTMLSpanElement>(null);
+  131 |
+> 132 |   useEffect(() => {
+      |            ^
+  133 |     const root = rootRef.current;
+  134 |     const numEl = numRef.current;
+  135 |     const barEl = barRef.current; (src/components/motion/count-up.tsx:132:12)
+[browser] The final argument passed to useEffect changed size between renders. The order and size of this array must remain constant.
+
+Previous: [4.9, 1, 540]
+Incoming: [4.9, 1, ★, 540] 
+    at CountUp (src/components/motion/count-up.tsx:132:12)
+    at Set.forEach (<anonymous>)
+  130 |   const barRef = useRef<HTMLSpanElement>(null);
+  131 |
+> 132 |   useEffect(() => {
+      |            ^
+  133 |     const root = rootRef.current;
+  134 |     const numEl = numRef.current;
+  135 |     const barEl = barRef.current; (src/components/motion/count-up.tsx:132:12)
+ GET / 200 in 3.4s (next.js: 11ms, application-code: 3.4s)
+ GET / 200 in 1032ms (next.js: 8ms, application-code: 1024ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" data-scroll-behavior="smooth" className="inter_7b06..." ...>
+                          <head>
+                          <body
++                           className="min-h-full flex flex-col"
+-                           className="min-h-full flex flex-col is-scrolling"
+                          >
+                  ...
+ 
+ GET / 200 in 449ms (next.js: 4ms, application-code: 445ms)
+ GET / 200 in 705ms (next.js: 9ms, application-code: 696ms)
+ GET /events 200 in 1261ms (next.js: 64ms, application-code: 1197ms)
+○ Compiling /gallery ...
+ GET /gallery 200 in 4.7s (next.js: 4.0s, application-code: 731ms)
+ GET /about 200 in 5.6s (next.js: 4.8s, application-code: 822ms)
+ GET /contact 200 in 8.9s (next.js: 7.9s, application-code: 1051ms)
+ GET /admin 307 in 11.3s (next.js: 9.7s, application-code: 1607ms)
+ GET /book 200 in 12.4s (next.js: 11.5s, application-code: 865ms)
+ GET /admin/login 200 in 2.8s (next.js: 2.1s, application-code: 749ms)
+ GET / 200 in 4.4s (next.js: 186ms, application-code: 4.2s)
+ GET / 200 in 1622ms (next.js: 5ms, application-code: 1617ms)
+ GET / 200 in 1065ms (next.js: 10ms, application-code: 1055ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" data-scroll-behavior="smooth" className="inter_7b06..." ...>
+                          <head>
+                          <body
++                           className="min-h-full flex flex-col"
+-                           className="min-h-full flex flex-col is-scrolling"
+                          >
+                  ...
+ 
+✓ Compiled in 169ms
+ GET / 200 in 988ms (next.js: 198ms, application-code: 790ms)
+ GET / 200 in 374ms (next.js: 101ms, application-code: 272ms)
+✓ Compiled in 194ms
+ GET / 200 in 1033ms (next.js: 371ms, application-code: 661ms)
+ GET / 200 in 302ms (next.js: 5ms, application-code: 296ms)
+ GET /about 200 in 1118ms (next.js: 199ms, application-code: 919ms)
+ GET / 200 in 1008ms (next.js: 22ms, application-code: 986ms)
+ GET / 200 in 761ms (next.js: 6ms, application-code: 755ms)
+ GET / 200 in 858ms (next.js: 31ms, application-code: 827ms)
+✓ Compiled in 976ms
+ GET / 200 in 2.1s (next.js: 380ms, application-code: 1719ms)
+ GET / 200 in 1064ms (next.js: 43ms, application-code: 1021ms)
+ GET / 200 in 699ms (next.js: 33ms, application-code: 666ms)
+ GET / 200 in 444ms (next.js: 8ms, application-code: 435ms)
+ GET / 200 in 456ms (next.js: 8ms, application-code: 447ms)
+ GET / 200 in 5.7s (next.js: 21ms, application-code: 5.7s)
+ GET / 200 in 4.8s (next.js: 83ms, application-code: 4.7s)
+ GET / 200 in 6.8s (next.js: 42ms, application-code: 6.8s)
+ GET / 200 in 6.8s (next.js: 1482ms, application-code: 5.3s)
+ GET / 200 in 6.9s (next.js: 2.5s, application-code: 4.4s)
+ GET / 200 in 6.9s (next.js: 710ms, application-code: 6.1s)
+ GET / 200 in 3.9s (next.js: 737ms, application-code: 3.2s)
+ GET / 200 in 962ms (next.js: 39ms, application-code: 923ms)
+ GET / 200 in 966ms (next.js: 529ms, application-code: 437ms)
+ GET / 200 in 4.5s (next.js: 22ms, application-code: 4.5s)
+ GET / 200 in 1718ms (next.js: 8ms, application-code: 1711ms)
+ GET / 200 in 2.0s (next.js: 7ms, application-code: 1995ms)
+ GET / 200 in 861ms (next.js: 383ms, application-code: 478ms)
+ GET / 200 in 151ms (next.js: 7ms, application-code: 145ms)
+✓ Compiled in 1634ms
+ GET / 200 in 17.0s (next.js: 2.6s, application-code: 14.4s)
+ GET / 200 in 9.7s (next.js: 732ms, application-code: 9.0s)
+ GET / 200 in 7.1s (next.js: 74ms, application-code: 7.0s)
+ GET / 200 in 7.1s (next.js: 2.3s, application-code: 4.7s)
+ GET / 200 in 7.1s (next.js: 3.1s, application-code: 4.0s)
+ GET / 200 in 7.1s (next.js: 4.3s, application-code: 2.8s)
+ GET / 200 in 12.9s (next.js: 82ms, application-code: 12.8s)
+ GET / 200 in 13.0s (next.js: 2.8s, application-code: 10.2s)
+ GET / 200 in 13.0s (next.js: 3.9s, application-code: 9.1s)
+ GET / 200 in 13.0s (next.js: 6.7s, application-code: 6.3s)
+ GET / 200 in 13.0s (next.js: 9.1s, application-code: 3.9s)
+ GET / 200 in 10.4s (next.js: 7.8s, application-code: 2.5s)
+ GET / 200 in 2.5s (next.js: 16ms, application-code: 2.5s)
+ GET / 200 in 2.6s (next.js: 1512ms, application-code: 1056ms)
+ GET / 200 in 6.9s (next.js: 1746ms, application-code: 5.1s)
+ GET / 200 in 4.7s (next.js: 369ms, application-code: 4.3s)
+ GET / 200 in 3.6s (next.js: 27ms, application-code: 3.6s)
+ GET / 200 in 3.6s (next.js: 1195ms, application-code: 2.4s)
+ GET / 200 in 3.6s (next.js: 593ms, application-code: 3.0s)
+ GET / 200 in 3.6s (next.js: 1756ms, application-code: 1849ms)
+ GET / 200 in 4.0s (next.js: 12ms, application-code: 4.0s)
+ GET / 200 in 3.4s (next.js: 427ms, application-code: 2.9s)
+ GET / 200 in 3.4s (next.js: 7ms, application-code: 3.4s)
+ GET / 200 in 3.4s (next.js: 1038ms, application-code: 2.3s)
+ GET / 200 in 3.4s (next.js: 1643ms, application-code: 1749ms)
+ GET / 200 in 4.0s (next.js: 100ms, application-code: 3.9s)
+ GET / 200 in 2.9s (next.js: 139ms, application-code: 2.8s)
+ GET / 200 in 2.9s (next.js: 1990ms, application-code: 956ms)
+ GET /events 200 in 799ms (next.js: 346ms, application-code: 453ms)
+ GET / 200 in 119ms (next.js: 5ms, application-code: 115ms)
+ GET /events 200 in 327ms (next.js: 7ms, application-code: 320ms)
+ GET / 200 in 175ms (next.js: 4ms, application-code: 171ms)
+ GET /events 200 in 181ms (next.js: 6ms, application-code: 175ms)
+ GET /about 200 in 335ms (next.js: 207ms, application-code: 128ms)
+ GET /gallery 200 in 278ms (next.js: 137ms, application-code: 141ms)
+ GET /contact 200 in 729ms (next.js: 421ms, application-code: 308ms)
+ GET / 200 in 161ms (next.js: 6ms, application-code: 155ms)
+ GET /events 200 in 379ms (next.js: 8ms, application-code: 371ms)
+ GET /about 200 in 152ms (next.js: 9ms, application-code: 143ms)
+ GET /gallery 200 in 136ms (next.js: 11ms, application-code: 125ms)
+ GET /gallery?page=14 200 in 134ms (next.js: 5ms, application-code: 129ms)
+ GET /events 200 in 337ms (next.js: 6ms, application-code: 332ms)
+ GET / 200 in 321ms (next.js: 8ms, application-code: 313ms)
+ GET /events 200 in 372ms (next.js: 11ms, application-code: 361ms)
+✓ Compiled in 202ms
+ GET /events 200 in 1452ms (next.js: 297ms, application-code: 1155ms)
+ GET /events 200 in 893ms (next.js: 72ms, application-code: 821ms)
+ GET /events 200 in 552ms (next.js: 9ms, application-code: 542ms)
+ GET /events 200 in 558ms (next.js: 166ms, application-code: 391ms)
+ GET /events 200 in 554ms (next.js: 315ms, application-code: 239ms)
+✓ Compiled in 230ms
+ GET /events 200 in 1499ms (next.js: 229ms, application-code: 1270ms)
+ GET /events 200 in 992ms (next.js: 24ms, application-code: 968ms)
+ GET /events 200 in 767ms (next.js: 9ms, application-code: 758ms)
+ GET /events 200 in 773ms (next.js: 497ms, application-code: 276ms)
+ GET /events 200 in 773ms (next.js: 301ms, application-code: 472ms)
+ GET /about 200 in 259ms (next.js: 170ms, application-code: 89ms)
+ GET /gallery 200 in 371ms (next.js: 175ms, application-code: 196ms)
+ GET /contact 200 in 383ms (next.js: 264ms, application-code: 119ms)
+ GET /book 200 in 376ms (next.js: 243ms, application-code: 134ms)
+ GET / 200 in 630ms (next.js: 219ms, application-code: 411ms)
+ GET / 200 in 2.3s (next.js: 22ms, application-code: 2.3s)
+ GET /events 200 in 699ms (next.js: 11ms, application-code: 688ms)
+ GET / 200 in 363ms (next.js: 6ms, application-code: 357ms)
+ GET / 200 in 1207ms (next.js: 21ms, application-code: 1186ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" data-scroll-behavior="smooth" className="inter_7b06..." ...>
+                          <head>
+                          <body
++                           className="min-h-full flex flex-col"
+-                           className="min-h-full flex flex-col is-scrolling"
+                          >
+                  ...
+ 
+ GET / 200 in 1703ms (next.js: 14ms, application-code: 1689ms)
+ GET /events 200 in 545ms (next.js: 6ms, application-code: 539ms)
+ GET /events 200 in 346ms (next.js: 10ms, application-code: 336ms)
+ GET / 200 in 316ms (next.js: 6ms, application-code: 310ms)
+✓ Compiled in 271ms
+ GET / 200 in 2.3s (next.js: 237ms, application-code: 2.0s)
+ GET / 200 in 1716ms (next.js: 5ms, application-code: 1711ms)
+ GET / 200 in 1501ms (next.js: 8ms, application-code: 1493ms)
+ GET / 200 in 1502ms (next.js: 146ms, application-code: 1356ms)
+ GET / 200 in 1503ms (next.js: 313ms, application-code: 1189ms)
+ GET / 200 in 1513ms (next.js: 507ms, application-code: 1006ms)
+✓ Compiled in 0ms
+⨯ ReferenceError: required is not defined
+    at module evaluation (src\lib\config.ts:15:20)
+    at module evaluation (src\app\layout.tsx:4:1)
+    at module evaluation (C:\Users\Administrator\Desktop\Pulse_event\.next\dev\server\chunks\ssr\[root-of-the-server]__1a24b9v._.js:219:47)
+  13 | } as const;
+  14 |
+> 15 | export const env = required;
+     |                    ^
+  16 |
+⨯ ReferenceError: required is not defined
+    at module evaluation (src\lib\config.ts:15:20)
+    at module evaluation (src\app\layout.tsx:4:1)
+    at module evaluation (C:\Users\Administrator\Desktop\Pulse_event\.next\dev\server\chunks\ssr\[root-of-the-server]__1a24b9v._.js:219:47)
+  13 | } as const;
+  14 |
+> 15 | export const env = required;
+     |                    ^
+  16 | {
+  page: '/'
+}
+✓ Compiled in 0ms
+ GET / 200 in 4.9s (next.js: 429ms, application-code: 4.5s)
+ GET / 200 in 4.9s (next.js: 752ms, application-code: 4.2s)
+ GET / 200 in 4.0s (next.js: 1008ms, application-code: 3.0s)
+ GET / 200 in 4.0s (next.js: 736ms, application-code: 3.2s)
+ GET / 200 in 4.0s (next.js: 1234ms, application-code: 2.7s)
+○ Compiling /_error ...
+✓ Compiled in 3.5s
+✓ Compiled in 972ms
+ GET / 200 in 7.9s (next.js: 997ms, application-code: 6.9s)
+ GET / 200 in 7.9s (next.js: 448ms, application-code: 7.5s)
+ GET / 200 in 7.9s (next.js: 1299ms, application-code: 6.6s)
+ GET / 200 in 7.9s (next.js: 2.1s, application-code: 5.8s)
+ GET / 200 in 7.9s (next.js: 1677ms, application-code: 6.3s)
+ GET / 500 in 13.0s (next.js: 12.5s, application-code: 432ms)
+ GET / 200 in 3.3s (next.js: 356ms, application-code: 2.9s)
+ GET / 200 in 2.5s (next.js: 12ms, application-code: 2.5s)
+ GET / 200 in 2.1s (next.js: 338ms, application-code: 1804ms)
+ GET / 200 in 2.1s (next.js: 32ms, application-code: 2.1s)
+ GET / 200 in 2.1s (next.js: 704ms, application-code: 1439ms)
+ GET / 200 in 1124ms (next.js: 10ms, application-code: 1114ms)
+ GET / 200 in 1983ms (next.js: 12ms, application-code: 1971ms)
+ GET / 200 in 1619ms (next.js: 54ms, application-code: 1565ms)
+ GET / 200 in 1526ms (next.js: 18ms, application-code: 1508ms)
+ GET / 200 in 1532ms (next.js: 403ms, application-code: 1129ms)
+ GET / 200 in 1765ms (next.js: 623ms, application-code: 1142ms)
+ GET / 200 in 913ms (next.js: 61ms, application-code: 852ms)
+ GET / 200 in 1689ms (next.js: 12ms, application-code: 1677ms)
+ GET / 200 in 1450ms (next.js: 11ms, application-code: 1439ms)
+ GET / 200 in 1397ms (next.js: 9ms, application-code: 1388ms)
+ GET / 200 in 1154ms (next.js: 7ms, application-code: 1146ms)
+ GET / 200 in 1351ms (next.js: 302ms, application-code: 1049ms)
+ GET / 200 in 730ms (next.js: 7ms, application-code: 723ms)
+ GET / 200 in 1308ms (next.js: 17ms, application-code: 1291ms)
+ GET / 200 in 1116ms (next.js: 6ms, application-code: 1110ms)
+ GET / 200 in 1116ms (next.js: 13ms, application-code: 1103ms)
+ GET / 200 in 1108ms (next.js: 252ms, application-code: 856ms)
+ GET / 200 in 1009ms (next.js: 11ms, application-code: 998ms)
+ GET / 200 in 1013ms (next.js: 194ms, application-code: 820ms)
+ GET / 200 in 1899ms (next.js: 5ms, application-code: 1894ms)
+ GET / 200 in 1704ms (next.js: 11ms, application-code: 1693ms)
+ GET / 200 in 1366ms (next.js: 10ms, application-code: 1357ms)
+ GET / 200 in 1365ms (next.js: 280ms, application-code: 1085ms)
+ GET / 200 in 1943ms (next.js: 43ms, application-code: 1900ms)
+ GET / 200 in 1948ms (next.js: 395ms, application-code: 1553ms)
+ GET / 200 in 1873ms (next.js: 12ms, application-code: 1861ms)
+ GET / 200 in 1872ms (next.js: 354ms, application-code: 1519ms)
+ GET / 200 in 1866ms (next.js: 12ms, application-code: 1853ms)
+ GET / 200 in 1871ms (next.js: 255ms, application-code: 1616ms)
+ GET / 200 in 2.4s (next.js: 35ms, application-code: 2.3s)
+ GET / 200 in 2.6s (next.js: 16ms, application-code: 2.6s)
+ GET / 200 in 2.2s (next.js: 16ms, application-code: 2.2s)
+ GET / 200 in 2.2s (next.js: 343ms, application-code: 1868ms)
+ GET / 200 in 1526ms (next.js: 451ms, application-code: 1075ms)
+ GET / 200 in 1524ms (next.js: 21ms, application-code: 1502ms)
+ GET / 200 in 2.7s (next.js: 20ms, application-code: 2.7s)
+ GET / 200 in 2.2s (next.js: 758ms, application-code: 1470ms)
+ GET / 200 in 2.2s (next.js: 26ms, application-code: 2.2s)
+ GET / 200 in 2.2s (next.js: 393ms, application-code: 1833ms)
+ GET / 200 in 2.6s (next.js: 1216ms, application-code: 1347ms)
+ GET / 200 in 2.6s (next.js: 1656ms, application-code: 913ms)
+ GET / 200 in 2.6s (next.js: 74ms, application-code: 2.5s)
+ GET / 200 in 2.2s (next.js: 21ms, application-code: 2.1s)
+ GET / 200 in 2.2s (next.js: 1051ms, application-code: 1114ms)
+ GET / 200 in 2.2s (next.js: 561ms, application-code: 1609ms)
+ GET / 200 in 1887ms (next.js: 325ms, application-code: 1562ms)
+ GET / 200 in 1883ms (next.js: 17ms, application-code: 1865ms)
+ GET / 200 in 1596ms (next.js: 12ms, application-code: 1584ms)
+ GET / 200 in 1556ms (next.js: 298ms, application-code: 1258ms)
+ GET / 200 in 1555ms (next.js: 16ms, application-code: 1540ms)
+ GET / 200 in 1569ms (next.js: 549ms, application-code: 1020ms)
+ GET / 200 in 1523ms (next.js: 9ms, application-code: 1514ms)
+ GET / 200 in 1524ms (next.js: 277ms, application-code: 1247ms)
+ GET / 200 in 1554ms (next.js: 6ms, application-code: 1548ms)
+ GET / 200 in 1335ms (next.js: 189ms, application-code: 1147ms)
+ GET / 200 in 1343ms (next.js: 12ms, application-code: 1331ms)
+ GET / 200 in 835ms (next.js: 26ms, application-code: 809ms)
+ GET / 200 in 599ms (next.js: 10ms, application-code: 590ms)
+ GET / 200 in 389ms (next.js: 5ms, application-code: 384ms)
+✓ Compiled in 603ms
+ GET / 200 in 1976ms (next.js: 686ms, application-code: 1290ms)
+ GET / 200 in 1960ms (next.js: 334ms, application-code: 1626ms)
+ GET / 200 in 1961ms (next.js: 1187ms, application-code: 774ms)
+ GET / 200 in 1967ms (next.js: 899ms, application-code: 1068ms)
+ GET / 200 in 1954ms (next.js: 1633ms, application-code: 321ms)
+ GET / 200 in 1960ms (next.js: 1422ms, application-code: 538ms)
+ GET / 200 in 1338ms (next.js: 14ms, application-code: 1323ms)
+ GET / 200 in 1339ms (next.js: 234ms, application-code: 1105ms)
+ GET / 200 in 1338ms (next.js: 450ms, application-code: 888ms)
+ GET / 200 in 1433ms (next.js: 5ms, application-code: 1428ms)
+ GET / 200 in 1215ms (next.js: 7ms, application-code: 1208ms)
+ GET / 200 in 1232ms (next.js: 211ms, application-code: 1021ms)
+ GET / 200 in 791ms (next.js: 15ms, application-code: 776ms)
+ GET / 200 in 791ms (next.js: 220ms, application-code: 570ms)
+ GET / 200 in 791ms (next.js: 449ms, application-code: 342ms)
+✓ Compiled in 737ms
+ GET / 200 in 2.2s (next.js: 551ms, application-code: 1666ms)
+ GET / 200 in 2.2s (next.js: 1268ms, application-code: 901ms)
+ GET / 200 in 2.2s (next.js: 756ms, application-code: 1416ms)
+ GET / 200 in 2.2s (next.js: 978ms, application-code: 1193ms)
+ GET / 200 in 2.3s (next.js: 1568ms, application-code: 683ms)
+ GET / 200 in 2.2s (next.js: 1787ms, application-code: 435ms)
+✓ Compiled in 522ms
+ GET / 200 in 1948ms (next.js: 821ms, application-code: 1127ms)
+ GET / 200 in 1955ms (next.js: 292ms, application-code: 1663ms)
+ GET / 200 in 1959ms (next.js: 547ms, application-code: 1412ms)
+ GET / 200 in 1963ms (next.js: 42ms, application-code: 1920ms)
+ GET / 200 in 1957ms (next.js: 1159ms, application-code: 797ms)
+ GET / 200 in 1956ms (next.js: 1428ms, application-code: 528ms)
+ GET / 200 in 1882ms (next.js: 301ms, application-code: 1581ms)
+ GET / 200 in 1889ms (next.js: 579ms, application-code: 1310ms)
+ GET / 200 in 1892ms (next.js: 13ms, application-code: 1879ms)
+ GET / 200 in 1895ms (next.js: 898ms, application-code: 997ms)
+ GET / 200 in 1893ms (next.js: 1122ms, application-code: 771ms)
+ GET / 200 in 1893ms (next.js: 1490ms, application-code: 403ms)
+ GET / 200 in 1994ms (next.js: 577ms, application-code: 1417ms)
+ GET / 200 in 2.1s (next.js: 310ms, application-code: 1741ms)
+ GET / 200 in 2.1s (next.js: 72ms, application-code: 1982ms)
+ GET / 200 in 1995ms (next.js: 1196ms, application-code: 799ms)
+ GET / 200 in 2000ms (next.js: 853ms, application-code: 1146ms)
+ GET / 200 in 1997ms (next.js: 1562ms, application-code: 435ms)
+ GET / 200 in 683ms (next.js: 312ms, application-code: 371ms)
+ GET / 200 in 685ms (next.js: 6ms, application-code: 679ms)
+⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+▲ Next.js 16.2.12 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.193:3000
+- Environments: .env
+✓ Ready in 1620ms
+
+(node:6168) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/Administrator/Desktop/Pulse_event/tailwind.config.ts?id=1786961631573 is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\Administrator\Desktop\Pulse_event\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:7412) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/Administrator/Desktop/Pulse_event/tailwind.config.ts?id=1786961632830 is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\Administrator\Desktop\Pulse_event\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:8988) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/Administrator/Desktop/Pulse_event/tailwind.config.ts?id=1786961656148 is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\Administrator\Desktop\Pulse_event\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ GET / 200 in 17.6s (next.js: 4.7s, application-code: 12.8s)
+(node:14312) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/Administrator/Desktop/Pulse_event/tailwind.config.ts?id=1786961714448 is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to C:\Users\Administrator\Desktop\Pulse_event\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✓ Compiled in 1819ms
+ GET / 200 in 1289ms (next.js: 79ms, application-code: 1210ms)
+ GET / 200 in 995ms (next.js: 32ms, application-code: 963ms)
+ GET / 200 in 763ms (next.js: 9ms, application-code: 753ms)
+ GET / 200 in 762ms (next.js: 433ms, application-code: 329ms)
+ GET / 200 in 766ms (next.js: 196ms, application-code: 570ms)
+✓ Compiled in 1308ms
+ GET / 200 in 1024ms (next.js: 103ms, application-code: 921ms)
+ GET / 200 in 665ms (next.js: 6ms, application-code: 659ms)
+ GET / 200 in 465ms (next.js: 172ms, application-code: 292ms)
+ GET / 200 in 468ms (next.js: 7ms, application-code: 461ms)
+✓ Compiled in 1734ms
+ GET / 200 in 1409ms (next.js: 87ms, application-code: 1323ms)
+ GET / 200 in 1102ms (next.js: 7ms, application-code: 1094ms)
+ GET / 200 in 935ms (next.js: 175ms, application-code: 760ms)
+ GET / 200 in 941ms (next.js: 13ms, application-code: 928ms)
+ GET / 200 in 934ms (next.js: 416ms, application-code: 519ms)
+ GET / 200 in 463ms (next.js: 103ms, application-code: 361ms)
+✓ Compiled in 1891ms
+ GET / 200 in 1755ms (next.js: 191ms, application-code: 1564ms)
+ GET / 200 in 1236ms (next.js: 24ms, application-code: 1211ms)
+ GET / 200 in 825ms (next.js: 9ms, application-code: 816ms)
+ GET / 200 in 829ms (next.js: 465ms, application-code: 364ms)
+ GET / 200 in 831ms (next.js: 245ms, application-code: 586ms)
+ GET / 200 in 1507ms (next.js: 7ms, application-code: 1500ms)
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" data-scroll-behavior="smooth" className="inter_7b06..." ...>
+                          <head>
+                          <body
++                           className="min-h-full flex flex-col"
+-                           className="min-h-full flex flex-col is-scrolling"
+                          >
+                  ...
+ 
+ GET /gallery 200 in 497ms (next.js: 121ms, application-code: 376ms)
+ GET /gallery?category=Theme+Nights 200 in 147ms (next.js: 7ms, application-code: 140ms)
+ GET /gallery?category=Fun+Fairs 200 in 125ms (next.js: 4ms, application-code: 121ms)
+ GET /gallery?category=Games 200 in 2.0s (next.js: 5ms, application-code: 2.0s)
+ GET /gallery?category=Birthdays 200 in 332ms (next.js: 14ms, application-code: 318ms)
+✓ Compiled in 212ms
+ GET /gallery?category=Birthdays 200 in 562ms (next.js: 131ms, application-code: 431ms)
+ GET /gallery?category=Birthdays 200 in 255ms (next.js: 9ms, application-code: 247ms)
+ GET /gallery?category=Birthdays 200 in 121ms (next.js: 6ms, application-code: 115ms)
+✓ Compiled in 1955ms
+ GET /gallery?category=Birthdays 200 in 2.5s (next.js: 274ms, application-code: 2.2s)
+ GET /gallery?category=Birthdays 200 in 5.5s (next.js: 440ms, application-code: 5.0s)
+ GET /gallery?category=Birthdays 200 in 2.7s (next.js: 57ms, application-code: 2.7s)
+ GET /gallery?category=Birthdays 200 in 1471ms (next.js: 185ms, application-code: 1286ms)
+ GET /gallery?category=Birthdays 200 in 1359ms (next.js: 458ms, application-code: 901ms)
+ GET /gallery?category=Birthdays 200 in 1410ms (next.js: 674ms, application-code: 736ms)
+ GET /gallery?category=Birthdays 200 in 2.9s (next.js: 355ms, application-code: 2.6s)
+ GET /gallery?category=Weddings 200 in 3.1s (next.js: 55ms, application-code: 3.0s)
+ GET / 200 in 372ms (next.js: 146ms, application-code: 226ms)
+ GET / 200 in 1394ms (next.js: 11ms, application-code: 1383ms)
+ GET / 200 in 1147ms (next.js: 32ms, application-code: 1114ms)
+ GET / 200 in 785ms (next.js: 8ms, application-code: 777ms)
+ GET / 200 in 807ms (next.js: 390ms, application-code: 416ms)
+ GET / 200 in 1055ms (next.js: 13ms, application-code: 1042ms)
+ GET / 200 in 775ms (next.js: 28ms, application-code: 747ms)
+ GET / 200 in 953ms (next.js: 46ms, application-code: 908ms)
+ GET / 200 in 883ms (next.js: 12ms, application-code: 871ms)
+✓ Compiled in 253ms
+ GET / 200 in 1602ms (next.js: 405ms, application-code: 1197ms)
+ GET / 200 in 734ms (next.js: 29ms, application-code: 705ms)
+ GET / 200 in 1852ms (next.js: 9ms, application-code: 1843ms)
+ GET /events 200 in 503ms (next.js: 153ms, application-code: 350ms)
+ GET / 200 in 150ms (next.js: 5ms, application-code: 145ms)
+ GET / 200 in 750ms (next.js: 267ms, application-code: 483ms)
+ GET / 200 in 685ms (next.js: 6ms, application-code: 679ms)
+ GET / 200 in 424ms (next.js: 6ms, application-code: 417ms)
+ GET / 200 in 714ms (next.js: 9ms, application-code: 705ms)
+ GET /about 200 in 247ms (next.js: 109ms, application-code: 138ms)
+ GET /gallery 200 in 254ms (next.js: 143ms, application-code: 111ms)
+ GET /gallery?page=14 200 in 105ms (next.js: 12ms, application-code: 94ms)
+ GET /gallery?category=Birthdays 200 in 242ms (next.js: 11ms, application-code: 231ms)
+ GET /gallery?category=Birthdays&page=6 200 in 135ms (next.js: 7ms, application-code: 128ms)
+✓ Compiled in 167ms
+ GET /gallery?category=Birthdays&page=6 200 in 684ms (next.js: 284ms, application-code: 400ms)
+ GET /gallery?category=Birthdays&page=6 200 in 215ms (next.js: 10ms, application-code: 205ms)
+ GET / 200 in 474ms (next.js: 42ms, application-code: 432ms)
+ GET / 200 in 899ms (next.js: 8ms, application-code: 891ms)
+ GET /gallery 200 in 151ms (next.js: 8ms, application-code: 143ms)
+ GET /book 200 in 298ms (next.js: 166ms, application-code: 132ms)
+✓ Compiled in 221ms
+ GET /book 200 in 2.3s (next.js: 515ms, application-code: 1777ms)
+ GET /book 200 in 1468ms (next.js: 48ms, application-code: 1420ms)
+ GET /book 200 in 1169ms (next.js: 36ms, application-code: 1134ms)
+ GET /book 200 in 1168ms (next.js: 327ms, application-code: 840ms)
+ GET /book 200 in 1174ms (next.js: 486ms, application-code: 688ms)
+ GET /book 200 in 1176ms (next.js: 178ms, application-code: 997ms)
+ GET /book 200 in 1479ms (next.js: 23ms, application-code: 1456ms)
+ GET /book 200 in 1210ms (next.js: 80ms, application-code: 1130ms)
+ GET /book 200 in 1216ms (next.js: 192ms, application-code: 1024ms)
+ GET /book 200 in 1223ms (next.js: 297ms, application-code: 926ms)
+ GET /book 200 in 1178ms (next.js: 416ms, application-code: 763ms)
+ GET / 200 in 782ms (next.js: 218ms, application-code: 564ms)
+ GET / 200 in 655ms (next.js: 7ms, application-code: 648ms)
+ GET /events 200 in 1472ms (next.js: 436ms, application-code: 1036ms)
+ GET /about 200 in 1331ms (next.js: 654ms, application-code: 677ms)
+✓ Compiled in 385ms
+ GET /about 200 in 375ms (next.js: 163ms, application-code: 213ms)
+ GET /about 200 in 103ms (next.js: 6ms, application-code: 97ms)
+✓ Compiled in 622ms
+ GET /about 200 in 1013ms (next.js: 638ms, application-code: 376ms)
+ GET /about 200 in 314ms (next.js: 19ms, application-code: 295ms)
+✓ Compiled in 774ms
+ GET /about 200 in 1198ms (next.js: 510ms, application-code: 688ms)
+ GET /about 200 in 327ms (next.js: 22ms, application-code: 304ms)
+✓ Compiled in 478ms
+ GET /about 200 in 1265ms (next.js: 681ms, application-code: 584ms)
+ GET /about 200 in 368ms (next.js: 33ms, application-code: 335ms)
+✓ Compiled in 159ms
+ GET /about 200 in 705ms (next.js: 189ms, application-code: 516ms)
+ GET /about 200 in 229ms (next.js: 16ms, application-code: 213ms)
+✓ Compiled in 250ms
+ GET /about 200 in 969ms (next.js: 497ms, application-code: 472ms)
+ GET /about 200 in 460ms (next.js: 66ms, application-code: 393ms)
+ GET / 200 in 338ms (next.js: 72ms, application-code: 266ms)
+✓ Compiled in 629ms
+ GET / 200 in 3.7s (next.js: 675ms, application-code: 3.0s)
+ GET / 200 in 2.2s (next.js: 70ms, application-code: 2.1s)
+ GET / 200 in 1610ms (next.js: 12ms, application-code: 1598ms)
+ GET / 200 in 1609ms (next.js: 539ms, application-code: 1071ms)
+ GET / 200 in 1608ms (next.js: 964ms, application-code: 645ms)
+✓ Compiled in 190ms
+ GET / 200 in 1831ms (next.js: 279ms, application-code: 1552ms)
+ GET / 200 in 1224ms (next.js: 12ms, application-code: 1212ms)
+ GET / 200 in 936ms (next.js: 9ms, application-code: 927ms)
+ GET / 200 in 938ms (next.js: 276ms, application-code: 662ms)
+ GET / 200 in 938ms (next.js: 557ms, application-code: 381ms)
+○ Compiling /events/[slug] ...
+ GET /events/casino-nights-theme 200 in 6.7s (next.js: 6.5s, generate-params: 2.6s, application-code: 205ms)
+✓ Compiled in 467ms
+ GET /events/carnival-theme 200 in 1552ms (next.js: 508ms, generate-params: 36ms, application-code: 1044ms)
+ GET /events/casino-nights-theme 200 in 1570ms (next.js: 971ms, generate-params: 46µs, application-code: 599ms)
+ GET /events/casino-nights-theme 200 in 1898ms (next.js: 184ms, generate-params: 58µs, application-code: 1714ms)
+ GET /events/casino-nights-theme 200 in 976ms (next.js: 12ms, generate-params: 43µs, application-code: 965ms)
+ GET /events/carnival-theme 200 in 983ms (next.js: 319ms, generate-params: 62µs, application-code: 664ms)
+ GET /events/casino-nights-theme 200 in 873ms (next.js: 216ms, generate-params: 44µs, application-code: 657ms)
+✓ Compiled in 401ms
+ GET /events/wedding-ceremony 200 in 2.1s (next.js: 332ms, generate-params: 104µs, application-code: 1792ms)
+ GET /events/carnival-theme 200 in 3.5s (next.js: 706ms, generate-params: 43ms, application-code: 2.8s)
+ GET /events/carnival-theme 200 in 2.1s (next.js: 24ms, generate-params: 65µs, application-code: 2.1s)
+ GET /events/carnival-theme 200 in 1505ms (next.js: 53ms, generate-params: 37µs, application-code: 1452ms)
+ GET /events/carnival-theme 200 in 1510ms (next.js: 424ms, generate-params: 39µs, application-code: 1086ms)
+ GET /events/carnival-theme 200 in 1520ms (next.js: 932ms, generate-params: 49µs, application-code: 588ms)
+ GET /events 200 in 290ms (next.js: 70ms, application-code: 220ms)
+✓ Compiled in 282ms
+ GET /events 200 in 1040ms (next.js: 359ms, application-code: 681ms)
+ GET /events 200 in 322ms (next.js: 25ms, application-code: 297ms)
+ GET /events 200 in 829ms (next.js: 6ms, application-code: 823ms)
+ GET /events 200 in 662ms (next.js: 5ms, application-code: 656ms)
+ GET /events 200 in 361ms (next.js: 15ms, application-code: 346ms)
+ GET /events 200 in 757ms (next.js: 3ms, application-code: 754ms)
+[browser] Image with src "/images/birthday-party.svg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+ GET /about 200 in 418ms (next.js: 224ms, application-code: 194ms)
+✓ Compiled in 215ms
+ GET /about 200 in 1255ms (next.js: 226ms, application-code: 1029ms)
+ GET /about 200 in 867ms (next.js: 11ms, application-code: 856ms)
+ GET /about 200 in 999ms (next.js: 13ms, application-code: 986ms)
+ GET /about 200 in 1002ms (next.js: 230ms, application-code: 772ms)
+ GET /about 200 in 379ms (next.js: 111ms, application-code: 268ms)
