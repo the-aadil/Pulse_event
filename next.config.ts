@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
-  serverExternalPackages: ["better-sqlite3"],
+  serverExternalPackages: [],
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 86400,
