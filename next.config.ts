@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
-  serverExternalPackages: [],
+  serverExternalPackages: ["@prisma/adapter-neon", "@neondatabase/serverless"],
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 86400,
