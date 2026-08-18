@@ -3,21 +3,25 @@
 import { useActionState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { createEvent, updateEvent, type ActionResult } from "@/app/actions";
-import { Field, TextInput, TextArea, CheckboxInput, SubmitButton } from "@/components/forms/fields";
+import {
+  Field,
+  TextInput,
+  TextArea,
+  CheckboxInput,
+  SubmitButton,
+} from "@/components/forms/fields";
 import type { EventType } from "@/generated/prisma/client";
 
 const initialState: ActionResult = { status: "idle", message: "" };
 
 export function EventForm({ event }: { event?: EventType }) {
   const router = useRouter();
-  const action = event
-    ? updateEvent.bind(null, event.id)
-    : createEvent;
+  const action = event ? updateEvent.bind(null, event.id) : createEvent;
   const [state, formAction, pending] = useActionState(action, initialState);
   const errors = state.fieldErrors ?? {};
 
   useEffect(() => {
-    if (state.status === "success" && state.message) {
+    if (state.status === "success") {
       router.push("/admin/events");
       router.refresh();
     }
@@ -28,14 +32,26 @@ export function EventForm({ event }: { event?: EventType }) {
       {state.status === "error" && state.message && (
         <div
           role="alert"
-          className="rounded-xl border border-accent-200 bg-accent-50 px-4 py-3 text-sm font-medium text-accent-700"
+          className="flex items-start gap-2.5 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm font-medium text-red-300"
         >
-          {state.message}
+          <svg
+            className="mt-0.5 h-4 w-4 shrink-0 text-red-400"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden
+          >
+            <path
+              fillRule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z"
+              clipRule="evenodd"
+            />
+          </svg>
+          <span>{state.message}</span>
         </div>
       )}
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-        <Field label="Event name" htmlFor="ev-name" error={errors.name} required>
+        <Field label="Event name" htmlFor="ev-name" error={errors.name} required dark>
           <TextInput
             id="ev-name"
             name="name"
@@ -51,6 +67,7 @@ export function EventForm({ event }: { event?: EventType }) {
           error={errors.slug}
           hint="Used in the URL. e.g. birthday-party"
           required
+          dark
         >
           <TextInput
             id="ev-slug"
@@ -64,7 +81,7 @@ export function EventForm({ event }: { event?: EventType }) {
         </Field>
       </div>
 
-      <Field label="Tagline" htmlFor="ev-tagline" error={errors.tagline}>
+      <Field label="Tagline" htmlFor="ev-tagline" error={errors.tagline} dark>
         <TextInput
           id="ev-tagline"
           name="tagline"
@@ -74,12 +91,7 @@ export function EventForm({ event }: { event?: EventType }) {
         />
       </Field>
 
-      <Field
-        label="Description"
-        htmlFor="ev-desc"
-        error={errors.description}
-        required
-      >
+      <Field label="Description" htmlFor="ev-desc" error={errors.description} required dark>
         <TextArea
           id="ev-desc"
           name="description"
@@ -97,6 +109,7 @@ export function EventForm({ event }: { event?: EventType }) {
         htmlFor="ev-image"
         error={errors.image}
         hint="Relative path under /public, e.g. /images/birthday-party.svg"
+        dark
       >
         <TextInput
           id="ev-image"
@@ -108,7 +121,7 @@ export function EventForm({ event }: { event?: EventType }) {
       </Field>
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
-        <Field label="Price from (₹)" htmlFor="ev-price" error={errors.priceFrom}>
+        <Field label="Price from (₹)" htmlFor="ev-price" error={errors.priceFrom} dark>
           <TextInput
             id="ev-price"
             name="priceFrom"
@@ -119,7 +132,7 @@ export function EventForm({ event }: { event?: EventType }) {
             placeholder="e.g. 15000"
           />
         </Field>
-        <Field label="Max capacity" htmlFor="ev-cap" error={errors.capacity}>
+        <Field label="Max capacity" htmlFor="ev-cap" error={errors.capacity} dark>
           <TextInput
             id="ev-cap"
             name="capacity"
@@ -135,6 +148,7 @@ export function EventForm({ event }: { event?: EventType }) {
           htmlFor="ev-sort"
           error={errors.sortOrder}
           hint="Lower shows first"
+          dark
         >
           <TextInput
             id="ev-sort"
@@ -148,18 +162,18 @@ export function EventForm({ event }: { event?: EventType }) {
       </div>
 
       <div className="flex flex-wrap gap-6">
-        <label className="flex cursor-pointer items-center gap-2.5 text-sm font-medium text-ink">
+        <label className="flex cursor-pointer items-center gap-2.5 text-sm font-medium text-slate-300">
           <CheckboxInput name="featured" defaultChecked={event?.featured ?? false} />
           Featured (show on homepage)
         </label>
-        <label className="flex cursor-pointer items-center gap-2.5 text-sm font-medium text-ink">
+        <label className="flex cursor-pointer items-center gap-2.5 text-sm font-medium text-slate-300">
           <CheckboxInput name="active" defaultChecked={event?.active ?? true} />
           Active (visible to visitors)
         </label>
       </div>
 
-      <div className="flex items-center gap-3 border-t border-slate-200 pt-5">
-        <SubmitButton pending={pending}>
+      <div className="flex items-center gap-3 border-t border-white/8 pt-5">
+        <SubmitButton pending={pending} className="btn btn-primary">
           {event ? "Save changes" : "Create event"}
         </SubmitButton>
         <a href="/admin/events" className="btn btn-outline">

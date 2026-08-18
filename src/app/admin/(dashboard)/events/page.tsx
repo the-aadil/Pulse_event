@@ -21,48 +21,45 @@ export default async function AdminEventsPage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-ink">Events</h1>
-          <p className="mt-1 text-sm text-ink/60">
-            {events.length} event{events.length === 1 ? "" : "s"} — create, edit or
-            remove event packages.
+          <h1 className="admin-heading">Events</h1>
+          <p className="admin-subheading">
+            {events.length} event{events.length === 1 ? "" : "s"} — create, edit or remove packages.
           </p>
         </div>
-        <Link href="/admin/events/new" className="btn btn-dark btn-sm">
+        <Link href="/admin/events/new" className="btn btn-primary btn-sm">
           <PlusIcon className="h-4 w-4" />
           New event
         </Link>
       </div>
 
       {events.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-12 text-center">
-          <p className="text-4xl" aria-hidden>
-            🎪
-          </p>
-          <p className="mt-3 font-semibold text-ink">No events yet</p>
-          <p className="mt-1 text-sm text-ink/50">
+        <div className="admin-card p-12 text-center">
+          <p className="text-4xl" aria-hidden>🎪</p>
+          <p className="mt-3 font-semibold text-slate-200">No events yet</p>
+          <p className="mt-1 text-sm text-slate-500">
             Create your first event package to show it on the website.
           </p>
         </div>
       ) : (
-        <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
+        <div className="admin-card overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-slate-200 text-left text-sm">
-              <thead className="bg-slate-50 text-xs uppercase tracking-wide text-ink/50">
+            <table className="admin-table min-w-full text-left">
+              <thead>
                 <tr>
-                  <th className="px-4 py-3 font-semibold">Event</th>
-                  <th className="px-4 py-3 font-semibold">Price</th>
-                  <th className="px-4 py-3 font-semibold">Capacity</th>
-                  <th className="px-4 py-3 font-semibold">Order</th>
-                  <th className="px-4 py-3 font-semibold">Status</th>
-                  <th className="px-4 py-3 text-right font-semibold">Actions</th>
+                  <th>Event</th>
+                  <th>Price</th>
+                  <th>Capacity</th>
+                  <th>Order</th>
+                  <th>Status</th>
+                  <th className="text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody>
                 {events.map((event) => (
                   <tr key={event.id} className="align-middle">
-                    <td className="px-4 py-3">
+                    <td>
                       <div className="flex items-center gap-3">
-                        <div className="relative h-11 w-16 shrink-0 overflow-hidden rounded-lg bg-brand-50">
+                        <div className="relative h-11 w-16 shrink-0 overflow-hidden rounded-lg bg-white/8">
                           {event.image ? (
                             <Image
                               src={event.image}
@@ -74,42 +71,35 @@ export default async function AdminEventsPage() {
                           ) : null}
                         </div>
                         <div className="min-w-0">
-                          <p className="font-semibold text-ink">{event.name}</p>
-                          <p className="text-xs text-ink/45">
-                            /events/{event.slug}
-                          </p>
+                          <p className="font-semibold text-slate-200">{event.name}</p>
+                          <p className="cell-muted">/events/{event.slug}</p>
                         </div>
                       </div>
                     </td>
-                    <td className="whitespace-nowrap px-4 py-3 text-ink/80">
+                    <td className="whitespace-nowrap">
                       {formatINR(event.priceFrom) ?? "—"}
                     </td>
-                    <td className="px-4 py-3 text-ink/80">
-                      {event.capacity?.toLocaleString("en-IN") ?? "—"}
-                    </td>
-                    <td className="px-4 py-3 text-ink/80">{event.sortOrder}</td>
-                    <td className="px-4 py-3">
+                    <td>{event.capacity?.toLocaleString("en-IN") ?? "—"}</td>
+                    <td>{event.sortOrder}</td>
+                    <td>
                       <span
                         className={cn(
-                          "rounded-full px-2.5 py-1 text-xs font-semibold",
-                          event.active
-                            ? "bg-emerald-50 text-emerald-700"
-                            : "bg-slate-100 text-slate-500",
-                          event.featured && "bg-brand-50 text-brand-700"
+                          "rounded-full px-2.5 py-1 text-[11px] font-semibold",
+                          event.featured
+                            ? "bg-gold-500/15 text-gold-300 ring-1 ring-gold-500/30"
+                            : event.active
+                              ? "bg-emerald-500/15 text-emerald-300 ring-1 ring-emerald-500/30"
+                              : "bg-white/8 text-slate-500 ring-1 ring-white/10"
                         )}
                       >
-                        {event.featured
-                          ? "Featured"
-                          : event.active
-                            ? "Active"
-                            : "Hidden"}
+                        {event.featured ? "Featured" : event.active ? "Active" : "Hidden"}
                       </span>
                     </td>
-                    <td className="px-4 py-3">
+                    <td>
                       <div className="flex items-center justify-end gap-2">
                         <Link
                           href={`/admin/events/${event.id}/edit`}
-                          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-ink/60 transition-colors hover:bg-slate-50"
+                          className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 text-slate-400 transition-colors hover:border-gold-500/40 hover:text-gold-300"
                           aria-label={`Edit ${event.name}`}
                           title="Edit"
                         >

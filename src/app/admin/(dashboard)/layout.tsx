@@ -11,10 +11,14 @@ export default async function AdminLayout({
   const user = await requireAdmin();
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-100">
+    /* Use the site's dark background so the nav blends seamlessly */
+    <div className="flex min-h-screen flex-col" style={{ background: "#0b0c10" }}>
       <AdminNav user={user} />
-      <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6 lg:px-8">
-        {children}
+      {/* Content area uses a slightly lighter dark card background */}
+      <main className="flex-1">
+        <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          {children}
+        </div>
       </main>
     </div>
   );

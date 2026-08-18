@@ -27,16 +27,16 @@ export default async function EditEventPage({
       <div>
         <Link
           href="/admin/events"
-          className="text-sm font-semibold text-brand-700 hover:underline"
+          className="text-sm font-semibold text-gold-400 hover:text-gold-300 transition-colors"
         >
           ← Back to events
         </Link>
-        <h1 className="mt-2 text-2xl font-bold text-ink">Edit {event.name}</h1>
-        <p className="mt-1 text-sm text-ink/60">
+        <h1 className="admin-heading mt-2">Edit {event.name}</h1>
+        <p className="admin-subheading">
           Changes go live on the website as soon as you save.
         </p>
       </div>
-      <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+      <div className="admin-card p-6 sm:p-8">
         <EventForm event={event} />
       </div>
     </div>

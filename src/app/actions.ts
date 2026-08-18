@@ -1,5 +1,6 @@
 "use server";
 
+import { cache } from "react";
 import { headers } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
@@ -32,7 +33,11 @@ async function getRateKey(action: string) {
   return `${action}:${getClientIp(h)}`;
 }
 
-async function isAdmin() {
+/**
+ * isAdmin — cached per server-action invocation so multiple calls
+ * within the same action request only hit the DB once.
+ */
+const isAdmin = cache(async (): Promise<boolean> => {
   const session = await getSession();
   if (!session) return false;
   const user = await db.adminUser.findUnique({
@@ -40,6 +45,19 @@ async function isAdmin() {
     select: { id: true },
   });
   return user !== null;
+});
+
+/**
+ * Validate that a resource ID is a non-empty alphanumeric/hyphen string.
+ * Prevents oversized or specially crafted IDs from hitting the database.
+ */
+function isValidId(id: string): boolean {
+  return (
+    typeof id === "string" &&
+    id.length > 0 &&
+    id.length <= 128 &&
+    /^[\w-]+$/.test(id)
+  );
 }
 
 function getFormString(formData: FormData, key: string): string {
@@ -48,8 +66,13 @@ function getFormString(formData: FormData, key: string): string {
 }
 
 function isHoneypotFilled(formData: FormData) {
-  return typeof formData.get("company_website") === "string" && getFormString(formData, "company_website").length > 0;
+  return (
+    typeof formData.get("company_website") === "string" &&
+    getFormString(formData, "company_website").length > 0
+  );
 }
+
+// ─── Public form actions ───────────────────────────────────────────────────
 
 export async function submitBooking(
   _prevState: ActionResult,
@@ -201,6 +224,8 @@ export async function submitEnquiry(
   }
 }
 
+// ─── Auth actions ──────────────────────────────────────────────────────────
+
 export async function adminLogin(
   _prevState: ActionResult,
   formData: FormData
@@ -232,13 +257,14 @@ export async function adminLogin(
     select: { id: true, email: true, name: true, passwordHash: true },
   });
 
-  const passwordOk = user ? await verifyPassword(parsed.data.password, user.passwordHash) : false;
+  const passwordOk = user
+    ? await verifyPassword(parsed.data.password, user.passwordHash)
+    : false;
 
   if (!user || !passwordOk) {
     return {
       status: "error",
       message: "Invalid email or password.",
-      fieldErrors: { form: "Invalid email or password." },
     };
   }
 
@@ -251,18 +277,26 @@ export async function adminLogout() {
   revalidatePath("/admin", "layout");
 }
 
+// ─── Admin: Booking actions ────────────────────────────────────────────────
+
 const bookingStatusValues = z.enum(["PENDING", "CONFIRMED", "CANCELLED", "COMPLETED"]);
 
 export async function updateBookingStatus(bookingId: string, status: string) {
   if (!(await isAdmin())) {
     return { status: "error" as const, message: "Unauthorized." };
   }
+  if (!isValidId(bookingId)) {
+    return { status: "error" as const, message: "Invalid booking ID." };
+  }
   const parsed = bookingStatusValues.safeParse(status);
   if (!parsed.success) {
     return { status: "error" as const, message: "Invalid status." };
   }
 
-  const booking = await db.booking.findUnique({ where: { id: bookingId }, select: { id: true } });
+  const booking = await db.booking.findUnique({
+    where: { id: bookingId },
+    select: { id: true },
+  });
   if (!booking) {
     return { status: "error" as const, message: "Booking not found." };
   }
@@ -280,7 +314,13 @@ export async function deleteBooking(bookingId: string) {
   if (!(await isAdmin())) {
     return { status: "error" as const, message: "Unauthorized." };
   }
-  const booking = await db.booking.findUnique({ where: { id: bookingId }, select: { id: true } });
+  if (!isValidId(bookingId)) {
+    return { status: "error" as const, message: "Invalid booking ID." };
+  }
+  const booking = await db.booking.findUnique({
+    where: { id: bookingId },
+    select: { id: true },
+  });
   if (!booking) {
     return { status: "error" as const, message: "Booking not found." };
   }
@@ -290,18 +330,26 @@ export async function deleteBooking(bookingId: string) {
   return { status: "success" as const, message: "Booking deleted." };
 }
 
+// ─── Admin: Enquiry actions ────────────────────────────────────────────────
+
 const enquiryStatusValues = z.enum(["NEW", "READ", "REPLIED", "ARCHIVED"]);
 
 export async function updateEnquiryStatus(enquiryId: string, status: string) {
   if (!(await isAdmin())) {
     return { status: "error" as const, message: "Unauthorized." };
   }
+  if (!isValidId(enquiryId)) {
+    return { status: "error" as const, message: "Invalid enquiry ID." };
+  }
   const parsed = enquiryStatusValues.safeParse(status);
   if (!parsed.success) {
     return { status: "error" as const, message: "Invalid status." };
   }
 
-  const enquiry = await db.enquiry.findUnique({ where: { id: enquiryId }, select: { id: true } });
+  const enquiry = await db.enquiry.findUnique({
+    where: { id: enquiryId },
+    select: { id: true },
+  });
   if (!enquiry) {
     return { status: "error" as const, message: "Enquiry not found." };
   }
@@ -319,7 +367,13 @@ export async function deleteEnquiry(enquiryId: string) {
   if (!(await isAdmin())) {
     return { status: "error" as const, message: "Unauthorized." };
   }
-  const enquiry = await db.enquiry.findUnique({ where: { id: enquiryId }, select: { id: true } });
+  if (!isValidId(enquiryId)) {
+    return { status: "error" as const, message: "Invalid enquiry ID." };
+  }
+  const enquiry = await db.enquiry.findUnique({
+    where: { id: enquiryId },
+    select: { id: true },
+  });
   if (!enquiry) {
     return { status: "error" as const, message: "Enquiry not found." };
   }
@@ -328,6 +382,8 @@ export async function deleteEnquiry(enquiryId: string) {
   revalidatePath("/admin/enquiries");
   return { status: "success" as const, message: "Enquiry deleted." };
 }
+
+// ─── Admin: Event actions ──────────────────────────────────────────────────
 
 export async function createEvent(
   _prevState: ActionResult,
@@ -391,6 +447,9 @@ export async function updateEvent(
   if (!(await isAdmin())) {
     return { status: "error", message: "Unauthorized." };
   }
+  if (!isValidId(eventId)) {
+    return { status: "error", message: "Invalid event ID." };
+  }
   const parsed = adminEventSchema.safeParse({
     slug: getFormString(formData, "slug"),
     name: getFormString(formData, "name"),
@@ -412,7 +471,10 @@ export async function updateEvent(
     };
   }
 
-  const existing = await db.eventType.findUnique({ where: { id: eventId }, select: { id: true } });
+  const existing = await db.eventType.findUnique({
+    where: { id: eventId },
+    select: { id: true },
+  });
   if (!existing) {
     return { status: "error", message: "Event not found." };
   }
@@ -451,7 +513,13 @@ export async function deleteEvent(eventId: string) {
   if (!(await isAdmin())) {
     return { status: "error" as const, message: "Unauthorized." };
   }
-  const event = await db.eventType.findUnique({ where: { id: eventId }, select: { id: true } });
+  if (!isValidId(eventId)) {
+    return { status: "error" as const, message: "Invalid event ID." };
+  }
+  const event = await db.eventType.findUnique({
+    where: { id: eventId },
+    select: { id: true },
+  });
   if (!event) {
     return { status: "error" as const, message: "Event not found." };
   }
@@ -461,6 +529,3 @@ export async function deleteEvent(eventId: string) {
   revalidatePath("/admin/events");
   return { status: "success" as const, message: "Event deleted." };
 }
-
-
-

@@ -24,45 +24,105 @@ export function Field({
         htmlFor={htmlFor}
         className={cn(
           "mb-1.5 block text-sm font-semibold",
-          dark ? "text-slate-200" : "text-ink"
+          dark ? "text-slate-200" : "text-slate-700"
         )}
       >
         {label}
         {required && (
-          <span className={cn("ml-0.5", dark ? "text-wine-400" : "text-wine-600")} aria-hidden>
+          <span
+            className={cn("ml-0.5", dark ? "text-wine-400" : "text-red-500")}
+            aria-hidden
+          >
             *
           </span>
         )}
       </label>
       {children}
       {error ? (
-        <p className={cn(
-          "mt-1.5 flex items-center gap-1.5 text-xs font-medium",
-          dark ? "text-wine-300" : "text-wine-700"
-        )}>
+        <p
+          className={cn(
+            "mt-1.5 flex items-center gap-1.5 text-xs font-medium",
+            dark ? "text-wine-300" : "text-red-600"
+          )}
+        >
           <AlertTriangleIcon className="h-3.5 w-3.5 shrink-0" />
           {error}
         </p>
       ) : hint ? (
-        <p className={cn(
-          "mt-1.5 text-xs",
-          dark ? "text-slate-400" : "text-ink/50"
-        )}>{hint}</p>
+        <p
+          className={cn(
+            "mt-1.5 text-xs",
+            dark ? "text-slate-400" : "text-slate-500"
+          )}
+        >
+          {hint}
+        </p>
       ) : null}
     </div>
   );
 }
 
-export function TextInput({ error, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { error?: boolean }) {
-  return <input {...props} className={cn("input", error && "input-error", props.className)} />;
+export function TextInput({
+  light,
+  error,
+  ...props
+}: React.InputHTMLAttributes<HTMLInputElement> & {
+  light?: boolean;
+  error?: boolean;
+}) {
+  return (
+    <input
+      {...props}
+      className={cn(
+        "input",
+        light && "input-light",
+        error && "input-error",
+        props.className
+      )}
+    />
+  );
 }
 
-export function TextArea({ error, ...props }: React.TextareaHTMLAttributes<HTMLTextAreaElement> & { error?: boolean }) {
-  return <textarea {...props} className={cn("input min-h-28 resize-y", error && "input-error", props.className)} />;
+export function TextArea({
+  light,
+  error,
+  ...props
+}: React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
+  light?: boolean;
+  error?: boolean;
+}) {
+  return (
+    <textarea
+      {...props}
+      className={cn(
+        "input min-h-28 resize-y",
+        light && "input-light",
+        error && "input-error",
+        props.className
+      )}
+    />
+  );
 }
 
-export function SelectInput({ error, ...props }: React.SelectHTMLAttributes<HTMLSelectElement> & { error?: boolean }) {
-  return <select {...props} className={cn("input appearance-none select-chevron", error && "input-error", props.className)} />;
+export function SelectInput({
+  light,
+  error,
+  ...props
+}: React.SelectHTMLAttributes<HTMLSelectElement> & {
+  light?: boolean;
+  error?: boolean;
+}) {
+  return (
+    <select
+      {...props}
+      className={cn(
+        "input appearance-none select-chevron",
+        light && "input-light",
+        error && "input-error",
+        props.className
+      )}
+    />
+  );
 }
 
 export function CheckboxInput(props: React.InputHTMLAttributes<HTMLInputElement>) {
@@ -71,7 +131,7 @@ export function CheckboxInput(props: React.InputHTMLAttributes<HTMLInputElement>
       type="checkbox"
       {...props}
       className={cn(
-        "h-4 w-4 rounded border-gold-300 text-gold-600 focus:ring-gold-500",
+        "h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500",
         props.className
       )}
     />
@@ -91,11 +151,12 @@ export function SubmitButton({
     <button
       type="submit"
       disabled={pending}
-      className={cn("btn btn-primary w-full", className)}
+      aria-busy={pending}
+      className={cn("btn", className ?? "btn-dark w-full")}
     >
       {pending ? (
         <>
-          <span className="h-4 w-4 animate-spin rounded-full border-2 border-cream/40 border-t-cream" />
+          <span className="h-4 w-4 animate-spin rounded-full border-2 border-current/30 border-t-current" />
           Please wait…
         </>
       ) : (
