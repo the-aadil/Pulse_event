@@ -230,7 +230,7 @@ export async function adminLogin(
   _prevState: ActionResult,
   formData: FormData
 ): Promise<ActionResult> {
-  const rl = rateLimit(await getRateKey("login"), { limit: 10, windowMs: 60_000 });
+  const rl = rateLimit(await getRateKey("login"), { limit: 15, windowMs: 60_000 });
   if (!rl.ok) {
     return {
       status: "error",
@@ -239,15 +239,19 @@ export async function adminLogin(
     };
   }
 
+  const rawEmail = getFormString(formData, "email").trim().toLowerCase();
+  const rawPassword = getFormString(formData, "password");
+  const trimmedPassword = rawPassword.trim();
+
   const parsed = loginSchema.safeParse({
-    email: getFormString(formData, "email"),
-    password: getFormString(formData, "password"),
+    email: rawEmail,
+    password: trimmedPassword,
   });
 
   if (!parsed.success) {
     return {
       status: "error",
-      message: "Please enter a valid email and password.",
+      message: "Please enter a valid email and password (minimum 8 characters).",
       fieldErrors: flattenZodError(parsed.error),
     };
   }
@@ -257,20 +261,41 @@ export async function adminLogin(
     select: { id: true, email: true, name: true, passwordHash: true },
   });
 
-  const passwordOk = user
-    ? await verifyPassword(parsed.data.password, user.passwordHash)
-    : false;
-
-  if (!user || !passwordOk) {
+  if (!user) {
+    console.warn(`[Auth] Login failed: No admin found with email "${parsed.data.email}"`);
     return {
       status: "error",
       message: "Invalid email or password.",
     };
   }
 
-  await createSession({ id: user.id, email: user.email, name: user.name });
-  return { status: "success", message: "Logged in." };
+  // Try with trimmed password first, then raw password
+  let passwordOk = await verifyPassword(trimmedPassword, user.passwordHash);
+  if (!passwordOk && rawPassword !== trimmedPassword) {
+    passwordOk = await verifyPassword(rawPassword, user.passwordHash);
+  }
+
+  if (!passwordOk) {
+    console.warn(`[Auth] Login failed: Password mismatch for email "${parsed.data.email}"`);
+    return {
+      status: "error",
+      message: "Invalid email or password.",
+    };
+  }
+
+  try {
+    await createSession({ id: user.id, email: user.email, name: user.name });
+    console.log(`[Auth] Login successful for user "${user.email}" (${user.name})`);
+    return { status: "success", message: "Logged in." };
+  } catch (err) {
+    console.error(`[Auth] Session creation error:`, err);
+    return {
+      status: "error",
+      message: "Failed to establish session. Please verify AUTH_SECRET is set.",
+    };
+  }
 }
+
 
 export async function adminLogout() {
   await destroySession();
