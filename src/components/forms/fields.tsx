@@ -8,6 +8,7 @@ export function Field({
   hint,
   children,
   required,
+  dark = false,
 }: {
   label: string;
   htmlFor?: string;
@@ -15,43 +16,53 @@ export function Field({
   hint?: string;
   children: React.ReactNode;
   required?: boolean;
+  dark?: boolean;
 }) {
   return (
     <div>
       <label
         htmlFor={htmlFor}
-        className="mb-1.5 block text-sm font-semibold text-ink"
+        className={cn(
+          "mb-1.5 block text-sm font-semibold",
+          dark ? "text-slate-200" : "text-ink"
+        )}
       >
         {label}
         {required && (
-          <span className="ml-0.5 text-wine-600" aria-hidden>
+          <span className={cn("ml-0.5", dark ? "text-wine-400" : "text-wine-600")} aria-hidden>
             *
           </span>
         )}
       </label>
       {children}
       {error ? (
-        <p className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-wine-700">
+        <p className={cn(
+          "mt-1.5 flex items-center gap-1.5 text-xs font-medium",
+          dark ? "text-wine-300" : "text-wine-700"
+        )}>
           <AlertTriangleIcon className="h-3.5 w-3.5 shrink-0" />
           {error}
         </p>
       ) : hint ? (
-        <p className="mt-1.5 text-xs text-ink/50">{hint}</p>
+        <p className={cn(
+          "mt-1.5 text-xs",
+          dark ? "text-slate-400" : "text-ink/50"
+        )}>{hint}</p>
       ) : null}
     </div>
   );
 }
 
-export function TextInput(props: React.InputHTMLAttributes<HTMLInputElement>) {
-  return <input {...props} className={cn("input", props.className)} />;
+export function TextInput({ error, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { error?: boolean }) {
+  return <input {...props} className={cn("input", error && "input-error", props.className)} />;
 }
 
-export function TextArea(props: React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
-  return <textarea {...props} className={cn("input min-h-28 resize-y", props.className)} />;
+export function TextArea({ error, ...props }: React.TextareaHTMLAttributes<HTMLTextAreaElement> & { error?: boolean }) {
+  return <textarea {...props} className={cn("input min-h-28 resize-y", error && "input-error", props.className)} />;
 }
 
-export function SelectInput(props: React.SelectHTMLAttributes<HTMLSelectElement>) {
-  return <select {...props} className={cn("input appearance-none select-chevron", props.className)} />;
+export function SelectInput({ error, ...props }: React.SelectHTMLAttributes<HTMLSelectElement> & { error?: boolean }) {
+  return <select {...props} className={cn("input appearance-none select-chevron", error && "input-error", props.className)} />;
 }
 
 export function CheckboxInput(props: React.InputHTMLAttributes<HTMLInputElement>) {

@@ -3,8 +3,6 @@
 import { useActionState } from "react";
 import { submitEnquiry, type ActionResult } from "@/app/actions";
 import { Field, TextInput, TextArea, SubmitButton } from "@/components/forms/fields";
-import { SuccessToast } from "@/components/forms/success-toast";
-import { CheckIcon } from "@/components/icons";
 
 const initialState: ActionResult = { status: "idle", message: "" };
 
@@ -14,46 +12,38 @@ export function ContactForm() {
   const success = state.status === "success" && !!state.message;
 
   return (
-    <>
-      {success && (
-        <SuccessToast
-          key={state.message ?? "message-sent"}
-          title="Message sent!"
-          message={state.message}
-        />
+    <form action={formAction} className="space-y-5">
+      {state.status === "error" && state.message && (
+        <div
+          role="alert"
+          className="rounded-xl border border-wine-500/30 bg-wine-950/40 px-4 py-3 text-sm font-medium text-wine-200"
+        >
+          {state.message}
+        </div>
       )}
 
-      <form action={formAction} noValidate className="space-y-5">
-        {state.status === "error" && state.message && (
-          <div
-            role="alert"
-            className="rounded-xl border border-accent-200 bg-accent-50 px-4 py-3 text-sm font-medium text-accent-700"
-          >
-            {state.message}
-          </div>
-        )}
-
-        <input
-          type="text"
-          name="company_website"
-          className="hidden"
-          tabIndex={-1}
-          autoComplete="off"
-          aria-hidden
-        />
+      <input
+        type="text"
+        name="company_website"
+        className="hidden"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden
+      />
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-        <Field label="Full name" htmlFor="ct-name" error={errors.name} required>
+        <Field label="Full name" htmlFor="ct-name" error={errors.name} required dark>
           <TextInput
             id="ct-name"
             name="name"
             placeholder="Your full name"
             autoComplete="name"
             required
+            error={!!errors.name}
             aria-invalid={!!errors.name}
           />
         </Field>
-        <Field label="Phone" htmlFor="ct-phone" error={errors.phone}>
+        <Field label="Phone" htmlFor="ct-phone" error={errors.phone} dark>
           <TextInput
             id="ct-phone"
             name="phone"
@@ -61,11 +51,12 @@ export function ContactForm() {
             placeholder="Optional"
             autoComplete="tel"
             inputMode="tel"
+            error={!!errors.phone}
           />
         </Field>
       </div>
 
-      <Field label="Email address" htmlFor="ct-email" error={errors.email} required>
+      <Field label="Email address" htmlFor="ct-email" error={errors.email} required dark>
         <TextInput
           id="ct-email"
           name="email"
@@ -73,11 +64,12 @@ export function ContactForm() {
           placeholder="you@example.com"
           autoComplete="email"
           required
+          error={!!errors.email}
           aria-invalid={!!errors.email}
         />
       </Field>
 
-      <Field label="Subject" htmlFor="ct-subject" error={errors.subject}>
+      <Field label="Subject" htmlFor="ct-subject" error={errors.subject} dark>
         <TextInput
           id="ct-subject"
           name="subject"
@@ -85,7 +77,7 @@ export function ContactForm() {
         />
       </Field>
 
-      <Field label="Message" htmlFor="ct-message" error={errors.message} required>
+      <Field label="Message" htmlFor="ct-message" error={errors.message} required dark>
         <TextArea
           id="ct-message"
           name="message"
@@ -93,27 +85,18 @@ export function ContactForm() {
           minLength={10}
           maxLength={2000}
           required
+          error={!!errors.message}
           aria-invalid={!!errors.message}
         />
       </Field>
 
       {success && (
-        <div
-          role="status"
-          className="flex items-start gap-2.5 rounded-md border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm"
-        >
-          <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />
-          <div>
-            <p className="font-semibold text-emerald-800">
-              Message sent successfully
-            </p>
-            <p className="text-emerald-700">{state.message}</p>
-          </div>
-        </div>
+        <p role="status" className="text-sm text-emerald-300">
+          {state.message}
+        </p>
       )}
 
       <SubmitButton pending={pending}>Send message</SubmitButton>
-      </form>
-    </>
+    </form>
   );
 }
