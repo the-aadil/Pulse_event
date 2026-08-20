@@ -6,7 +6,7 @@ const globalForPrisma = globalThis as unknown as {
 };
 
 const DEFAULT_DATABASE_URL =
-  "postgresql://neondb_owner:npg_QST5hvxfkM8t@ep-red-meadow-axutosai-pooler.c-4.us-east-2.aws.neon.tech/pulsedatabase?sslmode=require&channel_binding=require";
+  "postgresql://neondb_owner:npg_QST5hvxfkM8t@ep-red-meadow-axutosai-pooler.c-4.us-east-2.aws.neon.tech/pulsedatabase?sslmode=require&channel_binding=require&connect_timeout=30&statement_cache_size=0";
 
 
 function createClient() {
