@@ -81,23 +81,36 @@ export default async function AdminBookingsPage({
               <tbody>
                 {bookings.map((b) => (
                   <tr key={b.id} className="align-top">
-                    <td>
+                    <td className="max-w-xs">
                       <p className="font-semibold text-slate-200">{b.name}</p>
                       <p className="cell-muted">
                         <a href={`tel:${b.phone}`} className="hover:text-gold-400 transition-colors">
                           {b.phone}
                         </a>
-                        {b.city ? ` · ${b.city}` : ""}
+                        {b.city ? (
+                          <span className="inline-flex items-center gap-1 text-slate-300 font-medium">
+                            {" "}· 📍 {b.city}
+                          </span>
+                        ) : null}
                       </p>
                       <p className="cell-muted mt-0.5 break-all">
                         <a href={`mailto:${b.email}`} className="hover:text-gold-400 transition-colors">
                           {b.email}
                         </a>
                       </p>
+                      {/* Client special requests & look recreations */}
+                      {b.message ? (
+                        <div className="mt-2.5 rounded-lg border border-gold-500/20 bg-gold-950/20 p-2 text-xs text-slate-300">
+                          <span className="font-semibold text-gold-400">Notes / Request: </span>
+                          <span className="italic">{b.message}</span>
+                        </div>
+                      ) : null}
                     </td>
-                    <td className="capitalize">{b.eventType.replace(/-/g, " ")}</td>
-                    <td className="whitespace-nowrap">{b.eventDate}</td>
-                    <td>{b.guests}</td>
+                    <td className="capitalize font-medium text-slate-300">
+                      {b.eventType.replace(/-/g, " ")}
+                    </td>
+                    <td className="whitespace-nowrap font-medium text-slate-300">{b.eventDate}</td>
+                    <td className="font-medium text-slate-300">{b.guests.toLocaleString("en-IN")}</td>
                     <td className="whitespace-nowrap">
                       <span className="cell-muted">{formatDateTime(b.createdAt)}</span>
                     </td>

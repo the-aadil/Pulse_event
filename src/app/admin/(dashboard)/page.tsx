@@ -123,8 +123,13 @@ export default async function AdminDashboard() {
                       {b.name} · {b.eventType.replace(/-/g, " ")}
                     </p>
                     <p className="text-xs text-slate-500">
-                      {formatDateTime(b.createdAt)} · {b.guests} guests
+                      {formatDateTime(b.createdAt)} · {b.guests} guests{b.city ? ` · 📍 ${b.city}` : ""}
                     </p>
+                    {b.message && (
+                      <p className="mt-0.5 line-clamp-1 text-xs text-gold-400/90 italic">
+                        &ldquo;{b.message}&rdquo;
+                      </p>
+                    )}
                   </div>
                   <span
                     className={`shrink-0 rounded-full px-2.5 py-1 text-[11px] font-semibold ${
