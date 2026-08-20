@@ -2,7 +2,7 @@
 
 import { cache } from "react";
 import { headers } from "next/headers";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { z } from "zod";
 import { db } from "@/lib/db";
 import {
@@ -20,13 +20,26 @@ import {
   verifyPassword,
 } from "@/lib/auth";
 
-export type ActionResult = {
+export type ActionResult<T = unknown> = {
   status: "idle" | "success" | "error";
   message?: string;
+  code?: string;
+  data?: T;
   fieldErrors?: Record<string, string>;
   reference?: string;
   retryAfter?: number;
 };
+
+/** Database query timeout wrapper for resilient error boundaries */
+async function withDbTimeout<T>(promise: Promise<T>, timeoutMs = 5000): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const timeoutPromise = new Promise<never>((_, reject) => {
+    timer = setTimeout(() => reject(new Error("Database operation timed out")), timeoutMs);
+  });
+  return Promise.race([promise, timeoutPromise]).finally(() => {
+    if (timer) clearTimeout(timer);
+  });
+}
 
 async function getRateKey(action: string) {
   const h = await headers();
@@ -40,11 +53,17 @@ async function getRateKey(action: string) {
 const isAdmin = cache(async (): Promise<boolean> => {
   const session = await getSession();
   if (!session) return false;
-  const user = await db.adminUser.findUnique({
-    where: { id: session.sub },
-    select: { id: true },
-  });
-  return user !== null;
+  try {
+    const user = await withDbTimeout(
+      db.adminUser.findUnique({
+        where: { id: session.sub },
+        select: { id: true },
+      })
+    );
+    return user !== null;
+  } catch {
+    return false;
+  }
 });
 
 /**
@@ -82,6 +101,7 @@ export async function submitBooking(
   if (!rl.ok) {
     return {
       status: "error",
+      code: "RATE_LIMITED",
       message: "Too many attempts. Please try again in a moment.",
       retryAfter: rl.retryAfter,
     };
@@ -105,6 +125,7 @@ export async function submitBooking(
   if (!parsed.success) {
     return {
       status: "error",
+      code: "VALIDATION_ERROR",
       message: "Please fix the highlighted fields and try again.",
       fieldErrors: flattenZodError(parsed.error),
     };
@@ -115,39 +136,48 @@ export async function submitBooking(
   if (eventDate.getTime() < Date.now() - 24 * 60 * 60 * 1000) {
     return {
       status: "error",
+      code: "INVALID_DATE",
       message: "Please choose a date in the future.",
       fieldErrors: { eventDate: "Please choose a date in the future." },
     };
   }
 
-  const eventExists = await db.eventType.findFirst({
-    where: { slug: data.eventType, active: true },
-    select: { id: true },
-  });
-
-  if (!eventExists) {
-    return {
-      status: "error",
-      message: "Please select a valid event type.",
-      fieldErrors: { eventType: "Please select a valid event type." },
-    };
-  }
-
   try {
-    const booking = await db.booking.create({
-      data: {
-        name: data.name,
-        email: data.email,
-        phone: data.phone,
-        eventType: data.eventType,
-        eventDate: data.eventDate,
-        guests: data.guests,
-        city: data.city || null,
-        message: data.message || null,
-        status: "PENDING",
-      },
-      select: { id: true },
-    });
+    const eventExists = await withDbTimeout(
+      db.eventType.findFirst({
+        where: { slug: data.eventType, active: true },
+        select: { id: true },
+      })
+    );
+
+    if (!eventExists) {
+      return {
+        status: "error",
+        code: "INVALID_EVENT_TYPE",
+        message: "Please select a valid event type.",
+        fieldErrors: { eventType: "Please select a valid event type." },
+      };
+    }
+
+    const booking = await withDbTimeout(
+      db.booking.create({
+        data: {
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          eventType: data.eventType,
+          eventDate: data.eventDate,
+          guests: data.guests,
+          city: data.city || null,
+          message: data.message || null,
+          status: "PENDING",
+        },
+        select: { id: true },
+      })
+    );
+
+    revalidatePath("/admin");
+    revalidatePath("/admin/bookings");
 
     return {
       status: "success",
@@ -158,6 +188,7 @@ export async function submitBooking(
   } catch {
     return {
       status: "error",
+      code: "SERVER_ERROR",
       message:
         "Something went wrong while saving your request. Please try again in a few minutes.",
     };
@@ -172,6 +203,7 @@ export async function submitEnquiry(
   if (!rl.ok) {
     return {
       status: "error",
+      code: "RATE_LIMITED",
       message: "Too many attempts. Please try again in a moment.",
       retryAfter: rl.retryAfter,
     };
@@ -192,6 +224,7 @@ export async function submitEnquiry(
   if (!parsed.success) {
     return {
       status: "error",
+      code: "VALIDATION_ERROR",
       message: "Please fix the highlighted fields and try again.",
       fieldErrors: flattenZodError(parsed.error),
     };
@@ -200,16 +233,21 @@ export async function submitEnquiry(
   const data = parsed.data;
 
   try {
-    await db.enquiry.create({
-      data: {
-        name: data.name,
-        email: data.email,
-        phone: data.phone || null,
-        subject: data.subject || null,
-        message: data.message,
-        status: "NEW",
-      },
-    });
+    await withDbTimeout(
+      db.enquiry.create({
+        data: {
+          name: data.name,
+          email: data.email,
+          phone: data.phone || null,
+          subject: data.subject || null,
+          message: data.message,
+          status: "NEW",
+        },
+      })
+    );
+
+    revalidatePath("/admin");
+    revalidatePath("/admin/enquiries");
 
     return {
       status: "success",
@@ -218,6 +256,7 @@ export async function submitEnquiry(
   } catch {
     return {
       status: "error",
+      code: "SERVER_ERROR",
       message:
         "Something went wrong while sending your message. Please try again in a few minutes.",
     };
@@ -234,6 +273,7 @@ export async function adminLogin(
   if (!rl.ok) {
     return {
       status: "error",
+      code: "RATE_LIMITED",
       message: "Too many login attempts. Please try again in a minute.",
       retryAfter: rl.retryAfter,
     };
@@ -251,51 +291,54 @@ export async function adminLogin(
   if (!parsed.success) {
     return {
       status: "error",
+      code: "VALIDATION_ERROR",
       message: "Please enter a valid email and password (minimum 8 characters).",
       fieldErrors: flattenZodError(parsed.error),
     };
   }
 
-  const user = await db.adminUser.findUnique({
-    where: { email: parsed.data.email },
-    select: { id: true, email: true, name: true, passwordHash: true },
-  });
-
-  if (!user) {
-    console.warn(`[Auth] Login failed: No admin found with email "${parsed.data.email}"`);
-    return {
-      status: "error",
-      message: "Invalid email or password.",
-    };
-  }
-
-  // Try with trimmed password first, then raw password
-  let passwordOk = await verifyPassword(trimmedPassword, user.passwordHash);
-  if (!passwordOk && rawPassword !== trimmedPassword) {
-    passwordOk = await verifyPassword(rawPassword, user.passwordHash);
-  }
-
-  if (!passwordOk) {
-    console.warn(`[Auth] Login failed: Password mismatch for email "${parsed.data.email}"`);
-    return {
-      status: "error",
-      message: "Invalid email or password.",
-    };
-  }
-
   try {
+    const user = await withDbTimeout(
+      db.adminUser.findUnique({
+        where: { email: parsed.data.email },
+        select: { id: true, email: true, name: true, passwordHash: true },
+      })
+    );
+
+    if (!user) {
+      console.warn(`[Auth] Login failed: No admin found with email "${parsed.data.email}"`);
+      return {
+        status: "error",
+        code: "INVALID_CREDENTIALS",
+        message: "Invalid email or password.",
+      };
+    }
+
+    let passwordOk = await verifyPassword(trimmedPassword, user.passwordHash);
+    if (!passwordOk && rawPassword !== trimmedPassword) {
+      passwordOk = await verifyPassword(rawPassword, user.passwordHash);
+    }
+
+    if (!passwordOk) {
+      console.warn(`[Auth] Login failed: Password mismatch for email "${parsed.data.email}"`);
+      return {
+        status: "error",
+        code: "INVALID_CREDENTIALS",
+        message: "Invalid email or password.",
+      };
+    }
+
     await createSession({ id: user.id, email: user.email, name: user.name });
-    console.log(`[Auth] Login successful for user "${user.email}" (${user.name})`);
     return { status: "success", message: "Logged in." };
   } catch (err) {
     console.error(`[Auth] Session creation error:`, err);
     return {
       status: "error",
-      message: "Failed to establish session. Please verify AUTH_SECRET is set.",
+      code: "AUTH_ERROR",
+      message: "Failed to establish session. Please verify database and auth configuration.",
     };
   }
 }
-
 
 export async function adminLogout() {
   await destroySession();
@@ -308,51 +351,66 @@ const bookingStatusValues = z.enum(["PENDING", "CONFIRMED", "CANCELLED", "COMPLE
 
 export async function updateBookingStatus(bookingId: string, status: string) {
   if (!(await isAdmin())) {
-    return { status: "error" as const, message: "Unauthorized." };
+    return { status: "error" as const, code: "UNAUTHORIZED", message: "Unauthorized." };
   }
   if (!isValidId(bookingId)) {
-    return { status: "error" as const, message: "Invalid booking ID." };
+    return { status: "error" as const, code: "INVALID_ID", message: "Invalid booking ID." };
   }
   const parsed = bookingStatusValues.safeParse(status);
   if (!parsed.success) {
-    return { status: "error" as const, message: "Invalid status." };
+    return { status: "error" as const, code: "INVALID_STATUS", message: "Invalid status." };
   }
 
-  const booking = await db.booking.findUnique({
-    where: { id: bookingId },
-    select: { id: true },
-  });
-  if (!booking) {
-    return { status: "error" as const, message: "Booking not found." };
-  }
+  try {
+    const booking = await withDbTimeout(
+      db.booking.findUnique({
+        where: { id: bookingId },
+        select: { id: true },
+      })
+    );
+    if (!booking) {
+      return { status: "error" as const, code: "NOT_FOUND", message: "Booking not found." };
+    }
 
-  await db.booking.update({
-    where: { id: bookingId },
-    data: { status: parsed.data },
-  });
-  revalidatePath("/admin");
-  revalidatePath("/admin/bookings");
-  return { status: "success" as const, message: "Status updated." };
+    await withDbTimeout(
+      db.booking.update({
+        where: { id: bookingId },
+        data: { status: parsed.data },
+      })
+    );
+    revalidatePath("/admin");
+    revalidatePath("/admin/bookings");
+    return { status: "success" as const, message: "Status updated." };
+  } catch {
+    return { status: "error" as const, code: "SERVER_ERROR", message: "Failed to update booking status." };
+  }
 }
 
 export async function deleteBooking(bookingId: string) {
   if (!(await isAdmin())) {
-    return { status: "error" as const, message: "Unauthorized." };
+    return { status: "error" as const, code: "UNAUTHORIZED", message: "Unauthorized." };
   }
   if (!isValidId(bookingId)) {
-    return { status: "error" as const, message: "Invalid booking ID." };
+    return { status: "error" as const, code: "INVALID_ID", message: "Invalid booking ID." };
   }
-  const booking = await db.booking.findUnique({
-    where: { id: bookingId },
-    select: { id: true },
-  });
-  if (!booking) {
-    return { status: "error" as const, message: "Booking not found." };
+
+  try {
+    const booking = await withDbTimeout(
+      db.booking.findUnique({
+        where: { id: bookingId },
+        select: { id: true },
+      })
+    );
+    if (!booking) {
+      return { status: "error" as const, code: "NOT_FOUND", message: "Booking not found." };
+    }
+    await withDbTimeout(db.booking.delete({ where: { id: bookingId } }));
+    revalidatePath("/admin");
+    revalidatePath("/admin/bookings");
+    return { status: "success" as const, message: "Booking deleted." };
+  } catch {
+    return { status: "error" as const, code: "SERVER_ERROR", message: "Failed to delete booking." };
   }
-  await db.booking.delete({ where: { id: bookingId } });
-  revalidatePath("/admin");
-  revalidatePath("/admin/bookings");
-  return { status: "success" as const, message: "Booking deleted." };
 }
 
 // ─── Admin: Enquiry actions ────────────────────────────────────────────────
@@ -361,51 +419,66 @@ const enquiryStatusValues = z.enum(["NEW", "READ", "REPLIED", "ARCHIVED"]);
 
 export async function updateEnquiryStatus(enquiryId: string, status: string) {
   if (!(await isAdmin())) {
-    return { status: "error" as const, message: "Unauthorized." };
+    return { status: "error" as const, code: "UNAUTHORIZED", message: "Unauthorized." };
   }
   if (!isValidId(enquiryId)) {
-    return { status: "error" as const, message: "Invalid enquiry ID." };
+    return { status: "error" as const, code: "INVALID_ID", message: "Invalid enquiry ID." };
   }
   const parsed = enquiryStatusValues.safeParse(status);
   if (!parsed.success) {
-    return { status: "error" as const, message: "Invalid status." };
+    return { status: "error" as const, code: "INVALID_STATUS", message: "Invalid status." };
   }
 
-  const enquiry = await db.enquiry.findUnique({
-    where: { id: enquiryId },
-    select: { id: true },
-  });
-  if (!enquiry) {
-    return { status: "error" as const, message: "Enquiry not found." };
-  }
+  try {
+    const enquiry = await withDbTimeout(
+      db.enquiry.findUnique({
+        where: { id: enquiryId },
+        select: { id: true },
+      })
+    );
+    if (!enquiry) {
+      return { status: "error" as const, code: "NOT_FOUND", message: "Enquiry not found." };
+    }
 
-  await db.enquiry.update({
-    where: { id: enquiryId },
-    data: { status: parsed.data },
-  });
-  revalidatePath("/admin");
-  revalidatePath("/admin/enquiries");
-  return { status: "success" as const, message: "Status updated." };
+    await withDbTimeout(
+      db.enquiry.update({
+        where: { id: enquiryId },
+        data: { status: parsed.data },
+      })
+    );
+    revalidatePath("/admin");
+    revalidatePath("/admin/enquiries");
+    return { status: "success" as const, message: "Status updated." };
+  } catch {
+    return { status: "error" as const, code: "SERVER_ERROR", message: "Failed to update enquiry status." };
+  }
 }
 
 export async function deleteEnquiry(enquiryId: string) {
   if (!(await isAdmin())) {
-    return { status: "error" as const, message: "Unauthorized." };
+    return { status: "error" as const, code: "UNAUTHORIZED", message: "Unauthorized." };
   }
   if (!isValidId(enquiryId)) {
-    return { status: "error" as const, message: "Invalid enquiry ID." };
+    return { status: "error" as const, code: "INVALID_ID", message: "Invalid enquiry ID." };
   }
-  const enquiry = await db.enquiry.findUnique({
-    where: { id: enquiryId },
-    select: { id: true },
-  });
-  if (!enquiry) {
-    return { status: "error" as const, message: "Enquiry not found." };
+
+  try {
+    const enquiry = await withDbTimeout(
+      db.enquiry.findUnique({
+        where: { id: enquiryId },
+        select: { id: true },
+      })
+    );
+    if (!enquiry) {
+      return { status: "error" as const, code: "NOT_FOUND", message: "Enquiry not found." };
+    }
+    await withDbTimeout(db.enquiry.delete({ where: { id: enquiryId } }));
+    revalidatePath("/admin");
+    revalidatePath("/admin/enquiries");
+    return { status: "success" as const, message: "Enquiry deleted." };
+  } catch {
+    return { status: "error" as const, code: "SERVER_ERROR", message: "Failed to delete enquiry." };
   }
-  await db.enquiry.delete({ where: { id: enquiryId } });
-  revalidatePath("/admin");
-  revalidatePath("/admin/enquiries");
-  return { status: "success" as const, message: "Enquiry deleted." };
 }
 
 // ─── Admin: Event actions ──────────────────────────────────────────────────
@@ -415,7 +488,7 @@ export async function createEvent(
   formData: FormData
 ): Promise<ActionResult> {
   if (!(await isAdmin())) {
-    return { status: "error", message: "Unauthorized." };
+    return { status: "error", code: "UNAUTHORIZED", message: "Unauthorized." };
   }
   const parsed = adminEventSchema.safeParse({
     slug: getFormString(formData, "slug"),
@@ -433,32 +506,42 @@ export async function createEvent(
   if (!parsed.success) {
     return {
       status: "error",
+      code: "VALIDATION_ERROR",
       message: "Please fix the highlighted fields and try again.",
       fieldErrors: flattenZodError(parsed.error),
     };
   }
 
-  const slugExists = await db.eventType.findUnique({
-    where: { slug: parsed.data.slug },
-    select: { id: true },
-  });
-  if (slugExists) {
-    return {
-      status: "error",
-      message: "An event with this slug already exists.",
-      fieldErrors: { slug: "This slug is already in use." },
-    };
-  }
-
   try {
-    await db.eventType.create({ data: parsed.data });
+    const slugExists = await withDbTimeout(
+      db.eventType.findUnique({
+        where: { slug: parsed.data.slug },
+        select: { id: true },
+      })
+    );
+    if (slugExists) {
+      return {
+        status: "error",
+        code: "SLUG_EXISTS",
+        message: "An event with this slug already exists.",
+        fieldErrors: { slug: "This slug is already in use." },
+      };
+    }
+
+    await withDbTimeout(db.eventType.create({ data: parsed.data }));
+
+    revalidateTag("events", "layout");
+    revalidateTag("featured-events", "layout");
+    revalidateTag(`event-${parsed.data.slug}`, "layout");
     revalidatePath("/");
     revalidatePath("/events");
     revalidatePath("/admin/events");
+
     return { status: "success", message: "Event created." };
   } catch {
     return {
       status: "error",
+      code: "SERVER_ERROR",
       message: "Something went wrong while creating the event. Please try again.",
     };
   }
@@ -470,10 +553,10 @@ export async function updateEvent(
   formData: FormData
 ): Promise<ActionResult> {
   if (!(await isAdmin())) {
-    return { status: "error", message: "Unauthorized." };
+    return { status: "error", code: "UNAUTHORIZED", message: "Unauthorized." };
   }
   if (!isValidId(eventId)) {
-    return { status: "error", message: "Invalid event ID." };
+    return { status: "error", code: "INVALID_ID", message: "Invalid event ID." };
   }
   const parsed = adminEventSchema.safeParse({
     slug: getFormString(formData, "slug"),
@@ -491,44 +574,59 @@ export async function updateEvent(
   if (!parsed.success) {
     return {
       status: "error",
+      code: "VALIDATION_ERROR",
       message: "Please fix the highlighted fields and try again.",
       fieldErrors: flattenZodError(parsed.error),
     };
   }
 
-  const existing = await db.eventType.findUnique({
-    where: { id: eventId },
-    select: { id: true },
-  });
-  if (!existing) {
-    return { status: "error", message: "Event not found." };
-  }
-
-  const slugConflict = await db.eventType.findFirst({
-    where: { slug: parsed.data.slug, NOT: { id: eventId } },
-    select: { id: true },
-  });
-  if (slugConflict) {
-    return {
-      status: "error",
-      message: "Another event is already using this slug.",
-      fieldErrors: { slug: "This slug is already in use." },
-    };
-  }
-
   try {
-    await db.eventType.update({
-      where: { id: eventId },
-      data: parsed.data,
-    });
+    const existing = await withDbTimeout(
+      db.eventType.findUnique({
+        where: { id: eventId },
+        select: { id: true, slug: true },
+      })
+    );
+    if (!existing) {
+      return { status: "error", code: "NOT_FOUND", message: "Event not found." };
+    }
+
+    const slugConflict = await withDbTimeout(
+      db.eventType.findFirst({
+        where: { slug: parsed.data.slug, NOT: { id: eventId } },
+        select: { id: true },
+      })
+    );
+    if (slugConflict) {
+      return {
+        status: "error",
+        code: "SLUG_EXISTS",
+        message: "Another event is already using this slug.",
+        fieldErrors: { slug: "This slug is already in use." },
+      };
+    }
+
+    await withDbTimeout(
+      db.eventType.update({
+        where: { id: eventId },
+        data: parsed.data,
+      })
+    );
+
+    revalidateTag("events", "layout");
+    revalidateTag("featured-events", "layout");
+    revalidateTag(`event-${existing.slug}`, "layout");
+    revalidateTag(`event-${parsed.data.slug}`, "layout");
     revalidatePath("/");
     revalidatePath("/events");
     revalidatePath("/events/" + parsed.data.slug);
     revalidatePath("/admin/events");
+
     return { status: "success", message: "Event updated." };
   } catch {
     return {
       status: "error",
+      code: "SERVER_ERROR",
       message: "Something went wrong while saving the event. Please try again.",
     };
   }
@@ -536,21 +634,34 @@ export async function updateEvent(
 
 export async function deleteEvent(eventId: string) {
   if (!(await isAdmin())) {
-    return { status: "error" as const, message: "Unauthorized." };
+    return { status: "error" as const, code: "UNAUTHORIZED", message: "Unauthorized." };
   }
   if (!isValidId(eventId)) {
-    return { status: "error" as const, message: "Invalid event ID." };
+    return { status: "error" as const, code: "INVALID_ID", message: "Invalid event ID." };
   }
-  const event = await db.eventType.findUnique({
-    where: { id: eventId },
-    select: { id: true },
-  });
-  if (!event) {
-    return { status: "error" as const, message: "Event not found." };
+
+  try {
+    const event = await withDbTimeout(
+      db.eventType.findUnique({
+        where: { id: eventId },
+        select: { id: true, slug: true },
+      })
+    );
+    if (!event) {
+      return { status: "error" as const, code: "NOT_FOUND", message: "Event not found." };
+    }
+
+    await withDbTimeout(db.eventType.delete({ where: { id: eventId } }));
+
+    revalidateTag("events", "layout");
+    revalidateTag("featured-events", "layout");
+    revalidateTag(`event-${event.slug}`, "layout");
+    revalidatePath("/");
+    revalidatePath("/events");
+    revalidatePath("/admin/events");
+
+    return { status: "success" as const, message: "Event deleted." };
+  } catch {
+    return { status: "error" as const, code: "SERVER_ERROR", message: "Failed to delete event." };
   }
-  await db.eventType.delete({ where: { id: eventId } });
-  revalidatePath("/");
-  revalidatePath("/events");
-  revalidatePath("/admin/events");
-  return { status: "success" as const, message: "Event deleted." };
 }

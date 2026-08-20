@@ -18,6 +18,9 @@ export function Field({
   required?: boolean;
   dark?: boolean;
 }) {
+  const errorId = htmlFor ? `${htmlFor}-error` : undefined;
+  const hintId = htmlFor ? `${htmlFor}-hint` : undefined;
+
   return (
     <div>
       <label
@@ -31,7 +34,7 @@ export function Field({
         {required && (
           <span
             className={cn("ml-0.5", dark ? "text-wine-400" : "text-red-500")}
-            aria-hidden
+            aria-hidden="true"
           >
             *
           </span>
@@ -40,6 +43,8 @@ export function Field({
       {children}
       {error ? (
         <p
+          id={errorId}
+          role="alert"
           className={cn(
             "mt-1.5 flex items-center gap-1.5 text-xs font-medium",
             dark ? "text-wine-300" : "text-red-600"
@@ -50,6 +55,7 @@ export function Field({
         </p>
       ) : hint ? (
         <p
+          id={hintId}
           className={cn(
             "mt-1.5 text-xs",
             dark ? "text-slate-400" : "text-slate-500"
@@ -152,7 +158,7 @@ export function SubmitButton({
       type="submit"
       disabled={pending}
       aria-busy={pending}
-      className={cn("btn", className ?? "btn-dark w-full")}
+      className={cn("btn", className ?? "btn-dark w-full cursor-pointer")}
     >
       {pending ? (
         <>

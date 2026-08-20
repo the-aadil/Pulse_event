@@ -135,11 +135,20 @@ export function CountUp({
     const barEl = barRef.current;
     if (!root || !numEl) return;
 
-    const reduceMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+    const isLowPerf =
+      typeof window !== "undefined" &&
+      (document.documentElement.classList.contains("low-perf") ||
+        document.documentElement.classList.contains("reduce-motion") ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches);
 
-    const duration = reduceMotion ? 500 :
+    if (isLowPerf) {
+      const final = target.toFixed(decimals) + suffix;
+      numEl.textContent = final;
+      if (barEl) barEl.style.transform = "scaleX(1)";
+      return;
+    }
+
+    const duration =
       decimals > 0 ? 1200 :
       target <= 20 ? 800 :
       target <= 100 ? 1100 : 1400;

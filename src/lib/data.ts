@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import { db } from "@/lib/db";
 import type { BookingStatus, EnquiryStatus } from "@/generated/prisma/enums";
 
@@ -84,47 +85,84 @@ const FALLBACK_EVENTS = [
   },
 ];
 
-export async function getActiveEvents() {
-  try {
-    return await db.eventType.findMany({
-      where: { active: true },
-      orderBy: [{ sortOrder: "asc" }, { name: "asc" }],
-    });
-  } catch (error) {
-    console.warn("[Data] Failed to fetch active events from database, using fallback data:", error);
-    return FALLBACK_EVENTS.filter((e) => e.active);
-  }
+/** Database query timeout wrapper for resilient error boundaries */
+async function withDbTimeout<T>(promise: Promise<T>, timeoutMs = 4000): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const timeoutPromise = new Promise<never>((_, reject) => {
+    timer = setTimeout(() => reject(new Error("Database query timed out")), timeoutMs);
+  });
+  return Promise.race([promise, timeoutPromise]).finally(() => {
+    if (timer) clearTimeout(timer);
+  });
 }
 
-export async function getFeaturedEvents() {
-  try {
-    return await db.eventType.findMany({
-      where: { active: true, featured: true },
-      orderBy: [{ sortOrder: "asc" }, { name: "asc" }],
-    });
-  } catch (error) {
-    console.warn("[Data] Failed to fetch featured events from database, using fallback data:", error);
-    return FALLBACK_EVENTS.filter((e) => e.active && e.featured);
-  }
-}
+// ── Cached public data accessors with tag-based invalidation ───────
+
+export const getActiveEvents = unstable_cache(
+  async () => {
+    try {
+      return await withDbTimeout(
+        db.eventType.findMany({
+          where: { active: true },
+          orderBy: [{ sortOrder: "asc" }, { name: "asc" }],
+        })
+      );
+    } catch (error) {
+      console.warn("[Data] Failed to fetch active events from database, using fallback data:", error);
+      return FALLBACK_EVENTS.filter((e) => e.active);
+    }
+  },
+  ["active-events-cache"],
+  { revalidate: 300, tags: ["events"] }
+);
+
+export const getFeaturedEvents = unstable_cache(
+  async () => {
+    try {
+      return await withDbTimeout(
+        db.eventType.findMany({
+          where: { active: true, featured: true },
+          orderBy: [{ sortOrder: "asc" }, { name: "asc" }],
+        })
+      );
+    } catch (error) {
+      console.warn("[Data] Failed to fetch featured events from database, using fallback data:", error);
+      return FALLBACK_EVENTS.filter((e) => e.active && e.featured);
+    }
+  },
+  ["featured-events-cache"],
+  { revalidate: 300, tags: ["events", "featured-events"] }
+);
 
 export async function getEventBySlug(slug: string) {
-  try {
-    const event = await db.eventType.findFirst({
-      where: { slug, active: true },
-    });
-    if (event) return event;
-  } catch (error) {
-    console.warn(`[Data] Failed to fetch event by slug "${slug}", using fallback:`, error);
-  }
-  return FALLBACK_EVENTS.find((e) => e.slug === slug && e.active) ?? null;
+  const cachedFn = unstable_cache(
+    async (s: string) => {
+      try {
+        const event = await withDbTimeout(
+          db.eventType.findFirst({
+            where: { slug: s, active: true },
+          })
+        );
+        if (event) return event;
+      } catch (error) {
+        console.warn(`[Data] Failed to fetch event by slug "${s}", using fallback:`, error);
+      }
+      return FALLBACK_EVENTS.find((e) => e.slug === s && e.active) ?? null;
+    },
+    [`event-slug-${slug}`],
+    { revalidate: 300, tags: ["events", `event-${slug}`] }
+  );
+
+  return cachedFn(slug);
 }
 
 export async function getAdminEvents() {
   try {
-    return await db.eventType.findMany({
-      orderBy: [{ sortOrder: "asc" }, { name: "asc" }],
-    });
+    return await withDbTimeout(
+      db.eventType.findMany({
+        orderBy: [{ sortOrder: "asc" }, { name: "asc" }],
+      })
+    );
   } catch (error) {
     console.warn("[Data] Failed to fetch admin events from database, using fallback:", error);
     return FALLBACK_EVENTS;
@@ -133,7 +171,9 @@ export async function getAdminEvents() {
 
 export async function getEventById(id: string) {
   try {
-    const event = await db.eventType.findUnique({ where: { id } });
+    const event = await withDbTimeout(
+      db.eventType.findUnique({ where: { id } })
+    );
     if (event) return event;
   } catch (error) {
     console.warn(`[Data] Failed to fetch event by ID "${id}", using fallback:`, error);
@@ -143,10 +183,12 @@ export async function getEventById(id: string) {
 
 export async function getRecentBookings(limit = 8) {
   try {
-    return await db.booking.findMany({
-      orderBy: { createdAt: "desc" },
-      take: limit,
-    });
+    return await withDbTimeout(
+      db.booking.findMany({
+        orderBy: { createdAt: "desc" },
+        take: limit,
+      })
+    );
   } catch (error) {
     console.warn("[Data] Failed to fetch recent bookings:", error);
     return [];
@@ -155,10 +197,12 @@ export async function getRecentBookings(limit = 8) {
 
 export async function getBookingsByStatus(status: BookingStatus | "ALL") {
   try {
-    return await db.booking.findMany({
-      where: status === "ALL" ? {} : { status },
-      orderBy: { createdAt: "desc" },
-    });
+    return await withDbTimeout(
+      db.booking.findMany({
+        where: status === "ALL" ? {} : { status },
+        orderBy: { createdAt: "desc" },
+      })
+    );
   } catch (error) {
     console.warn("[Data] Failed to fetch bookings by status:", error);
     return [];
@@ -167,10 +211,12 @@ export async function getBookingsByStatus(status: BookingStatus | "ALL") {
 
 export async function getEnquiries(status: EnquiryStatus | "ALL" = "ALL") {
   try {
-    return await db.enquiry.findMany({
-      where: status === "ALL" ? {} : { status },
-      orderBy: { createdAt: "desc" },
-    });
+    return await withDbTimeout(
+      db.enquiry.findMany({
+        where: status === "ALL" ? {} : { status },
+        orderBy: { createdAt: "desc" },
+      })
+    );
   } catch (error) {
     console.warn("[Data] Failed to fetch enquiries:", error);
     return [];
@@ -180,14 +226,16 @@ export async function getEnquiries(status: EnquiryStatus | "ALL" = "ALL") {
 export async function getDashboardStats() {
   try {
     const [totalBookings, pendingBookings, confirmedBookings, totalEnquiries, unreadEnquiries, totalGuests] =
-      await Promise.all([
-        db.booking.count(),
-        db.booking.count({ where: { status: "PENDING" } }),
-        db.booking.count({ where: { status: "CONFIRMED" } }),
-        db.enquiry.count(),
-        db.enquiry.count({ where: { status: "NEW" } }),
-        db.booking.aggregate({ _sum: { guests: true } }),
-      ]);
+      await withDbTimeout(
+        Promise.all([
+          db.booking.count(),
+          db.booking.count({ where: { status: "PENDING" } }),
+          db.booking.count({ where: { status: "CONFIRMED" } }),
+          db.enquiry.count(),
+          db.enquiry.count({ where: { status: "NEW" } }),
+          db.booking.aggregate({ _sum: { guests: true } }),
+        ])
+      );
 
     return {
       totalBookings,

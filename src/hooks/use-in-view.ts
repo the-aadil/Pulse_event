@@ -14,9 +14,7 @@ export type UseInViewOptions = {
 // ── Shared IntersectionObserver pool ───────────────────────────────
 // One observer per (threshold + rootMargin) key to avoid creating
 // hundreds of observers when many <Reveal> / <Stagger> elements are
-// on the same page.  Entries are registered/deregistered via a Map
-// keyed by the element reference, and the callback maps back to the
-// element so no closures are captured per-element.
+// on the same page.
 
 type Callbacks = {
   onEnter: () => void;
@@ -55,11 +53,12 @@ function getObserver(
 }
 
 /**
- * Modular scroll-intersection hook.  Uses a shared IntersectionObserver
+ * Modular scroll-intersection hook. Uses a shared IntersectionObserver
  * pool so the total number of OS observers stays small regardless of how
  * many Reveal / Stagger elements exist on the page.
  *
- * Falls back gracefully when IntersectionObserver is missing.
+ * Automatically bypasses on low-end device constraints or reduced motion
+ * to eliminate observer scheduling overhead and prevent dropped frames.
  */
 export function useInView<T extends HTMLElement = HTMLElement>({
   threshold = 0.05,
@@ -73,9 +72,16 @@ export function useInView<T extends HTMLElement = HTMLElement>({
     const el = ref.current;
     if (!el) return;
 
-    if (typeof IntersectionObserver === "undefined") {
-      const id = requestAnimationFrame(() => setInView(true));
-      return () => cancelAnimationFrame(id);
+    // Fast-path bypass: low-end devices or reduced motion need zero observer overhead
+    if (
+      typeof window !== "undefined" &&
+      (document.documentElement.classList.contains("low-perf") ||
+        document.documentElement.classList.contains("reduce-motion") ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+        typeof IntersectionObserver === "undefined")
+    ) {
+      setInView(true);
+      return;
     }
 
     const observer = getObserver(threshold, rootMargin);

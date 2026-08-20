@@ -12,7 +12,7 @@ export function GalleryPreview() {
     ...galleryItems.filter((item) => item.category === "Games").slice(0, 2),
   ];
   return (
-    <section className="bg-[#0b0c10] py-16 text-cream sm:py-24">
+    <section className="cv-auto bg-[#0b0c10] py-16 text-cream sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal variant="up">
           <SectionHeading

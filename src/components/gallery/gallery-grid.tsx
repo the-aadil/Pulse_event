@@ -1,7 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useLayoutEffect, useMemo, useState, useRef } from "react";
+import { useCallback, useLayoutEffect, useMemo, useState, useRef, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -13,11 +14,15 @@ import {
 import { cn } from "@/lib/utils";
 import { Stagger } from "@/components/motion/stagger";
 import {
-  CloseIcon,
   ArrowRightIcon,
   ArrowLeftIcon,
   CalendarIcon,
 } from "@/components/icons";
+
+const GalleryLightbox = dynamic(
+  () => import("@/components/gallery/gallery-lightbox").then((mod) => mod.GalleryLightbox),
+  { ssr: false }
+);
 
 const VISIBLE_PAGES = 5;
 
@@ -54,7 +59,7 @@ function GalleryCard({
         type="button"
         onClick={onOpen}
         aria-label={`View ${item.alt} full size`}
-        className="block w-full"
+        className="block w-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-gold-400"
       >
         <Image
           src={item.src}
@@ -63,7 +68,7 @@ function GalleryCard({
           height={item.height}
           priority={priority}
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-          className="h-auto w-full object-cover"
+          className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </button>
       <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0b0c10]/70 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
@@ -90,21 +95,25 @@ function PageJumpDropdown({
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
-        setOpen(false);
-      }
-    };
-    if (open) document.addEventListener("mousedown", handleClick);
+  const handleClick = useCallback((e: MouseEvent) => {
+    if (ref.current && !ref.current.contains(e.target as Node)) {
+      setOpen(false);
+    }
+  }, []);
+
+  useLayoutEffect(() => {
+    if (open) {
+      document.addEventListener("mousedown", handleClick);
+    }
     return () => document.removeEventListener("mousedown", handleClick);
-  }, [open]);
+  }, [open, handleClick]);
 
   return (
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen(!open)}
         aria-label="Jump to page"
+        aria-expanded={open}
         className="inline-flex h-9 items-center justify-center gap-1.5 rounded-md border border-gold-500/30 bg-[#12141c] px-3 text-sm font-medium text-slate-400 transition-colors hover:border-gold-400 hover:text-slate-100 focus:border-gold-400 focus:outline-none focus:ring-1 focus:ring-gold-400"
       >
         Page {currentPage}
@@ -119,6 +128,7 @@ function PageJumpDropdown({
           strokeLinecap="round"
           strokeLinejoin="round"
           className={cn("transition-transform duration-200", open && "rotate-180")}
+          aria-hidden="true"
         >
           <path d="m6 9 6 6 6-6" />
         </svg>
@@ -126,7 +136,6 @@ function PageJumpDropdown({
 
       {open && (
         <div className="absolute bottom-full mb-1 right-0 z-50 w-full min-w-[5rem] overflow-hidden rounded-md border border-gold-500/30 bg-[#12141c] shadow-xl">
-          {/* max-h-[128px] holds exactly 4 items at ~32px each */}
           <ul className="max-h-[128px] overflow-y-auto py-1">
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
               <li key={page}>
@@ -157,12 +166,13 @@ function PaginationControls({
   currentPage,
   totalPages,
   category,
+  onPageChange,
 }: {
   currentPage: number;
   totalPages: number;
   category: string | null;
+  onPageChange: (page: number) => void;
 }) {
-  const router = useRouter();
   const start = Math.max(1, currentPage - Math.floor(VISIBLE_PAGES / 2));
   const end = Math.min(totalPages, start + VISIBLE_PAGES - 1);
   const pages = Array.from({ length: end - start + 1 }, (_, i) => start + i);
@@ -170,7 +180,7 @@ function PaginationControls({
   const jumpToPage = (value: string) => {
     const page = Number(value);
     if (!Number.isNaN(page)) {
-      router.push(galleryUrl(category, page));
+      onPageChange(page);
     }
   };
 
@@ -182,50 +192,55 @@ function PaginationControls({
       className="w-full flex items-center justify-center"
     >
       <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
-        <Link
-          href={galleryUrl(category, Math.max(1, currentPage - 1))}
+        <button
+          type="button"
+          onClick={() => onPageChange(Math.max(1, currentPage - 1))}
+          disabled={currentPage === 1}
           aria-label="Previous page"
           className={cn(
             "inline-flex h-9 min-w-9 items-center justify-center rounded-md border px-3 text-sm font-medium transition-colors",
             currentPage === 1
-              ? "cursor-not-allowed border-gold-500/20 bg-gold-950/40 text-slate-400"
+              ? "cursor-not-allowed border-gold-500/20 bg-gold-950/40 text-slate-500 opacity-60"
               : "border-gold-500/30 bg-[#12141c] text-slate-100 hover:border-gold-400 hover:bg-gold-500/15"
           )}
         >
           <ArrowLeftIcon className="h-4 w-4" />
-        </Link>
+        </button>
 
         {pages.map((page) => {
           const active = page === currentPage;
           return (
-            <Link
+            <button
               key={page}
-              href={galleryUrl(category, page)}
+              type="button"
+              onClick={() => onPageChange(page)}
               aria-current={active ? "page" : undefined}
               className={cn(
                 "inline-flex h-9 min-w-9 items-center justify-center rounded-md border px-3 text-sm font-medium transition-colors",
                 active
-                  ? "border-gold-400 bg-gradient-to-r from-gold-500 to-amber-400 text-slate-950 hover:from-gold-400 hover:to-amber-300"
+                  ? "border-gold-400 bg-gradient-to-r from-gold-500 to-amber-400 text-slate-950 hover:from-gold-400 hover:to-amber-300 font-semibold"
                   : "border-gold-500/20 bg-[#12141c] text-slate-400 hover:border-gold-400 hover:text-slate-100"
               )}
             >
               {page}
-            </Link>
+            </button>
           );
         })}
 
-        <Link
-          href={galleryUrl(category, Math.min(totalPages, currentPage + 1))}
+        <button
+          type="button"
+          onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
+          disabled={currentPage === totalPages}
           aria-label="Next page"
           className={cn(
             "inline-flex h-9 min-w-9 items-center justify-center rounded-md border px-3 text-sm font-medium transition-colors",
             currentPage === totalPages
-              ? "cursor-not-allowed border-gold-500/20 bg-gold-950/40 text-slate-400"
+              ? "cursor-not-allowed border-gold-500/20 bg-gold-950/40 text-slate-500 opacity-60"
               : "border-gold-500/30 bg-[#12141c] text-slate-100 hover:border-gold-400 hover:bg-gold-500/15"
           )}
         >
           <ArrowRightIcon className="h-4 w-4" />
-        </Link>
+        </button>
 
         <PageJumpDropdown
           currentPage={currentPage}
@@ -249,6 +264,7 @@ export function GalleryGrid({
   const [category, setCategory] = useState<string | null>(initialCategory);
   const [page, setPage] = useState(initialPage);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [, startTransition] = useTransition();
   const router = useRouter();
 
   useLayoutEffect(() => {
@@ -271,10 +287,20 @@ export function GalleryGrid({
 
   const selectCategory = (next: string) => {
     const resolved = next === "All" ? null : next;
-    setCategory(resolved);
-    setPage(1);
-    setLightboxIndex(null);
-    router.replace(galleryUrl(resolved, 1));
+    startTransition(() => {
+      setCategory(resolved);
+      setPage(1);
+      setLightboxIndex(null);
+      router.replace(galleryUrl(resolved, 1), { scroll: false });
+    });
+  };
+
+  const handlePageChange = (nextPage: number) => {
+    startTransition(() => {
+      setPage(nextPage);
+      setLightboxIndex(null);
+      router.push(galleryUrl(category, nextPage), { scroll: false });
+    });
   };
 
   const closeLightbox = useCallback(() => setLightboxIndex(null), []);
@@ -292,21 +318,6 @@ export function GalleryGrid({
       ),
     [pageItems.length]
   );
-
-  useEffect(() => {
-    if (lightboxIndex === null) return;
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") closeLightbox();
-      if (event.key === "ArrowRight") nextImage();
-      if (event.key === "ArrowLeft") prevImage();
-    };
-    document.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
-  }, [lightboxIndex, closeLightbox, nextImage, prevImage]);
 
   const lightboxItem =
     lightboxIndex !== null ? pageItems[lightboxIndex] : null;
@@ -328,9 +339,9 @@ export function GalleryGrid({
               onClick={() => selectCategory(label)}
               aria-pressed={active}
               className={cn(
-                "rounded-full border px-4 py-2 text-sm font-medium transition-colors",
+                "rounded-full border px-4 py-2 text-sm font-medium transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-gold-400",
                 active
-                  ? "border-gold-400 bg-gradient-to-r from-gold-500 to-amber-400 text-slate-950 shadow-sm"
+                  ? "border-gold-400 bg-gradient-to-r from-gold-500 to-amber-400 text-slate-950 shadow-sm font-semibold"
                   : "border-gold-500/20 bg-[#12141c] text-slate-400 hover:border-gold-400 hover:text-slate-100"
               )}
             >
@@ -361,6 +372,7 @@ export function GalleryGrid({
             currentPage={page}
             totalPages={totalPages}
             category={category}
+            onPageChange={handlePageChange}
           />
         </div>
       ) : (
@@ -370,62 +382,14 @@ export function GalleryGrid({
       )}
 
       {lightboxItem && lightboxIndex !== null && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label={lightboxItem.alt}
-          className="fixed inset-0 z-[60] flex flex-col overflow-y-auto bg-[#0b0c10]/95 p-4 backdrop-blur-sm sm:p-8"
-        >
-          <div className="flex items-center justify-between">
-            <p className="text-sm text-cream/70">
-              <span className="font-semibold text-cream">
-                {lightboxItem.category}
-              </span>{" "}
-              · {lightboxIndex + 1} / {pageItems.length}
-            </p>
-            <button
-              type="button"
-              onClick={closeLightbox}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-cream/20 text-cream transition-colors hover:border-gold-400 hover:text-gold-400"
-              aria-label="Close image viewer"
-            >
-              <CloseIcon className="h-5 w-5" />
-            </button>
-          </div>
-
-          <div className="relative flex flex-1 items-center justify-center py-4">
-            <button
-              type="button"
-              onClick={prevImage}
-              className="absolute left-0 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border border-cream/20 bg-[#0b0c10]/40 text-cream transition-colors hover:border-gold-400 hover:text-gold-400"
-              aria-label="Previous image"
-            >
-              <ArrowLeftIcon className="h-5 w-5" />
-            </button>
-            <div className="relative h-[70vh] h-[70dvh] w-full max-w-4xl">
-              <Image
-                src={lightboxItem.src}
-                alt={lightboxItem.alt}
-                fill
-                sizes="(min-width: 1024px) 80vw, 100vw"
-                className="object-contain"
-                priority
-              />
-            </div>
-            <button
-              type="button"
-              onClick={nextImage}
-              className="absolute right-0 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border border-cream/20 bg-[#0b0c10]/40 text-cream transition-colors hover:border-gold-400 hover:text-gold-400"
-              aria-label="Next image"
-            >
-              <ArrowRightIcon className="h-5 w-5" />
-            </button>
-          </div>
-
-          <p className="mx-auto max-w-2xl text-center text-sm text-cream/70">
-            {lightboxItem.category}
-          </p>
-        </div>
+        <GalleryLightbox
+          item={lightboxItem}
+          index={lightboxIndex}
+          total={pageItems.length}
+          onClose={closeLightbox}
+          onNext={nextImage}
+          onPrev={prevImage}
+        />
       )}
     </div>
   );

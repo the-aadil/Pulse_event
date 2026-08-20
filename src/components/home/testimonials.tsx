@@ -25,7 +25,7 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="bg-[#0b0c10] py-16 sm:py-24">
+    <section className="cv-auto bg-[#0b0c10] py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal variant="up">
           <SectionHeading

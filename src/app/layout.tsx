@@ -3,6 +3,8 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { SITE_CONFIG } from "@/lib/config";
 import { ScrollOptimizer } from "@/components/site/scroll-optimizer";
+import { RouteScrollTop } from "@/components/site/route-scroll-top";
+import { NavigationProgress } from "@/components/site/navigation-progress";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -82,8 +84,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-scroll-behavior="smooth"
-      className={`${inter.variable} ${playfair.variable} h-full antialiased`}
+      className={`${inter.variable} ${playfair.variable} antialiased`}
       suppressHydrationWarning
     >
       <head>
@@ -92,8 +93,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-dvh flex flex-col">
         <ScrollOptimizer />
+        <RouteScrollTop />
+        <NavigationProgress />
         {children}
       </body>
     </html>

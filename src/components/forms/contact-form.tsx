@@ -28,7 +28,7 @@ export function ContactForm() {
         className="hidden"
         tabIndex={-1}
         autoComplete="off"
-        aria-hidden
+        aria-hidden="true"
       />
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
@@ -41,6 +41,7 @@ export function ContactForm() {
             required
             error={!!errors.name}
             aria-invalid={!!errors.name}
+            aria-describedby={errors.name ? "ct-name-error" : undefined}
           />
         </Field>
         <Field label="Phone" htmlFor="ct-phone" error={errors.phone} dark>
@@ -52,6 +53,8 @@ export function ContactForm() {
             autoComplete="tel"
             inputMode="tel"
             error={!!errors.phone}
+            aria-invalid={!!errors.phone}
+            aria-describedby={errors.phone ? "ct-phone-error" : undefined}
           />
         </Field>
       </div>
@@ -66,6 +69,7 @@ export function ContactForm() {
           required
           error={!!errors.email}
           aria-invalid={!!errors.email}
+          aria-describedby={errors.email ? "ct-email-error" : undefined}
         />
       </Field>
 
@@ -74,6 +78,7 @@ export function ContactForm() {
           id="ct-subject"
           name="subject"
           placeholder="What is this about? (optional)"
+          aria-describedby={errors.subject ? "ct-subject-error" : undefined}
         />
       </Field>
 
@@ -87,6 +92,7 @@ export function ContactForm() {
           required
           error={!!errors.message}
           aria-invalid={!!errors.message}
+          aria-describedby={errors.message ? "ct-message-error" : undefined}
         />
       </Field>
 

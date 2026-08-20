@@ -212,8 +212,7 @@ textarea,
   will-change: opacity, transform;
   transition:
     opacity var(--reveal-duration) var(--reveal-ease),
-    transform var(--reveal-duration) var(--reveal-ease),
-    filter var(--reveal-duration) var(--reveal-ease);
+    transform var(--reveal-duration) var(--reveal-ease);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
@@ -242,7 +241,7 @@ textarea,
 }
 
 .js .reveal-hidden.reveal-blur {
-  filter: blur(10px);
+  opacity: 0;
 }
 
 .js .reveal-hidden.reveal-fade {
@@ -252,7 +251,6 @@ textarea,
 .reveal-visible {
   opacity: 1;
   transform: none;
-  filter: blur(0);
 }
 
 /* ============================================================
@@ -636,3 +634,102 @@ body.is-scrolling .animate-text-glow,
 body.is-scrolling .btn-shine::after {
   animation-play-state: paused !important;
 }
+
+/* ============================================================
+   Offscreen Render Optimization: content-visibility
+   Skips rendering and painting work for offscreen content until
+   scrolled into view.
+   ============================================================ */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 400px;
+}
+
+.cv-card {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 320px;
+}
+
+/* ============================================================
+   Adaptive Hardware Throttling: Low-tier device & reduced motion
+   ============================================================ */
+
+/* Kill floating particles on low-end devices */
+html.low-perf .animate-float-particle,
+html.reduce-motion .animate-float-particle {
+  display: none !important;
+}
+
+/* Kill expensive keyframe animations on low-end devices */
+html.low-perf .animate-glow,
+html.low-perf .animate-drift,
+html.low-perf .animate-ken-burns,
+html.low-perf .animate-text-glow {
+  animation: none !important;
+  text-shadow: none !important;
+}
+
+html.low-perf .btn-shine::after,
+html.reduce-motion .btn-shine::after {
+  display: none !important;
+}
+
+html.reduce-motion .animate-glow,
+html.reduce-motion .animate-drift,
+html.reduce-motion .animate-ken-burns,
+html.reduce-motion .animate-text-glow {
+  animation: none !important;
+  text-shadow: none !important;
+}
+
+/* Disable scroll-reveal transitions on low-end devices */
+html.low-perf .reveal,
+html.low-perf .reveal-item,
+html.low-perf .card-lift,
+html.reduce-motion .reveal,
+html.reduce-motion .reveal-item,
+html.reduce-motion .card-lift {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  transition: none !important;
+}
+
+/* OS-level reduced motion media query fallback */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-particle {
+    display: none !important;
+  }
+
+  .animate-glow,
+  .animate-drift,
+  .animate-ken-burns,
+  .animate-text-glow {
+    animation: none !important;
+    text-shadow: none !important;
+  }
+
+  .btn-shine::after {
+    display: none !important;
+  }
+
+  .reveal,
+  .reveal-item,
+  .card-lift {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+}
+
+/* Fallback for expensive backdrop-filter on low-tier mobile devices */
+html.low-perf header,
+html.low-perf .backdrop-blur-2xl,
+html.low-perf .backdrop-blur-md,
+html.low-perf .backdrop-blur-sm {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background-color: #08090c !important;
+}
+

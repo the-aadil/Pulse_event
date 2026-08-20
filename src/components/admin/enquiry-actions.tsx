@@ -1,6 +1,6 @@
 "use client";
 
-import { useTransition, useState, useCallback } from "react";
+import { useTransition, useState, useCallback, useOptimistic } from "react";
 import { useRouter } from "next/navigation";
 import { updateEnquiryStatus, deleteEnquiry } from "@/app/actions";
 import { TrashIcon } from "@/components/icons";
@@ -26,14 +26,17 @@ export function EnquiryRowActions({
   const [pending, startTransition] = useTransition();
   const [message, setMessage] = useState<string | null>(null);
   const [isError, setIsError] = useState(false);
-  const [selected, setSelected] = useState(status);
+  const [optimisticStatus, setOptimisticStatus] = useOptimistic(
+    status,
+    (_current, newStatus: string) => newStatus
+  );
 
   const onStatusChange = useCallback(
     (value: string) => {
-      setSelected(value);
       setMessage(null);
       setIsError(false);
       startTransition(async () => {
+        setOptimisticStatus(value);
         const result = await updateEnquiryStatus(enquiryId, value);
         if (result.status === "error") {
           setIsError(true);
@@ -43,7 +46,7 @@ export function EnquiryRowActions({
         }
       });
     },
-    [enquiryId]
+    [enquiryId, setOptimisticStatus]
   );
 
   const onDelete = useCallback(() => {
@@ -63,14 +66,14 @@ export function EnquiryRowActions({
     <div className="flex flex-col items-end gap-1.5">
       <div className="flex items-center gap-2">
         <select
-          value={selected}
+          value={optimisticStatus}
           onChange={(e) => onStatusChange(e.target.value)}
           disabled={pending}
           aria-label="Update enquiry status"
           className={cn(
             "cursor-pointer rounded-lg border px-2.5 py-1.5 text-xs font-semibold transition-all",
             "bg-transparent focus:outline-none focus:ring-2 focus:ring-gold-500/50 focus:ring-offset-0 disabled:opacity-50",
-            statusStyles[selected] ?? statusStyles.ARCHIVED
+            statusStyles[optimisticStatus] ?? statusStyles.ARCHIVED
           )}
           style={{ colorScheme: "dark" }}
         >

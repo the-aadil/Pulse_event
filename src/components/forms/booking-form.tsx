@@ -49,7 +49,7 @@ export function BookingForm({
         className="hidden"
         tabIndex={-1}
         autoComplete="off"
-        aria-hidden
+        aria-hidden="true"
       />
 
       <fieldset className="space-y-5">
@@ -67,6 +67,7 @@ export function BookingForm({
               required
               error={!!errors.name}
               aria-invalid={!!errors.name}
+              aria-describedby={errors.name ? "bk-name-error" : undefined}
             />
           </Field>
           <Field label="Phone number" htmlFor="bk-phone" error={errors.phone} required dark>
@@ -80,6 +81,7 @@ export function BookingForm({
               required
               error={!!errors.phone}
               aria-invalid={!!errors.phone}
+              aria-describedby={errors.phone ? "bk-phone-error" : undefined}
             />
           </Field>
         </div>
@@ -94,6 +96,7 @@ export function BookingForm({
             required
             error={!!errors.email}
             aria-invalid={!!errors.email}
+            aria-describedby={errors.email ? "bk-email-error" : undefined}
           />
         </Field>
       </fieldset>
@@ -112,6 +115,7 @@ export function BookingForm({
               required
               error={!!errors.eventType}
               aria-invalid={!!errors.eventType}
+              aria-describedby={errors.eventType ? "bk-type-error" : undefined}
             >
               <option value="" disabled>
                 Select an event type
@@ -132,6 +136,7 @@ export function BookingForm({
               required
               error={!!errors.eventDate}
               aria-invalid={!!errors.eventDate}
+              aria-describedby={errors.eventDate ? "bk-date-error" : undefined}
             />
           </Field>
         </div>
@@ -149,6 +154,7 @@ export function BookingForm({
               required
               error={!!errors.guests}
               aria-invalid={!!errors.guests}
+              aria-describedby={errors.guests ? "bk-guests-error" : undefined}
             />
           </Field>
           <Field label="City / venue" htmlFor="bk-city" error={errors.city} dark>
@@ -157,6 +163,7 @@ export function BookingForm({
               name="city"
               placeholder="e.g. Pune"
               autoComplete="address-level2"
+              aria-describedby={errors.city ? "bk-city-error" : undefined}
             />
           </Field>
         </div>
@@ -178,6 +185,7 @@ export function BookingForm({
                 ? `I'd like to recreate this look: ${initialStyle}. `
                 : undefined
             }
+            aria-describedby={errors.message ? "bk-message-error" : "bk-message-hint"}
           />
         </Field>
       </fieldset>
