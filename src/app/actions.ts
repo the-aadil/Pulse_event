@@ -684,8 +684,18 @@ export async function uploadOwnerPhoto(
     return { status: "error", code: "UNAUTHORIZED", message: "Unauthorized." };
   }
 
-  const file = formData.get("photo");
-  if (!(file instanceof File) || file.size === 0) {
+  const raw = formData.get("photo");
+
+  /* Next.js server action serialization may not preserve `instanceof File`.
+     Check for the File API shape instead: object with .name, .type, .size, .arrayBuffer(). */
+  const candidate = raw as Record<string, unknown> | null;
+  if (
+    !raw ||
+    typeof raw !== "object" ||
+    typeof candidate?.arrayBuffer !== "function" ||
+    typeof candidate?.size !== "number" ||
+    (candidate.size as number) === 0
+  ) {
     return {
       status: "error",
       code: "NO_FILE",
@@ -693,24 +703,37 @@ export async function uploadOwnerPhoto(
     };
   }
 
+  const file = raw as unknown as File;
+
   if (!ALLOWED_MIME_TYPES.includes(file.type)) {
     return {
       status: "error",
       code: "INVALID_TYPE",
-      message: "Only JPEG, PNG, and WebP images are allowed.",
+      message: `File type "${file.type || "unknown"}" is not allowed. Accepted: JPEG, PNG, WebP.`,
     };
   }
 
   if (file.size > MAX_FILE_SIZE) {
+    const mb = (file.size / (1024 * 1024)).toFixed(1);
     return {
       status: "error",
       code: "TOO_LARGE",
-      message: "Image must be under 2 MB.",
+      message: `File is ${mb} MB — exceeds the 2 MB limit.`,
     };
   }
 
   try {
-    const buffer = Buffer.from(await file.arrayBuffer());
+    const arrayBuf = await file.arrayBuffer();
+    const buffer = Buffer.from(arrayBuf);
+
+    if (buffer.length === 0) {
+      return {
+        status: "error",
+        code: "EMPTY_FILE",
+        message: "The uploaded file is empty. Please try a different image.",
+      };
+    }
+
     await fs.mkdir(OWNER_PHOTO_DIR, { recursive: true });
     await fs.writeFile(path.join(OWNER_PHOTO_DIR, OWNER_PHOTO_FILE), buffer);
 
@@ -721,11 +744,12 @@ export async function uploadOwnerPhoto(
       message: "Owner photo updated.",
       data: { src: `/uploads/${OWNER_PHOTO_FILE}?v=${Date.now()}` },
     };
-  } catch {
+  } catch (err) {
+    console.error("[uploadOwnerPhoto] Write failed:", err);
     return {
       status: "error",
       code: "SERVER_ERROR",
-      message: "Failed to save image. Please try again.",
+      message: "Failed to save image to disk. Please try again.",
     };
   }
 }
