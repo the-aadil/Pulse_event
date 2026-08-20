@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import fs from "node:fs/promises";
+import path from "node:path";
 import { SiteShell, Container, SectionHeading, PageHeader } from "@/components/site/shell";
 import { Reveal } from "@/components/motion/reveal";
 import { Stagger } from "@/components/motion/stagger";
@@ -34,14 +36,27 @@ const values = [
   },
 ];
 
+const STATIC_OWNER_IMAGE = "/images/founder_enhanced.jpg";
+
 const owner = {
   name: "Jakir Shaikh",
   role: "Founder & Creative Director",
   bio: "With over a decade of experience in event management, I started Pulse Event to bring world-class celebrations to Pune. My philosophy is simple: treat every event as if it were my own family's celebration. I personally oversee our major projects to ensure that every detail, from floral arrangements to lighting, is absolutely perfect.",
-  image: "/images/founder_enhanced.jpg",
+  image: STATIC_OWNER_IMAGE,
 };
 
-export default function AboutPage() {
+async function getOwnerImage(): Promise<string> {
+  try {
+    const uploaded = path.join(process.cwd(), "public", "uploads", "owner-profile.webp");
+    await fs.stat(uploaded);
+    return `/uploads/owner-profile.webp?v=${Date.now()}`;
+  } catch {
+    return STATIC_OWNER_IMAGE;
+  }
+}
+
+export default async function AboutPage() {
+  const ownerImage = await getOwnerImage();
   return (
     <SiteShell>
       <PageHeader
@@ -77,7 +92,7 @@ export default function AboutPage() {
           <Reveal variant="fade" delay={100} className="order-1 flex justify-center lg:order-2 lg:justify-end -mt-3 sm:mt-0">
             <div className="relative h-72 w-72 overflow-hidden rounded-full border-[3px] border-gold-400 shadow-[0_0_24px_rgba(212,175,55,0.3)] sm:h-96 sm:w-96">
               <Image
-                src={owner.image}
+                src={ownerImage}
                 alt={owner.name}
                 fill
                 sizes="(min-width: 640px) 384px, 288px"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useLayoutEffect, useMemo, useState, useRef, useTransition } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useState, useRef, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -272,6 +272,16 @@ export function GalleryGrid({
     setPage(initialPage);
     setLightboxIndex(null);
   }, [initialCategory, initialPage]);
+
+  useEffect(() => {
+    const html = document.documentElement;
+    const prev = html.style.scrollBehavior;
+    html.style.scrollBehavior = "auto";
+    window.scrollTo(0, 0);
+    requestAnimationFrame(() => {
+      html.style.scrollBehavior = prev;
+    });
+  }, [category, page]);
 
   const filtered = useMemo(
     () =>

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import fs from "node:fs/promises";
+import path from "node:path";
 import {
   getDashboardStats,
   getRecentBookings,
@@ -12,6 +14,7 @@ import {
   UsersRoundIcon,
   AlertTriangleIcon,
 } from "@/components/icons";
+import { OwnerPhotoUpload } from "@/components/admin/owner-photo-upload";
 
 export const dynamic = "force-dynamic";
 
@@ -33,6 +36,14 @@ export default async function AdminDashboard() {
     getRecentBookings(6),
     getEnquiries("NEW"),
   ]);
+
+  let ownerPhotoSrc: string | null = null;
+  try {
+    await fs.stat(path.join(process.cwd(), "public", "uploads", "owner-profile.webp"));
+    ownerPhotoSrc = "/uploads/owner-profile.webp";
+  } catch {
+    ownerPhotoSrc = null;
+  }
 
   const cards = [
     {
@@ -95,6 +106,9 @@ export default async function AdminDashboard() {
           </Link>
         ))}
       </div>
+
+      {/* Owner photo upload */}
+      <OwnerPhotoUpload currentSrc={ownerPhotoSrc} />
 
       {/* Recent tables */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">

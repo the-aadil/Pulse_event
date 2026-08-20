@@ -5,6 +5,8 @@ import { headers } from "next/headers";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { z } from "zod";
 import { db } from "@/lib/db";
+import fs from "node:fs/promises";
+import path from "node:path";
 import {
   bookingSchema,
   enquirySchema,
@@ -663,5 +665,67 @@ export async function deleteEvent(eventId: string) {
     return { status: "success" as const, message: "Event deleted." };
   } catch {
     return { status: "error" as const, code: "SERVER_ERROR", message: "Failed to delete event." };
+  }
+}
+
+// ─── Admin: Owner photo upload ─────────────────────────────────────────────
+
+const OWNER_PHOTO_DIR = path.join(process.cwd(), "public", "uploads");
+const OWNER_PHOTO_FILE = "owner-profile.webp";
+const ALLOWED_MIME_TYPES = ["image/jpeg", "image/png", "image/webp"];
+const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2 MB
+
+/** Overwrites the single owner profile photo on disk. */
+export async function uploadOwnerPhoto(
+  _prevState: ActionResult,
+  formData: FormData
+): Promise<ActionResult> {
+  if (!(await isAdmin())) {
+    return { status: "error", code: "UNAUTHORIZED", message: "Unauthorized." };
+  }
+
+  const file = formData.get("photo");
+  if (!(file instanceof File) || file.size === 0) {
+    return {
+      status: "error",
+      code: "NO_FILE",
+      message: "Please select an image to upload.",
+    };
+  }
+
+  if (!ALLOWED_MIME_TYPES.includes(file.type)) {
+    return {
+      status: "error",
+      code: "INVALID_TYPE",
+      message: "Only JPEG, PNG, and WebP images are allowed.",
+    };
+  }
+
+  if (file.size > MAX_FILE_SIZE) {
+    return {
+      status: "error",
+      code: "TOO_LARGE",
+      message: "Image must be under 2 MB.",
+    };
+  }
+
+  try {
+    const buffer = Buffer.from(await file.arrayBuffer());
+    await fs.mkdir(OWNER_PHOTO_DIR, { recursive: true });
+    await fs.writeFile(path.join(OWNER_PHOTO_DIR, OWNER_PHOTO_FILE), buffer);
+
+    revalidatePath("/about");
+
+    return {
+      status: "success",
+      message: "Owner photo updated.",
+      data: { src: `/uploads/${OWNER_PHOTO_FILE}?v=${Date.now()}` },
+    };
+  } catch {
+    return {
+      status: "error",
+      code: "SERVER_ERROR",
+      message: "Failed to save image. Please try again.",
+    };
   }
 }

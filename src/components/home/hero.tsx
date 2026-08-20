@@ -2,22 +2,21 @@ import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
 import { PhoneIcon, ArrowRightIcon } from "@/components/icons";
 import { Reveal } from "@/components/motion/reveal";
+import { FloatingBubbles } from "@/components/motion/floating-bubbles";
+import { FloatingDotsCanvas } from "@/components/motion/floating-dots-canvas";
 
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-[#0b0c10] text-slate-100">
+      {/* Pure-CSS GPU-accelerated floating bubbles */}
+      <FloatingBubbles count={8} />
+
       {/* Ambient gold glow orbs */}
       <div className="animate-glow pointer-events-none absolute -right-32 -top-32 h-[28rem] w-[28rem] rounded-full bg-gold-500/10 blur-3xl" />
       <div className="animate-glow pointer-events-none absolute -bottom-40 -left-32 h-[26rem] w-[26rem] rounded-full bg-amber-500/8 blur-3xl [animation-delay:3s]" />
 
-      {/* Floating gold particles with depth of field */}
-      <div className="animate-float-particle pointer-events-none absolute left-[15%] top-[30%] h-1.5 w-1.5 rounded-full bg-gold-400/80 blur-[1px] [animation-delay:0s]" />
-      <div className="animate-float-particle pointer-events-none absolute left-[35%] top-[70%] h-2.5 w-2.5 rounded-full bg-amber-300/60 blur-[2px] [animation-delay:3s] [animation-duration:18s]" />
-      <div className="animate-float-particle pointer-events-none absolute left-[65%] top-[40%] h-1 w-1 rounded-full bg-gold-300/90 [animation-delay:7s]" />
-      <div className="animate-float-particle pointer-events-none absolute left-[80%] top-[80%] h-2 w-2 rounded-full bg-gold-400/50 blur-[1px] [animation-delay:11s] [animation-duration:22s]" />
-      <div className="animate-float-particle pointer-events-none absolute left-[45%] top-[55%] h-1.5 w-1.5 rounded-full bg-amber-200/80 [animation-delay:14s]" />
-      <div className="animate-float-particle pointer-events-none absolute left-[25%] top-[85%] h-3 w-3 rounded-full bg-gold-300/40 blur-[3px] [animation-delay:18s] [animation-duration:24s]" />
-      <div className="animate-float-particle pointer-events-none absolute left-[55%] top-[25%] h-1.5 w-1.5 rounded-full bg-gold-200/70 blur-[1px] [animation-delay:5s] [animation-duration:14s]" />
+      {/* High-Performance HTML5 Canvas floating dots (Zero DOM overhead) */}
+      <FloatingDotsCanvas particleCount={40} />
 
       {/* Drifting ambient shapes */}
       <div className="animate-drift pointer-events-none absolute right-[10%] top-[25%] h-24 w-24 rounded-full border border-gold-500/5 [animation-delay:1s]" />

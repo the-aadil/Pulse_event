@@ -1,38 +1,84 @@
-Act as a Principal Next.js Architect, UX/UI Expert, and Web Performance Engineer.
+Act as a Senior Full-Stack Engineer with 15+ years of production experience across Next.js (App Router), React, Prisma, PostgreSQL, and secure file handling. You are meticulous about zero-regression, pixel-perfect UI preservation, and writing code that scales.
 
-I am providing you with my existing Next.js codebase. Your task is to first thoroughly review the code to identify current bugs and bottlenecks, and then refactor it into an enterprise-grade, highly scalable, and ultra-fast application. 
+---
 
-The application must run smoothly at 60 FPS on low-end budget devices, handle navigation flawlessly, and be completely fault-tolerant.
+## Context
 
-Please execute this task by strictly adhering to the following directives:
+The "About" page has a static owner profile picture hardcoded in the component. The goal is to make it dynamically updatable from the Admin Panel while preserving every pixel of the current frontend — no CSS class changes, no layout shifts, no animation regressions.
 
-### Phase 1: Code Review & Bug Diagnosis
-Before generating any new code, analyze the provided codebase and output a brief "Code Audit Report." specifically looking for:
-1.  **Scroll & Navigation Hijacking:** Identify why navigating between pages (e.g., Home to Gallery) leaves the user at the bottom of the page instead of scrolling to the top. Look for `height: 100vh`, `overflow: hidden/auto` on root elements, or custom scroll containers breaking Next.js native behavior.
-2.  **Animation Bottlenecks:** Identify animations applied to layout/paint properties (`width`, `height`, `margin`, `box-shadow`) instead of composite properties (`transform`, `opacity`).
-3.  **Client-Side Bloat:** Identify components that should be React Server Components (RSC) but are unnecessarily marked with `'use client'`, or heavy libraries that are not dynamically imported.
+---
 
-### Phase 2: Refactoring & Architecture Implementation
+## Deliverables (3 files total, no more, no less)
 
-**1. Flawless Navigation & UI/UX State**
-*   **Scroll Restoration:** Strip out any CSS that traps scrolling. Ensure the document `body` handles the scroll so Next.js `<Link>` components natively scroll to `(0,0)` on route change. If a custom container is strictly required, implement a `usePathname` effect to manually trigger `element.scrollTo(0, 0)`.
-*   **Perceived Speed:** Implement a top-bar progress indicator (like `nprogress` or `nextjs-toploader`) or lightweight `<Suspense>` boundaries with skeleton loaders for route transitions.
-*   **Active States:** Use `usePathname` to accurately highlight active navigation links and apply `aria-current="page"`.
+### 1. Refactored About Page (`src/app/about/page.tsx`)
 
-**2. 60 FPS Low-End Device Optimization**
-*   **Hardware Acceleration:** Rewrite all animations to use *only* `transform` and `opacity`. Remove or downgrade expensive effects (like heavy blurs or canvas elements) for budget devices.
-*   **Intersection Observers:** Replace any `window.addEventListener('scroll')` logic with `IntersectionObserver` to trigger animations only when elements enter the viewport.
-*   **Content Visibility:** Use CSS `content-visibility: auto` for off-screen, heavy lists or sections to reduce initial rendering overhead.
+**Requirements:**
+- Extract and preserve the **exact** existing `className`, `width`, `height`, `alt`, and all parent wrapper elements around the static `<Image>`.
+- Replace only the hardcoded `src` prop with a dynamic value fetched from the database (via Prisma `SiteSetting` model or equivalent).
+- If the database fetch fails or returns no image URL, render a fallback `<div>` with identical dimensions and a subtle placeholder style — the page layout must **never break**.
+- Apply a cache-busting strategy: either use `revalidatePath('/about')` in the upload action, or append a timestamp query param (`?v={updatedAt}`) to the image `src` to guarantee immediate visibility of the new photo.
+- Do **not** change any surrounding HTML structure, Tailwind classes, or animation wrappers.
 
-**3. Next.js App Router Scalability**
-*   **Server-First:** Push `'use client'` strictly to interactive leaf components. Keep data fetching and heavy lifting on the server.
-*   **Lazy Loading:** Use `next/dynamic` to dynamically import heavy UI components, modals, or below-the-fold elements so they don't block the initial load.
-*   **Asset Optimization:** Strictly enforce `next/image` with proper `sizes`, modern formats, and `priority` only on the LCP (above-the-fold) image. Ensure fonts are loaded via `next/font` with `display: swap`.
+### 2. Admin Upload Component (`src/components/admin/owner-photo-upload.tsx`)
 
-**4. Bulletproof Validation & Exception Handling**
-*   **Client & Server Validation:** Implement Zod (or equivalent) schema validation for all forms and Server Actions.
-*   **Error Boundaries:** Ensure the presence of `error.tsx`, `not-found.tsx`, and `global-error.tsx` to catch runtime errors gracefully without crashing the entire app. Provide a fallback UI with a "Try Again" recovery mechanism.
-*   **Safe Data Fetching:** Wrap API calls in standard try/catch blocks, handle timeouts, and implement optimistic UI updates using `useOptimistic` (or similar logic) for instant user feedback.
+**Requirements:**
+- A self-contained `"use client"` React component with full TypeScript typing.
+- Accepts an `initialSrc: string | null` prop to display the current photo on mount.
+- Uses `URL.createObjectURL` for an instant optimistic preview when the admin selects a new file — no page reload, no network round-trip for preview.
+- Triggers a Server Action on submit.
+- Shows upload progress or a disabled state while the action is running.
+- Displays a toast or inline success/error message after the action completes.
 
-### Phase 3: Output Requirements
-Provide the refactored, production-ready TypeScript code. Ensure the code is modular, well-commented (specifically noting where performance fixes were made), and has zero type errors.
+**Client-Side Optimization (mandatory before upload):**
+- Resize the selected image to a maximum width of **600px** (maintain aspect ratio) using an offscreen `<canvas>`.
+- Convert the result to **WebP** format at quality **0.82**.
+- Revoke the object URL after the canvas operation to prevent memory leaks.
+
+### 3. Server Action (`src/app/actions.ts` — add to existing file or create a new one if cleaner)
+
+**Requirements:**
+- Accept a single `FormData` with the key `"photo"`.
+- **Authorization check first:** Verify the request originates from an authenticated admin session using the existing `requireAdmin()` or equivalent auth utility. Return `{ error: "Unauthorized" }` with status 401 if not.
+- **File validation (server-side, non-negotiable):**
+  - Allowed MIME types: `image/jpeg`, `image/png`, `image/webp` only.
+  - Max file size: **2 MB**.
+  - Reject anything else with a clear error message.
+- **Storage:** Overwrite a single fixed file at `public/uploads/owner-profile.webp`. Do **not** generate unique filenames — this prevents storage bloat entirely.
+- After successful write, call `revalidatePath('/about')` to invalidate the Next.js ISR cache.
+- Return `{ success: true, src: "/uploads/owner-profile.webp?v={timestamp}" }` so the admin component can update its local state without a full page refresh.
+
+**Storage implementation note:** Use `fs.writeFile` to write the buffer directly to `public/uploads/`. If the `public/uploads/` directory does not exist, create it with `fs.mkdir(..., { recursive: true })`.
+
+---
+
+## Architecture Constraints
+
+| Constraint | Rule |
+|---|---|
+| **File count** | Exactly 3 files touched. No new utility libraries, no new npm packages. |
+| **Dependencies** | Use only what already exists in `package.json`. No `sharp`, no `multer`, no `formidable`. Use native canvas resizing on the client and native `fs` on the server. |
+| **UI regression** | Zero. The About page must render identically before and after the change. No class changes, no wrapper changes, no animation changes. |
+| **Security** | Admin-only upload. Server-side file type + size validation. No arbitrary filenames. Single fixed output path. |
+| **Performance** | Client-side compression before upload. Single-file overwrite (no bloat). ISR revalidation (no full page rebuild). |
+| **Error handling** | Graceful fallback on About page if DB fails. Clear error messages on admin upload. No unhandled promise rejections. |
+
+---
+
+## Code Quality Standards
+
+- Every function must have a JSDoc comment explaining its purpose.
+- TypeScript strict mode — no `any` types, no `@ts-ignore`.
+- Destructure props, use early returns for guard clauses, keep functions under 40 lines.
+- Follow the existing code style in the project: `"use client"` directive at top, Tailwind classes, Prisma for DB access, Server Actions over API routes.
+
+---
+
+## Execution Order
+
+1. Read the About page first — extract the exact image markup and all surrounding classes.
+2. Implement the Server Action with full validation and auth.
+3. Refactor the About page to consume the dynamic image with fallback.
+4. Build the Admin upload component with client-side optimization.
+5. Verify all three files are consistent (the `src` path returned by the action matches what the About page fetches).
+
+**Do not output explanations. Output only the final, production-ready code for each file with clear file path headers.**

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { LoginForm } from "@/components/admin/login-form";
 import { Logo } from "@/components/site/logo";
-import { getSession } from "@/lib/auth";
+import { getAuthenticatedAdmin } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
@@ -13,8 +13,8 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminLoginPage() {
-  const session = await getSession();
-  if (session) {
+  const user = await getAuthenticatedAdmin();
+  if (user) {
     redirect("/admin");
   }
 

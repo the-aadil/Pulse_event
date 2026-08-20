@@ -93,6 +93,17 @@ export const adminEventSchema = z.object({
 
 export type AdminEventInput = z.infer<typeof adminEventSchema>;
 
+export const profileImageUploadSchema = z.object({
+  fileSize: z
+    .number()
+    .max(2 * 1024 * 1024, "Profile image must be less than 2MB."),
+  mimeType: z.enum(["image/webp", "image/jpeg", "image/png"], {
+    message: "Only WebP, JPEG, and PNG images are allowed.",
+  }),
+});
+
+export type ProfileImageUploadInput = z.infer<typeof profileImageUploadSchema>;
+
 export function flattenZodError(error: z.ZodError): Record<string, string> {
   const issues: Record<string, string> = {};
   for (const issue of error.issues) {

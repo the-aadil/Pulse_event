@@ -11,6 +11,7 @@ import {
   PartyPopperIcon,
   LogOutIcon,
 } from "@/components/icons";
+import { ProfileAvatar } from "@/components/admin/profile-avatar";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -77,7 +78,11 @@ function AdminLogo() {
   );
 }
 
-export function AdminNav({ user }: { user: { name: string; email: string } }) {
+export function AdminNav({
+  user,
+}: {
+  user: { id?: string; name: string; email: string; updatedAt?: Date | string | number };
+}) {
   const pathname = usePathname();
   const router = useRouter();
   const [pending, startTransition] = useTransition();
@@ -135,8 +140,16 @@ export function AdminNav({ user }: { user: { name: string; email: string } }) {
           })}
         </div>
 
-        {/* Right: user + logout */}
+        {/* Right: user avatar + user info + logout */}
         <div className="flex items-center gap-3">
+          {user.id ? (
+            <ProfileAvatar
+              userId={user.id}
+              name={user.name}
+              updatedAt={user.updatedAt}
+              size="sm"
+            />
+          ) : null}
           <div className="hidden text-right sm:block">
             <p className="text-xs font-semibold text-slate-200 leading-tight">{user.name}</p>
             <p className="text-[11px] text-slate-400 leading-tight">{user.email}</p>

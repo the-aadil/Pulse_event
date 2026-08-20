@@ -622,11 +622,39 @@ textarea,
 }
 
 /* ============================================================
+   Pure-CSS Floating Bubbles Animation (GPU-only translateY + opacity)
+   ============================================================ */
+@keyframes float-bubble {
+  0% {
+    transform: translateY(110%) scale(0.85);
+    opacity: 0;
+  }
+  15% {
+    opacity: var(--bubble-opacity, 0.3);
+  }
+  85% {
+    opacity: var(--bubble-opacity, 0.3);
+  }
+  100% {
+    transform: translateY(-800px) scale(1.15);
+    opacity: 0;
+  }
+}
+
+.floating-bubble {
+  will-change: transform;
+  animation: float-bubble var(--bubble-duration, 14s) ease-in-out infinite;
+  animation-delay: var(--bubble-delay, 0s);
+  transform: translateY(110%);
+}
+
+/* ============================================================
    Performance optimization: Pause expensive animations while scrolling
    Only animation-play-state is paused — pointer-events remain active
    so interactive elements (links, buttons, form inputs) stay usable.
    ============================================================ */
 body.is-scrolling .animate-float-particle,
+body.is-scrolling .floating-bubble,
 body.is-scrolling .animate-drift,
 body.is-scrolling .animate-glow,
 body.is-scrolling .animate-ken-burns,
@@ -654,9 +682,11 @@ body.is-scrolling .btn-shine::after {
    Adaptive Hardware Throttling: Low-tier device & reduced motion
    ============================================================ */
 
-/* Kill floating particles on low-end devices */
+/* Kill floating particles and bubbles on low-end devices */
 html.low-perf .animate-float-particle,
-html.reduce-motion .animate-float-particle {
+html.low-perf .floating-bubble,
+html.reduce-motion .animate-float-particle,
+html.reduce-motion .floating-bubble {
   display: none !important;
 }
 
@@ -682,22 +712,10 @@ html.reduce-motion .animate-text-glow {
   text-shadow: none !important;
 }
 
-/* Disable scroll-reveal transitions on low-end devices */
-html.low-perf .reveal,
-html.low-perf .reveal-item,
-html.low-perf .card-lift,
-html.reduce-motion .reveal,
-html.reduce-motion .reveal-item,
-html.reduce-motion .card-lift {
-  opacity: 1 !important;
-  transform: none !important;
-  filter: none !important;
-  transition: none !important;
-}
-
 /* OS-level reduced motion media query fallback */
 @media (prefers-reduced-motion: reduce) {
-  .animate-float-particle {
+  .animate-float-particle,
+  .floating-bubble {
     display: none !important;
   }
 

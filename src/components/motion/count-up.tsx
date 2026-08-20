@@ -13,9 +13,9 @@ function parseStat(value: string) {
   };
 }
 
-/** easeOutExpo — snappy onset, smooth settle. */
-function easeOutExpo(t: number) {
-  return t >= 1 ? 1 : 1 - Math.pow(2, -10 * t);
+/** easeOutQuart — smooth, deliberate, and elegant deceleration. */
+function easeOutQuart(t: number) {
+  return 1 - Math.pow(1 - t, 4);
 }
 
 // ── Shared animation controller ────────────────────────────────────
@@ -45,7 +45,7 @@ function tick(now: number) {
 
     const elapsed = now - c.startMs;
     const t = Math.min(elapsed / c.duration, 1);
-    const eased = easeOutExpo(t);
+    const eased = easeOutQuart(t);
     const raw = Math.min(c.target * eased, c.target);
 
     // Only write text when the displayed string actually changes.
@@ -135,23 +135,26 @@ export function CountUp({
     const barEl = barRef.current;
     if (!root || !numEl) return;
 
-    const isLowPerf =
+    // CountUp is highly optimized via rAF and direct DOM manipulation.
+    // It is safe to run on all devices regardless of 'low-perf' status.
+    const isReduceMotion =
       typeof window !== "undefined" &&
-      (document.documentElement.classList.contains("low-perf") ||
-        document.documentElement.classList.contains("reduce-motion") ||
+      (document.documentElement.classList.contains("reduce-motion") ||
         window.matchMedia("(prefers-reduced-motion: reduce)").matches);
 
-    if (isLowPerf) {
+    if (isReduceMotion) {
       const final = target.toFixed(decimals) + suffix;
       numEl.textContent = final;
       if (barEl) barEl.style.transform = "scaleX(1)";
       return;
     }
 
+    // Slow, deliberate, and highly elegant counting durations
     const duration =
-      decimals > 0 ? 1200 :
-      target <= 20 ? 800 :
-      target <= 100 ? 1100 : 1400;
+      decimals > 0 ? 3000 :    // e.g. 4.9 takes 3s
+      target <= 20 ? 2500 :    // e.g. 9+ takes 2.5s
+      target <= 100 ? 3200 :   // e.g. 50k+ takes 3.2s
+      3800;                    // e.g. 500+ takes 3.8s
 
     let timer: ReturnType<typeof setTimeout> | undefined;
     let cancelled = false;

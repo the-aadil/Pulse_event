@@ -72,11 +72,10 @@ export function useInView<T extends HTMLElement = HTMLElement>({
     const el = ref.current;
     if (!el) return;
 
-    // Fast-path bypass: low-end devices or reduced motion need zero observer overhead
+    // Fast-path bypass for accessibility (reduced motion)
     if (
       typeof window !== "undefined" &&
-      (document.documentElement.classList.contains("low-perf") ||
-        document.documentElement.classList.contains("reduce-motion") ||
+      (document.documentElement.classList.contains("reduce-motion") ||
         window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
         typeof IntersectionObserver === "undefined")
     ) {
