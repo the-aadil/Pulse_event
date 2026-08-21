@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, useTransition } from "react";
-import Image from "next/image";
 import { useActionState } from "react";
 import { uploadOwnerPhoto } from "@/app/actions";
 import type { ActionResult } from "@/app/actions";
@@ -10,6 +9,10 @@ const INITIAL_STATE: ActionResult = { status: "idle" };
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
 const MAX_SIZE = 2 * 1024 * 1024;
 const CROP_SIZE = 600;
+
+import Cropper from "react-easy-crop";
+import type { Area } from "react-easy-crop";
+import "react-easy-crop/react-easy-crop.css";
 
 /* ── Crop Modal ─────────────────────────────────────────────────────────── */
 
@@ -22,79 +25,23 @@ function CropModal({
   onConfirm: (blob: Blob) => void;
   onCancel: () => void;
 }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const imgRef = useRef<HTMLImageElement>(null);
-  const [offset, setOffset] = useState({ x: 0, y: 0 });
-  const [imgNatural, setImgNatural] = useState({ w: 0, h: 0 });
-  const [containerSize, setContainerSize] = useState(0);
-  const dragging = useRef(false);
-  const lastPos = useRef({ x: 0, y: 0 });
-  const [ready, setReady] = useState(false);
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
 
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const ro = new ResizeObserver(([entry]) => {
-      setContainerSize(entry.contentRect.width);
+  const onCropComplete = useCallback((_croppedArea: Area, croppedAreaPixels: Area) => {
+    setCroppedAreaPixels(croppedAreaPixels);
+  }, []);
+
+  const handleConfirm = useCallback(async () => {
+    if (!croppedAreaPixels) return;
+
+    // Load the image to draw it onto the canvas
+    const img = new window.Image();
+    img.src = src;
+    await new Promise((resolve) => {
+      img.onload = resolve;
     });
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
-
-  const fitScale = containerSize > 0 && imgNatural.w > 0
-    ? Math.min(containerSize / imgNatural.w, containerSize / imgNatural.h)
-    : 1;
-
-  const displayW = imgNatural.w * fitScale;
-  const displayH = imgNatural.h * fitScale;
-
-  /* Center image when it loads */
-  const onImgLoad = useCallback(() => {
-    const img = imgRef.current;
-    if (!img) return;
-    const natW = img.naturalWidth;
-    const natH = img.naturalHeight;
-    setImgNatural({ w: natW, h: natH });
-    setReady(true);
-  }, []);
-
-  /* Re-center when container resizes */
-  useEffect(() => {
-    if (!ready) return;
-    setOffset({ x: 0, y: 0 });
-  }, [ready, containerSize]);
-
-  const maxDragX = Math.max(0, (displayW - containerSize) / 2);
-  const maxDragY = Math.max(0, (displayH - containerSize) / 2);
-
-  const clamp = (v: number, min: number, max: number) => Math.min(Math.max(v, min), max);
-
-  const onPointerDown = useCallback((e: React.PointerEvent) => {
-    dragging.current = true;
-    lastPos.current = { x: e.clientX, y: e.clientY };
-    /* Capture on the CONTAINER so move/up events always reach us */
-    containerRef.current?.setPointerCapture(e.pointerId);
-  }, []);
-
-  const onPointerMove = useCallback((e: React.PointerEvent) => {
-    if (!dragging.current) return;
-    const dx = e.clientX - lastPos.current.x;
-    const dy = e.clientY - lastPos.current.y;
-    lastPos.current = { x: e.clientX, y: e.clientY };
-    setOffset((prev) => ({
-      x: clamp(prev.x + dx, -maxDragX, maxDragX),
-      y: clamp(prev.y + dy, -maxDragY, maxDragY),
-    }));
-  }, [maxDragX, maxDragY]);
-
-  const onPointerUp = useCallback(() => {
-    dragging.current = false;
-  }, []);
-
-  /* Draw the cropped region from the original image onto a canvas */
-  const handleConfirm = useCallback(() => {
-    const img = imgRef.current;
-    if (!img || !ready) return;
 
     const canvas = document.createElement("canvas");
     canvas.width = CROP_SIZE;
@@ -102,31 +49,20 @@ function CropModal({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    /*
-     * The container is a square crop circle.
-     * The visible area inside the circle is `containerSize x containerSize`.
-     * The image is centered in the container, then shifted by `offset`.
-     *
-     * Image top-left in container coords:
-     *   imgX = (containerSize - displayW) / 2 + offset.x
-     *   imgY = (containerSize - displayH) / 2 + offset.y
-     *
-     * The crop picks the CENTER `containerSize x containerSize` area.
-     * So the source rect origin in image-pixels is:
-     *   srcX = ((containerSize - displayW) / 2 + offset.x - (containerSize - displayW) / 2) / fitScale
-     *        = offset.x / fitScale
-     *   (same for Y)
-     *
-     * And the source rect size in image-pixels is:
-     *   srcDim = containerSize / fitScale
-     */
-    const srcSize = containerSize / fitScale;
-    const srcX = imgNatural.w / 2 - srcSize / 2 - offset.x / fitScale;
-    const srcY = imgNatural.h / 2 - srcSize / 2 - offset.y / fitScale;
-
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = "high";
-    ctx.drawImage(img, srcX, srcY, srcSize, srcSize, 0, 0, CROP_SIZE, CROP_SIZE);
+
+    ctx.drawImage(
+      img,
+      croppedAreaPixels.x,
+      croppedAreaPixels.y,
+      croppedAreaPixels.width,
+      croppedAreaPixels.height,
+      0,
+      0,
+      CROP_SIZE,
+      CROP_SIZE
+    );
 
     canvas.toBlob(
       (blob) => {
@@ -135,7 +71,7 @@ function CropModal({
       "image/webp",
       0.82
     );
-  }, [containerSize, offset, displayW, displayH, fitScale, imgNatural, ready, onConfirm]);
+  }, [croppedAreaPixels, src, onConfirm]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -147,58 +83,69 @@ function CropModal({
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-sm"
-      onClick={(e) => { if (e.target === e.currentTarget) onCancel(); }}
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) onCancel();
+      }}
     >
-      <div className="mx-4 w-full max-w-lg rounded-2xl border border-gold-500/30 bg-[#12141c] p-6 shadow-2xl">
-        <h3 className="text-base font-bold text-slate-100">Crop your photo</h3>
-        <p className="mt-1 text-sm text-slate-400">Drag to position the image inside the circle, then confirm.</p>
-
-        <div
-          ref={containerRef}
-          className="relative mx-auto mt-4 aspect-square w-full max-w-[300px] overflow-hidden rounded-full border-2 border-gold-500/40 bg-[#0b0c10] touch-none select-none"
-          onPointerDown={onPointerDown}
-          onPointerMove={onPointerMove}
-          onPointerUp={onPointerUp}
-          onPointerLeave={onPointerUp}
-          style={{ cursor: dragging.current ? "grabbing" : "grab" }}
-        >
-          <img
-            ref={imgRef}
-            src={src}
-            alt="Crop preview"
-            onLoad={onImgLoad}
-            draggable={false}
-            className="pointer-events-none absolute top-0 left-0 select-none"
-            style={{
-              width: displayW || "100%",
-              height: displayH || "100%",
-              transform: `translate(${containerSize / 2 - displayW / 2 + offset.x}px, ${containerSize / 2 - displayH / 2 + offset.y}px)`,
-              opacity: ready ? 1 : 0,
-            }}
-          />
-
-          {/* Visual guides */}
-          <div className="pointer-events-none absolute inset-0 rounded-full ring-2 ring-inset ring-gold-400/50" />
-          <div className="pointer-events-none absolute inset-0 rounded-full shadow-[inset_0_0_60px_rgba(0,0,0,0.6)]" />
+      <div className="mx-4 flex w-full max-w-md flex-col overflow-hidden rounded-2xl border border-gold-500/30 bg-[#12141c] shadow-2xl">
+        <div className="p-5 pb-3">
+          <h3 className="text-base font-bold text-slate-100">Crop your photo</h3>
+          <p className="mt-1 text-sm text-slate-400">
+            Drag to position. Pinch or scroll to zoom.
+          </p>
         </div>
 
-        <div className="mt-5 flex items-center justify-end gap-3">
-          <button
-            type="button"
-            onClick={onCancel}
-            className="rounded-md border border-gold-500/30 bg-[#181a24] px-4 py-2 text-sm font-medium text-slate-300 transition-colors hover:border-gold-400 hover:text-slate-100"
-          >
-            Cancel
-          </button>
-          <button
-            type="button"
-            onClick={handleConfirm}
-            disabled={!ready}
-            className="rounded-md border border-gold-400 bg-gradient-to-r from-gold-500 to-amber-400 px-4 py-2 text-sm font-semibold text-slate-950 transition-all hover:from-gold-400 hover:to-amber-300 disabled:opacity-50"
-          >
-            Confirm crop
-          </button>
+        <div className="relative h-72 w-full bg-black sm:h-80">
+          <Cropper
+            image={src}
+            crop={crop}
+            zoom={zoom}
+            aspect={1}
+            cropShape="round"
+            showGrid={false}
+            onCropChange={setCrop}
+            onCropComplete={onCropComplete}
+            onZoomChange={setZoom}
+            style={{
+              containerStyle: { background: "transparent" },
+              cropAreaStyle: { border: "2px solid rgba(212, 175, 55, 0.5)" },
+            }}
+          />
+        </div>
+
+        <div className="p-5 pt-4">
+          <div className="flex items-center gap-3 mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-slate-400"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input
+              type="range"
+              value={zoom}
+              min={1}
+              max={3}
+              step={0.1}
+              aria-label="Zoom"
+              onChange={(e) => setZoom(Number(e.target.value))}
+              className="h-1 flex-1 cursor-pointer appearance-none rounded-lg bg-slate-700 accent-gold-500"
+            />
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-slate-400"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+
+          <div className="flex items-center justify-end gap-3">
+            <button
+              type="button"
+              onClick={onCancel}
+              className="rounded-md border border-gold-500/30 bg-[#181a24] px-4 py-2 text-sm font-medium text-slate-300 transition-colors hover:border-gold-400 hover:text-slate-100"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onClick={handleConfirm}
+              className="rounded-md border border-gold-400 bg-gradient-to-r from-gold-500 to-amber-400 px-4 py-2 text-sm font-semibold text-slate-950 transition-all hover:from-gold-400 hover:to-amber-300"
+            >
+              Confirm crop
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -288,12 +235,12 @@ export function OwnerPhotoUpload({ currentSrc }: { currentSrc: string | null }) 
         {/* Preview */}
         <div className="relative h-40 w-40 shrink-0 overflow-hidden rounded-full border-2 border-gold-500/40 bg-[#181a24] shadow-lg">
           {displaySrc ? (
-            <Image
+            // Use native <img> — Next.js <Image> does not support data: or blob: URLs.
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
               src={displaySrc}
               alt="Owner photo"
-              fill
-              sizes="160px"
-              className="object-cover"
+              className="absolute inset-0 h-full w-full object-cover"
             />
           ) : (
             <div className="flex h-full w-full flex-col items-center justify-center gap-1">

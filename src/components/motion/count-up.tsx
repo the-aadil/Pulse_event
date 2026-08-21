@@ -175,17 +175,35 @@ export function CountUp({
     };
 
     const observer = getSharedObserver();
+    
+    const isVisibleNow = () => {
+      if (!root) return false;
+      const rect = root.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      const visible = Math.min(rect.bottom, vh) - Math.max(rect.top, 0);
+      return (visible / (rect.height || 1)) >= 0.2;
+    };
 
-    if (delay > 0) {
-      const run = () => {
-        if (cancelled) return;
+    if (isVisibleNow()) {
+      // Fast path: already visible on load (desktop laptop above-fold)
+      if (delay > 0) {
         timer = setTimeout(register, delay);
-      };
-      pendingRun.set(root, run);
-      observer.observe(root);
+      } else {
+        register();
+      }
     } else {
-      pendingRun.set(root, register);
-      observer.observe(root);
+      // Defer to intersection observer (mobile below-fold)
+      if (delay > 0) {
+        const run = () => {
+          if (cancelled) return;
+          timer = setTimeout(register, delay);
+        };
+        pendingRun.set(root, run);
+        observer.observe(root);
+      } else {
+        pendingRun.set(root, register);
+        observer.observe(root);
+      }
     }
 
     return () => {

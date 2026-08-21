@@ -53,9 +53,28 @@ function getObserver(
 }
 
 /**
+ * Returns true if the element's bounding rect overlaps the current viewport
+ * by at least `threshold` fraction of its height. Used for the synchronous
+ * "already in view at mount" fast-path that fixes desktop animations.
+ */
+function isAlreadyInView(el: HTMLElement, threshold: number): boolean {
+  const rect = el.getBoundingClientRect();
+  const vh = window.innerHeight || document.documentElement.clientHeight;
+  const visible = Math.min(rect.bottom, vh) - Math.max(rect.top, 0);
+  const visibleFraction = visible / (rect.height || 1);
+  return visibleFraction >= threshold;
+}
+
+/**
  * Modular scroll-intersection hook. Uses a shared IntersectionObserver
  * pool so the total number of OS observers stays small regardless of how
  * many Reveal / Stagger elements exist on the page.
+ *
+ * KEY FIX: Synchronously checks if the element is already inside the
+ * viewport at mount time (getBoundingClientRect fast-path). This prevents
+ * the race condition on desktop where:
+ *   1. `js` class is added  → element hides (opacity:0)
+ *   2. IntersectionObserver fires in the same/next frame → misses the transition
  *
  * Automatically bypasses on low-end device constraints or reduced motion
  * to eliminate observer scheduling overhead and prevent dropped frames.
@@ -81,6 +100,25 @@ export function useInView<T extends HTMLElement = HTMLElement>({
     ) {
       setInView(true);
       return;
+    }
+
+    // ── Desktop / above-the-fold fix ──────────────────────────────────
+    // If the element is already visible in the viewport right now, we MUST
+    // allow the browser to paint the 'hidden' state first (applied via the .js class).
+    // If we set inView to true synchronously, the browser batches the updates
+    // and skips the transition entirely (it just pops in).
+    const thresholdVal = Array.isArray(threshold) ? threshold[0] : threshold;
+    if (isAlreadyInView(el, thresholdVal)) {
+      // Use requestAnimationFrame + setTimeout to guarantee one full frame
+      // paints the `opacity: 0` state before we trigger the reveal.
+      let timer: ReturnType<typeof setTimeout>;
+      const raf = requestAnimationFrame(() => {
+        timer = setTimeout(() => setInView(true), 50);
+      });
+      return () => {
+        cancelAnimationFrame(raf);
+        clearTimeout(timer);
+      };
     }
 
     const observer = getObserver(threshold, rootMargin);

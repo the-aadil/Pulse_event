@@ -7,23 +7,18 @@ export function ScrollOptimizer() {
     const root = document.documentElement;
     root.classList.add("js");
 
-    // ── Low-End Device & Constraint Detection ──────────────────────────
-    // Detect low-CPU cores (<= 4 cores, typical of entry-level mobile devices),
-    // low RAM (<= 4GB), or Save-Data / 2G/3G network modes.
-    const isLowConcurrency =
-      typeof navigator !== "undefined" &&
-      navigator.hardwareConcurrency !== undefined &&
-      navigator.hardwareConcurrency <= 4;
-
+    // ── Device & Constraint Detection ──────────────────────────────────
+    // We only disable rich CSS animations (glows, floating particles) if the
+    // user has explicitly requested data savings or reduced motion.
+    // (We removed the CPU/RAM checks because many standard dual-core laptops
+    // were incorrectly being flagged as 'low-perf', hiding the animations).
     const nav = navigator as unknown as {
-      deviceMemory?: number;
       connection?: {
         saveData?: boolean;
         effectiveType?: string;
       };
     };
 
-    const isLowMemory = !!(nav.deviceMemory && nav.deviceMemory <= 4);
     const isDataSaver = !!(
       nav.connection &&
       (nav.connection.saveData ||
@@ -32,7 +27,7 @@ export function ScrollOptimizer() {
     );
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (isLowConcurrency || isLowMemory || isDataSaver || prefersReducedMotion) {
+    if (isDataSaver || prefersReducedMotion) {
       root.classList.add("low-perf");
     }
 

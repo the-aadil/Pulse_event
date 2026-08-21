@@ -79,3 +79,12 @@ enum EnquiryStatus {
   REPLIED
   ARCHIVED
 }
+
+/// Generic key-value store for site-wide settings.
+/// Used to persist the owner photo (as a base64 data URL) so it survives
+/// Vercel deployments without requiring external object storage.
+model SiteSettings {
+  key       String   @id
+  value     String   @db.Text
+  updatedAt DateTime @updatedAt
+}

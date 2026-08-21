@@ -5,8 +5,6 @@ import { headers } from "next/headers";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { z } from "zod";
 import { db } from "@/lib/db";
-import fs from "node:fs/promises";
-import path from "node:path";
 import {
   bookingSchema,
   enquirySchema,
@@ -669,13 +667,36 @@ export async function deleteEvent(eventId: string) {
 }
 
 // ─── Admin: Owner photo upload ─────────────────────────────────────────────
+//
+// Vercel (and most serverless platforms) have a read-only filesystem at runtime.
+// We store the cropped owner photo as a base64 data URL in the `SiteSettings`
+// database table so it persists across deployments and function cold-starts.
+//
+// The data URL is served directly to the browser — no CDN/storage service needed.
+// For high-traffic sites, consider migrating to Vercel Blob or Cloudinary.
+// ─────────────────────────────────────────────────────────────────────────────
 
-const OWNER_PHOTO_DIR = path.join(process.cwd(), "public", "uploads");
-const OWNER_PHOTO_FILE = "owner-profile.webp";
-const ALLOWED_MIME_TYPES = ["image/jpeg", "image/png", "image/webp"];
-const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2 MB
+const OWNER_PHOTO_KEY = "owner_photo_src";
+const ALLOWED_MIME_TYPES_PHOTO = ["image/jpeg", "image/png", "image/webp"];
+const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2 MB (raw bytes before base64 encoding)
 
-/** Overwrites the single owner profile photo on disk. */
+/**
+ * Reads the current owner photo from the database.
+ * Returns null if no photo has been uploaded yet.
+ */
+export async function getOwnerPhotoSrc(): Promise<string | null> {
+  try {
+    const setting = await db.siteSettings.findUnique({
+      where: { key: OWNER_PHOTO_KEY },
+      select: { value: true },
+    });
+    return setting?.value ?? null;
+  } catch {
+    return null;
+  }
+}
+
+/** Overwrites the owner profile photo stored in the database. */
 export async function uploadOwnerPhoto(
   _prevState: ActionResult,
   formData: FormData
@@ -705,7 +726,7 @@ export async function uploadOwnerPhoto(
 
   const file = raw as unknown as File;
 
-  if (!ALLOWED_MIME_TYPES.includes(file.type)) {
+  if (!ALLOWED_MIME_TYPES_PHOTO.includes(file.type)) {
     return {
       status: "error",
       code: "INVALID_TYPE",
@@ -734,22 +755,30 @@ export async function uploadOwnerPhoto(
       };
     }
 
-    await fs.mkdir(OWNER_PHOTO_DIR, { recursive: true });
-    await fs.writeFile(path.join(OWNER_PHOTO_DIR, OWNER_PHOTO_FILE), buffer);
+    // Encode as base64 data URL and persist to the database.
+    const base64 = buffer.toString("base64");
+    const dataUrl = `data:${file.type};base64,${base64}`;
+
+    await db.siteSettings.upsert({
+      where: { key: OWNER_PHOTO_KEY },
+      create: { key: OWNER_PHOTO_KEY, value: dataUrl },
+      update: { value: dataUrl },
+    });
 
     revalidatePath("/about");
+    revalidatePath("/admin");
 
     return {
       status: "success",
       message: "Owner photo updated.",
-      data: { src: `/uploads/${OWNER_PHOTO_FILE}?v=${Date.now()}` },
+      data: { src: dataUrl },
     };
   } catch (err) {
-    console.error("[uploadOwnerPhoto] Write failed:", err);
+    console.error("[uploadOwnerPhoto] Failed to save to database:", err);
     return {
       status: "error",
       code: "SERVER_ERROR",
-      message: "Failed to save image to disk. Please try again.",
+      message: "Failed to save image. Please try again.",
     };
   }
 }

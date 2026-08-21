@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import fs from "node:fs/promises";
-import path from "node:path";
 import {
   getDashboardStats,
   getRecentBookings,
@@ -15,6 +13,7 @@ import {
   AlertTriangleIcon,
 } from "@/components/icons";
 import { OwnerPhotoUpload } from "@/components/admin/owner-photo-upload";
+import { getOwnerPhotoSrc } from "@/app/actions";
 
 export const dynamic = "force-dynamic";
 
@@ -31,19 +30,12 @@ const statusBadge: Record<string, string> = {
 };
 
 export default async function AdminDashboard() {
-  const [stats, recentBookings, recentEnquiries] = await Promise.all([
+  const [stats, recentBookings, recentEnquiries, ownerPhotoSrc] = await Promise.all([
     getDashboardStats(),
     getRecentBookings(6),
     getEnquiries("NEW"),
+    getOwnerPhotoSrc(),
   ]);
-
-  let ownerPhotoSrc: string | null = null;
-  try {
-    await fs.stat(path.join(process.cwd(), "public", "uploads", "owner-profile.webp"));
-    ownerPhotoSrc = "/uploads/owner-profile.webp";
-  } catch {
-    ownerPhotoSrc = null;
-  }
 
   const cards = [
     {

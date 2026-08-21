@@ -122,12 +122,14 @@ export async function getAuthenticatedAdmin(): Promise<AuthenticatedAdmin | null
 
 /**
  * Enforces admin authorization on server routes and layouts.
- * Automatically clears stale session cookies to prevent infinite redirect loops.
+ * NOTE: cookies().delete() cannot be called from a Server Component (App Router
+ * restriction). Stale/invalid sessions are silently ignored here; the cookie is
+ * cleared automatically by the adminLogout() Server Action (via destroySession)
+ * or overwritten on the next successful login.
  */
 export async function requireAdmin(): Promise<AuthenticatedAdmin> {
   const user = await getAuthenticatedAdmin();
   if (!user) {
-    await destroySession();
     redirect("/admin/login");
   }
   return user;
