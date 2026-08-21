@@ -137,6 +137,26 @@ textarea,
   animation: ken-burns 14s ease-in-out infinite alternate;
 }
 
+/* Lightbox image-loading shimmer sweep */
+@keyframes lb-shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(200%);
+  }
+}
+
+.animate-lb-shimmer {
+  animation: lb-shimmer 1.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-lb-shimmer {
+    animation: none;
+  }
+}
+
 /* ============================================================
    Celebration decoration animations for the hero
    ============================================================ */

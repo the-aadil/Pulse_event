@@ -6,10 +6,17 @@ const nextConfig: NextConfig = {
   compress: true,
   serverExternalPackages: ["@prisma/adapter-neon", "@neondatabase/serverless"],
   images: {
-    formats: ["image/avif", "image/webp"],
+    // WebP only: AVIF encoding blocks the optimizer for ~0.5-2s per unique
+    // image on first request (12 gallery cards = visible queue). WebP
+    // delivers several times faster with a modest size penalty.
+    formats: ["image/webp"],
     minimumCacheTTL: 86400,
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    // Finer steps keep srcset candidates close to actual slot sizes,
+    // avoiding oversized downloads between 828 -> 1200.
+    deviceSizes: [480, 640, 750, 828, 960, 1080, 1200, 1440, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 192, 256, 384],
+    // 60 = lightweight tier for grid thumbnails, 75 = detail views.
+    qualities: [60, 75],
     localPatterns: [
       {
         pathname: "/images/gallery/**",

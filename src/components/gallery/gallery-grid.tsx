@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useState, useRef, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
-import Image from "next/image";
 import Link from "next/link";
 import {
   galleryCategories,
@@ -13,6 +12,7 @@ import {
 } from "@/lib/gallery";
 import { cn } from "@/lib/utils";
 import { Stagger } from "@/components/motion/stagger";
+import { SmartImage } from "@/components/ui/smart-image";
 import {
   ArrowRightIcon,
   ArrowLeftIcon,
@@ -49,28 +49,75 @@ function GalleryCard({
   className,
 }: {
   item: GalleryItem;
-  onOpen: () => void;
+  /** Called with a tiny downscaled snapshot of the loaded thumbnail, usable
+   * as the lightbox's blur-up placeholder before the full-size image arrives. */
+  onOpen: (previewBlur?: string) => void;
   priority?: boolean;
   className?: string;
 }) {
+  const [warm, setWarm] = useState(false);
+
+  /**
+   * Downscale the already-decoded thumbnail onto a tiny canvas. The result is
+   * a ~1-2KB JPEG that next/image can stretch + blur, letting the lightbox
+   * paint an accurate preview instantly instead of a generic gradient.
+   */
+  const captureThumbBlur = (button: HTMLButtonElement): string | undefined => {
+    try {
+      const img = button.querySelector("img");
+      if (!img || !img.naturalWidth || !img.naturalHeight) return undefined;
+      const canvas = document.createElement("canvas");
+      canvas.width = 24;
+      canvas.height = 24;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return undefined;
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      return canvas.toDataURL("image/jpeg", 0.6);
+    } catch {
+      return undefined;
+    }
+  };
+
   return (
     <div className={cn("group relative overflow-hidden rounded-lg border-[2px] border-[#d4af37] bg-[#12141c] shadow-xl transition-all duration-300 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] isolation-isolate", className)}>
       <button
         type="button"
-        onClick={onOpen}
+        onClick={(event) => onOpen(captureThumbBlur(event.currentTarget))}
+        onPointerEnter={() => setWarm(true)}
+        onFocus={() => setWarm(true)}
         aria-label={`View ${item.alt} full size`}
         className="block w-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-gold-400"
       >
-        <Image
+        <SmartImage
           src={item.src}
           alt={item.alt}
           width={item.width}
           height={item.height}
           priority={priority}
+          quality={60}
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          wrapperClassName="bg-[#12141c]"
           className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </button>
+
+      {/* Invisible ghost mount: while hovered/focused, fetches the lightbox-
+          sized variant through the optimizer so clicking feels instant. The
+          zero-size box keeps it out of layout; `sizes` alone steers which
+          srcset candidate the browser requests. */}
+      {warm && (
+        <div aria-hidden="true" className="pointer-events-none absolute h-0 w-0 overflow-hidden opacity-0">
+          <SmartImage
+            src={item.src}
+            alt=""
+            fill
+            quality={75}
+            indicator="none"
+            sizes="(min-width: 1024px) 80vw, 100vw"
+          />
+        </div>
+      )}
+
       <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0b0c10]/70 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
       <Link
         href={bookHref(item)}
@@ -264,6 +311,7 @@ export function GalleryGrid({
   const [category, setCategory] = useState<string | null>(initialCategory);
   const [page, setPage] = useState(initialPage);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [lightboxBlur, setLightboxBlur] = useState<string | null>(null);
   const [, startTransition] = useTransition();
   const router = useRouter();
 
@@ -271,6 +319,7 @@ export function GalleryGrid({
     setCategory(initialCategory);
     setPage(initialPage);
     setLightboxIndex(null);
+    setLightboxBlur(null);
   }, [initialCategory, initialPage]);
 
   useEffect(() => {
@@ -313,7 +362,10 @@ export function GalleryGrid({
     });
   };
 
-  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+  const closeLightbox = useCallback(() => {
+    setLightboxIndex(null);
+    setLightboxBlur(null);
+  }, []);
   const nextImage = useCallback(
     () =>
       setLightboxIndex((i) =>
@@ -372,7 +424,10 @@ export function GalleryGrid({
               <GalleryCard
                 key={item.src}
                 item={item}
-                onOpen={() => setLightboxIndex(index)}
+                onOpen={(previewBlur) => {
+                  setLightboxBlur(previewBlur ?? null);
+                  setLightboxIndex(index);
+                }}
                 priority={page === 1 && index === 0}
               />
             ))}
@@ -399,6 +454,13 @@ export function GalleryGrid({
           onClose={closeLightbox}
           onNext={nextImage}
           onPrev={prevImage}
+          nextSrc={pageItems[(lightboxIndex + 1) % pageItems.length]?.src}
+          prevSrc={
+            pageItems[
+              (lightboxIndex - 1 + pageItems.length) % pageItems.length
+            ]?.src
+          }
+          initialBlurDataURL={lightboxBlur ?? undefined}
         />
       )}
     </div>
